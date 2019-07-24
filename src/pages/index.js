@@ -2,9 +2,20 @@ import React from "react"
 import { Link } from "gatsby"
 import Image from "../components/image"
 import SEO from "../components/seo"
-import Button from "@material-ui/core/Button"
-import Landing from "../components/Landing"
 import NavBar from "../components/Navbar"
+import { makeStyles } from "@material-ui/core/styles"
+import {
+  Typography,
+  Grid,
+  Button,
+  Fade,
+  Zoom,
+  Paper,
+  Avatar,
+  Slide,
+} from "@material-ui/core"
+import TopSection from "../components/TopSection"
+import SkillSection from "../components/SkillSection"
 
 /*
 const IndexPage = () => (
@@ -24,12 +35,29 @@ const IndexPage = () => (
   </Layout>
 )*/
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: "100%",
+    height: "100%",
+  },
+}))
+
 const IndexPage = () => {
+  const classes = useStyles()
+
+  //https://www.jordanriley.me/static/media/me.c702f970.jpg
+
   return (
     <>
       <SEO title="Home" />
       <NavBar />
-      <Landing />
+      <div className={classes.root}>
+        <Grid container justify="center" alignItems="center">
+          <TopSection />
+
+          <SkillSection />
+        </Grid>
+      </div>
     </>
   )
 }

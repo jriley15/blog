@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
+import { Link } from "gatsby"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,9 +17,17 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    textDecoration: "none",
+    color: "white",
   },
   navButton: {
-    color: "#ff5370",
+    color: "#FFFFFF",
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  },
+  navBar: {
+    background: "transparent",
+    boxShadow: "none",
   },
 }))
 
@@ -27,14 +36,23 @@ export default function NavBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="absolute" className={classes.navBar}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography
+            variant="h6"
+            className={classes.title}
+            component={Link}
+            to="/"
+          >
             Logo
           </Typography>
-          <Button className={classes.navButton}>About</Button>
-          <Button className={classes.navButton}>Contact</Button>
-          <Button className={classes.navButton}>Sign Up</Button>
+          <Button component={Link} to="/about" className={classes.navButton}>
+            About
+          </Button>
+          <Button className={classes.navButton}>Projects</Button>
+          <Button variant="outlined" className={classes.navButton}>
+            Contact
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
