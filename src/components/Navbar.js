@@ -7,6 +7,9 @@ import Button from "@material-ui/core/Button"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 import { Link } from "gatsby"
+import Logo from "../images/Jrdn.png"
+import useScrollPosition from "../hooks/useScrollPosition"
+import { Grid } from "@material-ui/core"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,37 +18,53 @@ const useStyles = makeStyles(theme => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
+  grow: {
     flexGrow: 1,
-    textDecoration: "none",
-    color: "white",
+  },
+  logo: {
+    width: "90px",
   },
   navButton: {
     color: "#FFFFFF",
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    //textTransform: "none",
   },
   navBar: {
-    background: "transparent",
-    boxShadow: "none",
+    //background: "transparent",
+    transition: "background-color 0.5s ease, box-shadow 0.5s ease",
+    //alignItems: "center",
+  },
+  toolBar: {
+    //width: "100%",
+    //maxWidth: "1200px",
   },
 }))
 
 export default function NavBar() {
   const classes = useStyles()
 
+  const y = useScrollPosition()
+
   return (
     <div className={classes.root}>
-      <AppBar position="absolute" className={classes.navBar}>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            className={classes.title}
-            component={Link}
-            to="/"
-          >
-            Logo
-          </Typography>
+      <AppBar
+        position="fixed"
+        className={classes.navBar}
+        style={{
+          backgroundColor: y === 0 ? "transparent" : "#303030",
+          boxShadow:
+            y === 0
+              ? "none"
+              : "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
+        }}
+      >
+        <Toolbar className={classes.toolBar}>
+          <Link to="/">
+            <img src={Logo} className={classes.logo} />
+          </Link>
+          <div className={classes.grow} />
+
           <Button component={Link} to="/about" className={classes.navButton}>
             About
           </Button>

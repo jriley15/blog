@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core"
 import TopSection from "../components/TopSection"
 import SkillSection from "../components/SkillSection"
+import ProjectSection from "../components/ProjectSection"
 
 /*
 const IndexPage = () => (
@@ -56,6 +57,8 @@ const IndexPage = () => {
           <TopSection />
 
           <SkillSection />
+
+          <ProjectSection />
         </Grid>
       </div>
     </>
