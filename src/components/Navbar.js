@@ -65,10 +65,14 @@ export default function NavBar() {
           </Link>
           <div className={classes.grow} />
 
-          <Button component={Link} to="/about" className={classes.navButton}>
+          <Button size="large" className={classes.navButton}>
             About
           </Button>
+
           <Button className={classes.navButton}>Projects</Button>
+
+          <Button className={classes.navButton}>Skills</Button>
+
           <Button variant="outlined" className={classes.navButton}>
             Contact
           </Button>

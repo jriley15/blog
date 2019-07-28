@@ -232,8 +232,6 @@ const ToolIcons = () => {
             ></path>
           </svg>
         </Grid>
-        <Grid item className={classes.icon}></Grid>
-        <Grid item className={classes.icon}></Grid>
       </Grid>
     </Fade>
   )

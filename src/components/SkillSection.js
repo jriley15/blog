@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
 
     //paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(4),
   },
   plz: {
     //width: "100%",
@@ -42,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 
   root: {
     width: "100%",
-    paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(8),
     position: "relative",
     //height: "calc(100vh - 56px)",
   },
@@ -61,8 +62,7 @@ const useStyles = makeStyles(theme => ({
   svg: {
     width: "100%",
     position: "absolute",
-    bottom: -5,
-    transform: "rotate(180deg)",
+    bottom: 0,
   },
 
   wave: {
