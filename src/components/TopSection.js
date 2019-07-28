@@ -12,6 +12,7 @@ import {
   Avatar,
   Slide,
   Fab,
+  ButtonGroup,
 } from "@material-ui/core"
 import clsx from "clsx"
 import DownArrow from "@material-ui/icons/KeyboardArrowDown"
@@ -79,6 +80,10 @@ const useStyles = makeStyles(theme => ({
     animation: "bounce .3s infinite alternate",
     animationName: "$bounce",
     animationDelay: "2s",
+
+    "&:hover": {
+      animation: "none",
+    },
   },
 
   "@keyframes bounce": {
@@ -138,12 +143,11 @@ const TopSection = ({ scrollNext, children }) => {
                 spacing={1}
                 className={classes.buttonGroup}
               >
-                <Grid item>
-                  <Button variant="outlined">About Me</Button>
-                </Grid>
-                <Grid item>
+                <ButtonGroup size="large">
+                  <Button variant="outlined">Github</Button>
+
                   <Button variant="outlined">Projects</Button>
-                </Grid>
+                </ButtonGroup>
               </Grid>
             </div>
           </Fade>

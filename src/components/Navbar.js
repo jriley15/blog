@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
@@ -10,6 +10,7 @@ import { Link } from "gatsby"
 import Logo from "../images/Jrdn.png"
 import useScrollPosition from "../hooks/useScrollPosition"
 import { Grid } from "@material-ui/core"
+import Contact from "./Contact"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,6 +47,16 @@ export default function NavBar({ scrollNext }) {
 
   const y = useScrollPosition()
 
+  const [open, setOpen] = useState(false)
+
+  function handleClickOpen() {
+    setOpen(true)
+  }
+
+  function handleClose() {
+    setOpen(false)
+  }
+
   return (
     <div className={classes.root}>
       <AppBar
@@ -65,11 +76,19 @@ export default function NavBar({ scrollNext }) {
           </Link>
           <div className={classes.grow} />
 
-          <Button className={classes.navButton} onClick={() => scrollNext(2)}>
+          <Button
+            size="large"
+            className={classes.navButton}
+            onClick={() => scrollNext(2)}
+          >
             Projects
           </Button>
 
-          <Button className={classes.navButton} onClick={() => scrollNext(1)}>
+          <Button
+            size="large"
+            className={classes.navButton}
+            onClick={() => scrollNext(1)}
+          >
             Skills
           </Button>
 
@@ -77,11 +96,18 @@ export default function NavBar({ scrollNext }) {
             About
           </Button>
 
-          <Button variant="outlined" className={classes.navButton}>
+          <Button
+            variant="outlined"
+            className={classes.navButton}
+            onClick={handleClickOpen}
+            size="large"
+          >
             Contact
           </Button>
         </Toolbar>
       </AppBar>
+
+      <Contact open={open} handleClose={handleClose} />
     </div>
   )
 }

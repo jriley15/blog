@@ -83,6 +83,9 @@ const useStyles = makeStyles(theme => ({
     position: "absolute",
     animation: "bounce .3s infinite alternate",
     animationName: "$bounce",
+    "&:hover": {
+      animation: "none",
+    },
   },
 
   "@keyframes bounce": {
