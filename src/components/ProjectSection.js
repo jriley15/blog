@@ -66,7 +66,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ProjectSection = () => {
+const ProjectSection = ({ children }) => {
   const classes = useStyles()
 
   let projects = []
@@ -175,6 +175,7 @@ const ProjectSection = () => {
       </svg>
 
       <Grid container justify="center" className={classes.projectContainer}>
+        {children}
         <Grid item xs={12}>
           <Fade up>
             <Typography variant="h4" align="center">

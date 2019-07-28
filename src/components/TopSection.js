@@ -91,7 +91,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const TopSection = () => {
+const TopSection = ({ scrollNext, children }) => {
   const classes = useStyles()
 
   return (
@@ -105,6 +105,7 @@ const TopSection = () => {
         <div className={clsx(classes.wave, classes.six)}></div>
         <div className={clsx(classes.wave, classes.seven)}></div>
   </div>*/}
+      {children}
       <Grid
         container
         justify="center"
@@ -153,6 +154,7 @@ const TopSection = () => {
           aria-label="Next"
           color="default"
           className={classes.scrollArrow}
+          onClick={() => scrollNext(1)}
         >
           <DownArrow fontSize="large" />
         </Fab>

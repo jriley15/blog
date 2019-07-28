@@ -10,6 +10,7 @@ import {
   Paper,
   Avatar,
   Slide,
+  Fab,
 } from "@material-ui/core"
 import ProgrammingIcons from "./ProgrammingIcons"
 import FrameworkIcons from "./FrameworkIcons"
@@ -19,6 +20,7 @@ import CloudIcons from "./CloudIcons"
 import ToolIcons from "./ToolIcons"
 import OSIcons from "./OSIcons"
 import Fade from "react-reveal/Fade"
+import DownArrow from "@material-ui/icons/KeyboardArrowDown"
 
 const useStyles = makeStyles(theme => ({
   buttonGroup: {
@@ -45,6 +47,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     paddingTop: theme.spacing(8),
     position: "relative",
+    paddingBottom: theme.spacing(8),
     //height: "calc(100vh - 56px)",
   },
   skillsContainer: {
@@ -74,14 +77,31 @@ const useStyles = makeStyles(theme => ({
     from: { transform: "rotate(0deg)" },
     from: { transform: "rotate(360deg)" },
   },
+
+  scrollArrow: {
+    bottom: theme.spacing(2),
+    position: "absolute",
+    animation: "bounce .3s infinite alternate",
+    animationName: "$bounce",
+  },
+
+  "@keyframes bounce": {
+    "0%": {
+      transform: "translate(0px, 0px)",
+    },
+    "100%": {
+      transform: "translate(0px, 10px)",
+    },
+  },
 }))
 
-const SkillSection = () => {
+const SkillSection = ({ scrollNext, children }) => {
   const classes = useStyles()
 
   return (
     <Grid item className={classes.root}>
-      <Grid container justify="center" direction="column">
+      <Grid container justify="center" direction="column" alignItems="center">
+        {children}
         <Grid item>
           <Fade up>
             <Typography
@@ -174,6 +194,16 @@ const SkillSection = () => {
             </Grid>
           </Grid>
         </Grid>
+        <Fab
+          size="small"
+          color="primary"
+          aria-label="Next"
+          color="default"
+          className={classes.scrollArrow}
+          onClick={() => scrollNext(2)}
+        >
+          <DownArrow fontSize="large" />
+        </Fab>
       </Grid>
     </Grid>
   )

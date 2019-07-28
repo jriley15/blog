@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import { Link } from "gatsby"
 import Image from "../components/image"
 import SEO from "../components/seo"
@@ -41,6 +41,14 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100%",
   },
+
+  scrollContainer: {
+    position: "relative",
+  },
+  scrollElement: {
+    position: "absolute",
+    top: "-" + theme.spacing(12) + "px",
+  },
 }))
 
 const IndexPage = () => {
@@ -48,17 +56,47 @@ const IndexPage = () => {
 
   //https://www.jordanriley.me/static/media/me.c702f970.jpg
 
+  let topRef = useRef(null)
+  let skillsRef = useRef(null)
+  let projectsRef = useRef(null)
+
+  const scrollNext = index => {
+    switch (index) {
+      case 0:
+        topRef.current.scrollIntoView({ behavior: "smooth" })
+        break
+
+      case 1:
+        skillsRef.current.scrollIntoView({ behavior: "smooth" })
+        break
+
+      case 2:
+        projectsRef.current.scrollIntoView({ behavior: "smooth" })
+        break
+    }
+  }
+
   return (
     <>
       <SEO title="Home" />
-      <NavBar />
+      <NavBar scrollNext={scrollNext} />
       <div className={classes.root}>
         <Grid container justify="center" alignItems="center">
-          <TopSection />
+          <TopSection scrollNext={scrollNext}>
+            <div ref={topRef} className={classes.scrollElement} />
+          </TopSection>
 
-          <SkillSection />
+          <SkillSection scrollNext={scrollNext}>
+            <div className={classes.scrollContainer}>
+              <div ref={skillsRef} className={classes.scrollElement} />
+            </div>
+          </SkillSection>
 
-          <ProjectSection />
+          <ProjectSection scrollNext={scrollNext}>
+            <div className={classes.scrollContainer}>
+              <div ref={projectsRef} className={classes.scrollElement} />
+            </div>
+          </ProjectSection>
         </Grid>
       </div>
     </>

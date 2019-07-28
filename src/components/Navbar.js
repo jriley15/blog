@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function NavBar() {
+export default function NavBar({ scrollNext }) {
   const classes = useStyles()
 
   const y = useScrollPosition()
@@ -65,13 +65,17 @@ export default function NavBar() {
           </Link>
           <div className={classes.grow} />
 
+          <Button className={classes.navButton} onClick={() => scrollNext(2)}>
+            Projects
+          </Button>
+
+          <Button className={classes.navButton} onClick={() => scrollNext(1)}>
+            Skills
+          </Button>
+
           <Button size="large" className={classes.navButton}>
             About
           </Button>
-
-          <Button className={classes.navButton}>Projects</Button>
-
-          <Button className={classes.navButton}>Skills</Button>
 
           <Button variant="outlined" className={classes.navButton}>
             Contact
