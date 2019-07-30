@@ -189,7 +189,13 @@ const ProjectSection = ({ children }) => {
                     key={project.projectId}
                   >
                     <Fade>
-                      <Link href={"/project/" + project.projectId}>
+                      <Link
+                        href={{
+                          pathname: `/project`,
+                          query: { id: project.projectId },
+                        }}
+                        as={`/project/${project.projectId}`}
+                      >
                         <Card className={classes.card} raised>
                           <CardActionArea>
                             <CardMedia

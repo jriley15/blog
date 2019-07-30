@@ -5,25 +5,26 @@ import { Grid, Typography, Button } from "@material-ui/core"
 import JMarkdown from "../components/JMarkdown"
 import Carousel from "../components/gallery/Carousel"
 import WebIcon from "@material-ui/icons/Web"
+import { projects } from "../util/data"
 
 const useStyles = makeStyles(theme => ({
   root: {
     //padding: theme.spacing(1),
     //background:
     //  "linear-gradient(rgba(120, 80, 228, 0.8), rgba(13, 186, 134, 0.8)), url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JrbItQz/white-polygonal-geometric-surface-seamless-loop-4k-uhd-3840x2160_nyllfzz7e__F0000.png') no-repeat center",
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#424242",
     backgroundSize: "cover",
     position: "relative",
     backgroundAttachment: "fixed",
     width: "100%",
-    height: "100vh",
+    height: "100%",
   },
   topSection: {
     boxShadow: "inset 0 0 20px rgba(0,0,0,.5)",
     padding: theme.spacing(1),
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    backgroundColor: "#2b313c",
+    backgroundColor: "#303030",
     marginTop: theme.spacing(8),
   },
   markDown: {
@@ -39,10 +40,8 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Page = ({ query }) => {
+const Page = ({ project }) => {
   const classes = useStyles()
-
-  const { project } = query
 
   return (
     <>
@@ -109,8 +108,10 @@ const Page = ({ query }) => {
   )
 }
 
-Page.getInitialProps = ({ query }) => {
-  return { query }
+Page.getInitialProps = ({ query: { id } }) => {
+  console.log("id: ", id)
+
+  return { project: projects.find(p => p.projectId == id) }
 }
 
 export default Page

@@ -52,20 +52,23 @@ const useStyles = makeStyles(theme => ({
 const IndexPage = ({ query }) => {
   const classes = useStyles()
 
-  useEffect(() => {
-    if (query.section > 0) {
-      scrollNext(query.section, "auto")
-    }
-  }, [])
-
-  //https://www.jordanriley.me/static/media/me.c702f970.jpg
-
   let topRef = useRef(null)
   let skillsRef = useRef(null)
   let projectsRef = useRef(null)
 
+  useEffect(() => {
+    //only works with set timeout when coming from another page
+    setTimeout(() => {
+      if (parseInt(query.section, 10) > 0) {
+        scrollNext(query.section, "auto")
+      }
+    }, 0)
+  }, [])
+
+  //https://www.jordanriley.me/static/media/me.c702f970.jpg
+
   const scrollNext = (index, b) => {
-    switch (index) {
+    switch (parseInt(index, 10)) {
       case 0:
         topRef.current.scrollIntoView({ behavior: b ? "auto" : "smooth" })
         break

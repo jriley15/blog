@@ -12,7 +12,6 @@ const styles = theme => ({
     },
 
     maxWidth: "900px",
-    color: "black",
   },
 })
 

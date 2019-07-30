@@ -68,7 +68,7 @@ export default function NavBar({ scrollNext, type }) {
             type === "index"
               ? y === 0
                 ? "transparent"
-                : "#303030"
+                : "#212121"
               : "rgba(120, 80, 228)",
           boxShadow:
             y === 0
@@ -92,7 +92,11 @@ export default function NavBar({ scrollNext, type }) {
             </Button>
           )}
           {type !== "index" && (
-            <Link href="/projects">
+            <Link
+              prefetch
+              href={{ pathname: "/index", query: { section: 2 } }}
+              as="/index"
+            >
               <Button size="large" className={classes.navButton}>
                 Projects
               </Button>
@@ -113,9 +117,11 @@ export default function NavBar({ scrollNext, type }) {
           <Button className={classes.navButton} size="large">
             Resume
           </Button>
-          <Button className={classes.navButton} size="large">
-            Blog
-          </Button>
+          <Link href="/blog">
+            <Button className={classes.navButton} size="large">
+              Blog
+            </Button>
+          </Link>
           <Button
             variant="outlined"
             className={classes.navButton}
