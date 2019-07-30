@@ -1,7 +1,5 @@
 import React, { useRef } from "react"
-import { Link } from "gatsby"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Link from "next/link"
 import NavBar from "../components/Navbar"
 import { makeStyles } from "@material-ui/core/styles"
 import {
@@ -78,7 +76,6 @@ const IndexPage = () => {
 
   return (
     <>
-      <SEO title="Home" />
       <NavBar scrollNext={scrollNext} type="index" />
       <div className={classes.root}>
         <Grid container justify="center" alignItems="center">
@@ -104,3 +101,34 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+/*
+class Index extends React.Component {
+  static getInitialProps({ reduxStore, req }) {
+    const isServer = !!req;
+    // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
+    reduxStore.dispatch(serverRenderClock(isServer));
+
+    return {};
+  }
+
+  componentDidMount() {
+    // DISPATCH ACTIONS HERE FROM `mapDispatchToProps`
+    // TO TICK THE CLOCK
+    this.timer = setInterval(() => this.props.startClock(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  render() {
+    return <Examples />;
+  }
+}
+const mapDispatchToProps = { startClock };
+export default connect(
+  null,
+  mapDispatchToProps
+)(Index);
+*/

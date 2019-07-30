@@ -6,8 +6,7 @@ import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
-import { Link } from "gatsby"
-import Logo from "../images/Jrdn.png"
+import Link from "next/link"
 import useScrollPosition from "../hooks/useScrollPosition"
 import { Grid } from "@material-ui/core"
 import Contact from "./Contact"
@@ -76,8 +75,8 @@ export default function NavBar({ scrollNext, type }) {
         }}
       >
         <Toolbar className={classes.toolBar}>
-          <Link to="/">
-            <img src={Logo} className={classes.logo} />
+          <Link href="/">
+            <img src="/static/images/Jrdn.png" className={classes.logo} />
           </Link>
           <div className={classes.grow} />
           <Button className={classes.navButton} size="large">
