@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function NavBar({ scrollNext }) {
+export default function NavBar({ scrollNext, type }) {
   const classes = useStyles()
 
   const y = useScrollPosition()
@@ -63,7 +63,12 @@ export default function NavBar({ scrollNext }) {
         position="fixed"
         className={classes.navBar}
         style={{
-          backgroundColor: y === 0 ? "transparent" : "#303030",
+          backgroundColor:
+            type === "index"
+              ? y === 0
+                ? "transparent"
+                : "#303030"
+              : "rgba(120, 80, 228)",
           boxShadow:
             y === 0
               ? "none"
@@ -75,7 +80,9 @@ export default function NavBar({ scrollNext }) {
             <img src={Logo} className={classes.logo} />
           </Link>
           <div className={classes.grow} />
-
+          <Button className={classes.navButton} size="large">
+            About
+          </Button>
           <Button
             size="large"
             className={classes.navButton}
@@ -84,7 +91,7 @@ export default function NavBar({ scrollNext }) {
             Projects
           </Button>
 
-          <Button
+          {/*<Button
             size="large"
             className={classes.navButton}
             onClick={() => scrollNext(1)}
@@ -94,8 +101,10 @@ export default function NavBar({ scrollNext }) {
 
           <Button size="large" className={classes.navButton}>
             About
+          </Button>*/}
+          <Button className={classes.navButton} size="large">
+            Resume
           </Button>
-
           <Button
             variant="outlined"
             className={classes.navButton}

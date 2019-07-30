@@ -79,7 +79,7 @@ const IndexPage = () => {
   return (
     <>
       <SEO title="Home" />
-      <NavBar scrollNext={scrollNext} />
+      <NavBar scrollNext={scrollNext} type="index" />
       <div className={classes.root}>
         <Grid container justify="center" alignItems="center">
           <TopSection scrollNext={scrollNext}>

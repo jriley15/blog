@@ -9,7 +9,7 @@ import DialogTitle from "@material-ui/core/DialogTitle"
 import { Slide, Grid, Fab, Divider, Typography } from "@material-ui/core"
 import EmailIcon from "@material-ui/icons/Email"
 import { makeStyles } from "@material-ui/core/styles"
-import { grey, lightGreen, indigo } from "@material-ui/core/colors"
+import { grey, green, indigo } from "@material-ui/core/colors"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
@@ -62,10 +62,10 @@ const useStyles = makeStyles(theme => ({
 
   devpostButton: {
     margin: theme.spacing(1),
-    color: "#FFF",
-    backgroundColor: lightGreen["500"],
+    color: theme.palette.getContrastText(green["A400"]),
+    backgroundColor: green["A400"],
     "&:hover": {
-      backgroundColor: lightGreen["700"],
+      backgroundColor: green["A700"],
     },
   },
 
@@ -90,7 +90,7 @@ export default function Contact({ open, handleClose }) {
         <DialogTitle id="form-dialog-title">Contact Me</DialogTitle>
         <DialogContent dividers>
           <DialogContentText align="center">
-            Contact me through email or social media below
+            Contact me through email or social media
           </DialogContentText>
 
           <Grid

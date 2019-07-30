@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import { ThemeProvider } from "@material-ui/styles"
 import theme from "../../src/theme"
+import Icon from "../../src/images/favicon.ico"
 
 export default function TopLayout(props) {
   return (
