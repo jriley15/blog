@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useEffect } from "react"
 import Link from "next/link"
 import NavBar from "../components/Navbar"
 import { makeStyles } from "@material-ui/core/styles"
@@ -49,8 +49,14 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const IndexPage = () => {
+const IndexPage = ({ query }) => {
   const classes = useStyles()
+
+  useEffect(() => {
+    if (query.section > 0) {
+      scrollNext(query.section, "auto")
+    }
+  }, [])
 
   //https://www.jordanriley.me/static/media/me.c702f970.jpg
 
@@ -58,18 +64,18 @@ const IndexPage = () => {
   let skillsRef = useRef(null)
   let projectsRef = useRef(null)
 
-  const scrollNext = index => {
+  const scrollNext = (index, b) => {
     switch (index) {
       case 0:
-        topRef.current.scrollIntoView({ behavior: "smooth" })
+        topRef.current.scrollIntoView({ behavior: b ? "auto" : "smooth" })
         break
 
       case 1:
-        skillsRef.current.scrollIntoView({ behavior: "smooth" })
+        skillsRef.current.scrollIntoView({ behavior: b ? "auto" : "smooth" })
         break
 
       case 2:
-        projectsRef.current.scrollIntoView({ behavior: "smooth" })
+        projectsRef.current.scrollIntoView({ behavior: b ? "auto" : "smooth" })
         break
     }
   }
@@ -98,6 +104,10 @@ const IndexPage = () => {
       </div>
     </>
   )
+}
+
+IndexPage.getInitialProps = ({ query }) => {
+  return { query }
 }
 
 export default IndexPage

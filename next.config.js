@@ -4,6 +4,7 @@ module.exports = {
   exportPathMap: function() {
     const pathMap = {
       "/": { page: "/" },
+      "/projects": { page: "/index", query: { section: 2 } },
     }
 
     projects.map(project => {

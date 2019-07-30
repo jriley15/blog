@@ -22,7 +22,9 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   logo: {
-    width: "90px",
+    width: "100px",
+    cursor: "pointer",
+    padding: theme.spacing(1),
   },
   navButton: {
     color: "#FFFFFF",
@@ -79,16 +81,23 @@ export default function NavBar({ scrollNext, type }) {
             <img src="/static/images/Jrdn.png" className={classes.logo} />
           </Link>
           <div className={classes.grow} />
-          <Button className={classes.navButton} size="large">
-            About
-          </Button>
-          <Button
-            size="large"
-            className={classes.navButton}
-            onClick={() => scrollNext(2)}
-          >
-            Projects
-          </Button>
+
+          {type === "index" && (
+            <Button
+              size="large"
+              className={classes.navButton}
+              onClick={() => scrollNext(2)}
+            >
+              Projects
+            </Button>
+          )}
+          {type !== "index" && (
+            <Link href="/projects">
+              <Button size="large" className={classes.navButton}>
+                Projects
+              </Button>
+            </Link>
+          )}
 
           {/*<Button
             size="large"
@@ -103,6 +112,9 @@ export default function NavBar({ scrollNext, type }) {
           </Button>*/}
           <Button className={classes.navButton} size="large">
             Resume
+          </Button>
+          <Button className={classes.navButton} size="large">
+            Blog
           </Button>
           <Button
             variant="outlined"
