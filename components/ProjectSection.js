@@ -16,6 +16,7 @@ import {
   CardContent,
 } from "@material-ui/core"
 import Fade from "react-reveal/Fade"
+import { projects } from "../util/data"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,23 +57,18 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(6),
   },
   card: {
-    maxWidth: 384,
     //background: "rgba(255, 255, 255, 0.6)",
     //color: "#000000",
+    width: "384px",
   },
   cardContainer: {
     //padding: theme.spacing(1),
   },
+  cardImage: {},
 }))
 
 const ProjectSection = ({ children }) => {
   const classes = useStyles()
-
-  let projects = []
-
-  for (let i = 0; i < 10; i++) {
-    projects.push({ id: i, title: "test " + i })
-  }
 
   return (
     <Grid item className={classes.root}>
@@ -187,36 +183,43 @@ const ProjectSection = ({ children }) => {
             <Grid item className={classes.projects}>
               <Grid container justify="center" spacing={2}>
                 {projects.map((project, index) => (
-                  <Grid item className={classes.cardContainer}>
+                  <Grid
+                    item
+                    className={classes.cardContainer}
+                    key={project.projectId}
+                  >
                     <Fade>
-                      <Card className={classes.card}>
-                        <CardActionArea>
-                          <CardMedia
-                            component="img"
-                            alt="Contemplative Reptile"
-                            height="200"
-                            image="https://images.jrdn.tech/jchat-0.PNG"
-                            title="Contemplative Reptile"
-                          />
-                          <CardContent>
-                            <Typography
-                              gutterBottom
-                              variant="h5"
-                              component="h2"
-                            >
-                              {project.title}
-                            </Typography>
-                            <Typography variant="body2" component="p">
-                              Lizards are a widespread group of squamate
-                              reptiles, with over 6,000 species, ranging across
-                              all continents except Antarctica
-                            </Typography>
-                          </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                          <Button size="small">View More</Button>
-                        </CardActions>
-                      </Card>
+                      <Link href={"/project/" + project.projectId}>
+                        <Card className={classes.card} raised>
+                          <CardActionArea>
+                            <CardMedia
+                              component="img"
+                              alt="Contemplative Reptile"
+                              height="200"
+                              image={project.images[0].link}
+                              title="Contemplative Reptile"
+                              className={classes.cardImage}
+                            />
+                            <CardContent>
+                              <Typography
+                                gutterBottom
+                                variant="h5"
+                                component="h2"
+                              >
+                                {project.title.length > 30
+                                  ? project.title.substring(0, 25) + ".."
+                                  : project.title}
+                              </Typography>
+                              <Typography variant="body2" component="p">
+                                {project.description}
+                              </Typography>
+                            </CardContent>
+                          </CardActionArea>
+                          <CardActions>
+                            <Button size="small">View More</Button>
+                          </CardActions>
+                        </Card>
+                      </Link>
                     </Fade>
                   </Grid>
                 ))}

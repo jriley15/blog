@@ -182,7 +182,6 @@ export default function Contact({ open, handleClose }) {
             Or send me a message with the form below
           </Typography>
           <TextField
-            autoFocus
             margin="dense"
             id="name"
             label="Name"
@@ -190,7 +189,6 @@ export default function Contact({ open, handleClose }) {
             fullWidth
           />
           <TextField
-            autoFocus
             margin="dense"
             id="email"
             label="Email Address"
@@ -200,7 +198,6 @@ export default function Contact({ open, handleClose }) {
           <TextField
             multiline
             rows={5}
-            autoFocus
             margin="dense"
             id="email"
             label="Message"

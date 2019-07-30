@@ -21,7 +21,7 @@ class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>Jukebox</title>
+          <title>Jordan Portfolio</title>
         </Head>
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
