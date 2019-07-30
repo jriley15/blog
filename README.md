@@ -1,1 +1,1 @@
-Personal Blog built with Gatsby
+Personal Blog re-built with NextJs
