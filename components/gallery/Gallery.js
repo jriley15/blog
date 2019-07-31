@@ -120,7 +120,6 @@ class Gallery extends Component {
         <>
           <Fab
             size="small"
-            color="primary"
             aria-label="Left"
             className={classes.close}
             onClick={this.handleClose}
@@ -136,7 +135,6 @@ class Gallery extends Component {
           >
             <Fab
               size="small"
-              color="primary"
               aria-label="Left"
               className={classes.leftArrow}
               onClick={this.prev}
@@ -152,7 +150,6 @@ class Gallery extends Component {
 
             <Fab
               size="small"
-              color="primary"
               aria-label="Left"
               className={classes.rightArrow}
               onClick={this.next}
@@ -162,7 +159,6 @@ class Gallery extends Component {
 
             <Fab
               size="small"
-              color="primary"
               aria-label="Left"
               className={classes.rightArrow}
               onClick={this.next}

@@ -151,6 +151,9 @@ export default function Contact({ open, handleClose }) {
                 size="medium"
                 aria-label="add"
                 className={classes.discordButton}
+                onClick={() =>
+                  window.open("https://discordapp.com/users/287019890588778498")
+                }
               >
                 <img
                   src="https://discordapp.com/assets/1c8a54f25d101bdc607cec7228247a9a.svg"

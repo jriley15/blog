@@ -16,7 +16,7 @@ import {
   CardContent,
 } from "@material-ui/core"
 import Fade from "react-reveal/Fade"
-import { projects } from "../util/data"
+import { projects } from "../data/projects"
 
 const useStyles = makeStyles(theme => ({
   root: {

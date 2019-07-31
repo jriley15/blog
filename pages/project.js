@@ -5,7 +5,7 @@ import { Grid, Typography, Button } from "@material-ui/core"
 import JMarkdown from "../components/JMarkdown"
 import Carousel from "../components/gallery/Carousel"
 import WebIcon from "@material-ui/icons/Web"
-import { projects } from "../util/data"
+import { projects } from "../data/projects"
 
 const useStyles = makeStyles(theme => ({
   root: {

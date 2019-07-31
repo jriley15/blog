@@ -12,23 +12,33 @@ import {
   Avatar,
   Slide,
 } from "@material-ui/core"
+import { getPosts } from "../data/blog"
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     height: "100%",
+    marginTop: theme.spacing(8),
   },
 }))
 
-const Blog = ({ query }) => {
+const Blog = ({ posts }) => {
   const classes = useStyles()
 
   return (
     <>
       <NavBar />
-      <div className={classes.root}>Blog</div>
+      <div className={classes.root}>
+        {posts.map(post => (
+          <>{post.fields.title}</>
+        ))}
+      </div>
     </>
   )
+}
+
+Blog.getInitialProps = async () => {
+  return { posts: await getPosts() }
 }
 
 export default Blog
