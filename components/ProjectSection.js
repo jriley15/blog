@@ -21,7 +21,7 @@ import { projects } from "../data/projects"
 const useStyles = makeStyles(theme => ({
   root: {
     background:
-      "linear-gradient(rgba(13, 186, 134, 0.8), rgba(120, 80, 228, 0.8)), url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JrbItQz/white-polygonal-geometric-surface-seamless-loop-4k-uhd-3840x2160_nyllfzz7e__F0000.png') no-repeat center",
+      "linear-gradient(rgba(13, 186, 134, 0.8), rgba(120, 80, 228, 0.8)), url('/static/images/bg.png') no-repeat center",
     backgroundSize: "cover",
     position: "relative",
     backgroundAttachment: "fixed",

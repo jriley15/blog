@@ -17,11 +17,10 @@ import { getPost } from "../data/blog"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 
-import { Light as SyntaxHighlighter } from "react-syntax-highlighter"
-import js from "../node_modules/react-syntax-highlighter/dist/esm/languages/hljs/javascript"
-import style from "../node_modules/react-syntax-highlighter/dist/esm/styles/hljs/obsidian"
-
-SyntaxHighlighter.registerLanguage("javascript", js)
+import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter"
+//import js from "../node_modules/react-syntax-highlighter/dist/esm/languages/hljs/javascript"
+import style from "../node_modules/react-syntax-highlighter/dist/esm/styles/prism/vs-dark"
+//SyntaxHighlighter.registerLanguage("javascript", js)
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,7 +58,9 @@ const options = {
   renderMark: {
     //[MARKS.BOLD]: text => <Bold>{text}</Bold>,
     [MARKS.CODE]: text => (
-      <SyntaxHighlighter style={style}>{text}</SyntaxHighlighter>
+      <SyntaxHighlighter style={style} language="javascript">
+        {text}
+      </SyntaxHighlighter>
     ),
   },
   renderNode: {

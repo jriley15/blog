@@ -19,7 +19,7 @@ import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter"
 import js from "../node_modules/react-syntax-highlighter/dist/esm/languages/hljs/javascript"
-import style from "../node_modules/react-syntax-highlighter/dist/esm/styles/hljs/obsidian"
+import style from "../node_modules/react-syntax-highlighter/dist/esm/styles/hljs/tomorrow-night-blue"
 
 SyntaxHighlighter.registerLanguage("javascript", js)
 
@@ -82,68 +82,75 @@ const Blog = ({ posts }) => {
       <NavBar />
       <div className={classes.root}>
         <Grid container className={classes.grid} justify="center">
-          {posts.map(post => (
-            <Grid item key={post.id} className={classes.postContainer}>
-              <Paper
-                className={classes.post}
-                elevation={6}
-                onClick={() => {
-                  console.log("goto blog post")
-                }}
-              >
-                <Grid
-                  container
-                  direction="row"
-                  wrap="nowrap"
-                  className={classes.previewContainer}
-                  spacing={2}
-                >
-                  <Grid item>
-                    {post.fields.media && (
-                      <img
-                        src={post.fields.media[0].fields.file.url}
-                        className={classes.previewImage}
-                      />
-                    )}
-                  </Grid>
-                  <Grid item xs={12}>
+          <Grid item>
+            <Grid container justify="center" direction="column">
+              {posts.map(post => (
+                <Grid item key={post.id} className={classes.postContainer}>
+                  <Paper
+                    className={classes.post}
+                    elevation={6}
+                    onClick={() => {
+                      console.log("goto blog post")
+                    }}
+                  >
                     <Grid
                       container
-                      alignContent="space-between"
-                      className={classes.previewItem}
+                      direction="row"
+                      wrap="nowrap"
+                      className={classes.previewContainer}
+                      spacing={2}
                     >
-                      <Grid item xs={12}>
-                        <Grid container justify="space-between">
-                          <Typography variant="h5">
-                            {post.fields.title}
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary">
-                            {new Date(post.sys.createdAt).toDateString()}
-                          </Typography>
-                        </Grid>
-                        <div className={classes.body}>
-                          {documentToReactComponents(post.fields.body, options)}
-                        </div>
+                      <Grid item>
+                        {post.fields.media && (
+                          <img
+                            src={post.fields.media[0].fields.file.url}
+                            className={classes.previewImage}
+                          />
+                        )}
                       </Grid>
                       <Grid item xs={12}>
-                        <Grid container justify="flex-end">
-                          <Link
-                            href={{
-                              pathname: `/post`,
-                              query: { id: post.sys.id },
-                            }}
-                            as={`/post/${post.sys.id}`}
-                          >
-                            <Button>Read More</Button>
-                          </Link>
+                        <Grid
+                          container
+                          alignContent="space-between"
+                          className={classes.previewItem}
+                        >
+                          <Grid item xs={12}>
+                            <Grid container justify="space-between">
+                              <Typography variant="h5">
+                                {post.fields.title}
+                              </Typography>
+                              <Typography variant="body2" color="textSecondary">
+                                {new Date(post.sys.createdAt).toDateString()}
+                              </Typography>
+                            </Grid>
+                            <div className={classes.body}>
+                              {documentToReactComponents(
+                                post.fields.body,
+                                options
+                              )}
+                            </div>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Grid container justify="flex-end">
+                              <Link
+                                href={{
+                                  pathname: `/post`,
+                                  query: { id: post.sys.id },
+                                }}
+                                as={`/post/${post.sys.id}`}
+                              >
+                                <Button>Read More</Button>
+                              </Link>
+                            </Grid>
+                          </Grid>
                         </Grid>
                       </Grid>
                     </Grid>
-                  </Grid>
+                  </Paper>
                 </Grid>
-              </Paper>
+              ))}
             </Grid>
-          ))}
+          </Grid>
         </Grid>
       </div>
     </>
