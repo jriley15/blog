@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core"
 import clsx from "clsx"
 import DownArrow from "@material-ui/icons/KeyboardArrowDown"
+import ButtonLink from "./common/ButtonLink"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -144,9 +145,28 @@ const TopSection = ({ scrollNext, children }) => {
                 className={classes.buttonGroup}
               >
                 <ButtonGroup size="large">
-                  <Button variant="outlined">Github</Button>
+                  <Button
+                    variant="outlined"
+                    onClick={() => window.open("https://github.com/jriley15")}
+                  >
+                    Github
+                  </Button>
 
-                  <Button variant="outlined">Projects</Button>
+                  <Button variant="outlined" onClick={() => scrollNext(2)}>
+                    Projects
+                  </Button>
+
+                  <Button
+                    variant="outlined"
+                    component={ButtonLink}
+                    href={{
+                      pathname: `/post`,
+                      query: { id: "3qyZQmguWxjqFpvWx4fYiJ" },
+                    }}
+                    as={`/post/${"3qyZQmguWxjqFpvWx4fYiJ"}`}
+                  >
+                    About Me
+                  </Button>
                 </ButtonGroup>
               </Grid>
             </div>
