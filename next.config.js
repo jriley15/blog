@@ -19,9 +19,9 @@ module.exports = {
     let posts = await getPosts()
 
     posts.map(post => {
-      pathMap[`/post/${post.fields.title}`] = {
+      pathMap[`/post/${post.sys.id}`] = {
         page: "/post",
-        query: { id: post.id },
+        query: { id: post.sys.id },
       }
     })
 

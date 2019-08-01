@@ -10,4 +10,8 @@ module.exports = {
     })
     return posts.items
   },
+  getPost: async function(id) {
+    const post = await client.getEntry(id)
+    return post
+  },
 }

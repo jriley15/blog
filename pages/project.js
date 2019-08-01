@@ -109,8 +109,6 @@ const Page = ({ project }) => {
 }
 
 Page.getInitialProps = ({ query: { id } }) => {
-  console.log("id: ", id)
-
   return { project: projects.find(p => p.projectId == id) }
 }
 
