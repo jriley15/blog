@@ -16,7 +16,6 @@ import {
 import { getPosts } from "../data/blog"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
-
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter"
 import js from "../node_modules/react-syntax-highlighter/dist/esm/languages/hljs/javascript"
 import style from "../node_modules/react-syntax-highlighter/dist/esm/styles/hljs/tomorrow-night-blue"
@@ -85,7 +84,7 @@ const Blog = ({ posts }) => {
           <Grid item>
             <Grid container justify="center" direction="column">
               {posts.map(post => (
-                <Grid item key={post.id} className={classes.postContainer}>
+                <Grid item key={post.sys.id} className={classes.postContainer}>
                   <Paper
                     className={classes.post}
                     elevation={6}
@@ -103,7 +102,7 @@ const Blog = ({ posts }) => {
                       <Grid item>
                         {post.fields.media && (
                           <img
-                            src={post.fields.media[0].fields.file.url}
+                            src={"" /*post.fields.media[0].fields.file.url*/}
                             className={classes.previewImage}
                           />
                         )}

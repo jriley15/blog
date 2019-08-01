@@ -5,6 +5,7 @@ import { ThemeProvider } from "@material-ui/styles"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import theme from "../theme"
 import NavBar from "../components/Navbar"
+import Footer from "../components/Footer"
 
 class MyApp extends App {
   componentDidMount() {
@@ -28,6 +29,8 @@ class MyApp extends App {
           <CssBaseline />
 
           <Component {...pageProps} />
+
+          <Footer />
         </ThemeProvider>
       </Container>
     )
