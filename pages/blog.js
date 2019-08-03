@@ -102,7 +102,7 @@ const Blog = ({ posts }) => {
                       <Grid item>
                         {post.fields.media && (
                           <img
-                            src={"" /*post.fields.media[0].fields.file.url*/}
+                            src={post.fields.media[0].fields.file.url}
                             className={classes.previewImage}
                           />
                         )}

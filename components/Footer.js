@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   paddingTop: {
     paddingTop: theme.spacing(2),
   },
-  link: {
+  footerLink: {
     textDecoration: "underline",
 
     "&:hover": {
@@ -38,52 +38,59 @@ const Footer = () => {
               spacing={4}
               className={classes.footer}
             >
-              <Grid item>
+              {/*<Grid item>
                 <Link href="/">
-                  <Typography className={classes.link}>Home</Typography>
+                  <Typography className={classes.footerLink}>Home</Typography>
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/">
-                  <Typography className={classes.link}>About</Typography>
+                  <Typography className={classes.footerLink}>About</Typography>
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/">
-                  <Typography className={classes.link}>Projects</Typography>
+                  <Typography className={classes.footerLink}>
+                    Projects
+                  </Typography>
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/">
-                  <Typography className={classes.link}>Resume</Typography>
+                  <Typography className={classes.footerLink}>Resume</Typography>
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/">
-                  <Typography className={classes.link}>Blog</Typography>
+                  <Typography className={classes.footerLink}>Blog</Typography>
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/">
-                  <Typography className={classes.link}>Contact</Typography>
+                  <Typography className={classes.footerLink}>
+                    Contact
+                  </Typography>
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/">
-                  <Typography className={classes.link}>Github</Typography>
+                  <Typography className={classes.footerLink}>Github</Typography>
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/">
-                  <Typography className={classes.link}>LinkedIn</Typography>
+                  <Typography className={classes.footerLink}>
+                    LinkedIn
+                  </Typography>
                 </Link>
-              </Grid>
+              </Grid>*/}
             </Grid>
           </Grid>
+
           <Grid item className={classes.paddingTop}>
             <Grid container justify="center">
               <Grid item>
-                <Typography>Jordan Riley C</Typography>
+                <Typography>© 2019 Jordan Riley</Typography>
               </Grid>
             </Grid>
           </Grid>
