@@ -12,6 +12,7 @@ import {
   Avatar,
   Slide,
   CardActionArea,
+  Divider,
 } from "@material-ui/core"
 import { getPost } from "../data/blog"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -104,13 +105,14 @@ const Post = ({ post }) => {
                   >
                     <Grid item xs={12}>
                       <Grid container justify="space-between">
-                        <Typography variant="h4">
+                        <Typography variant="h4" gutterBottom>
                           {post.fields.title}
                         </Typography>
                         <Typography variant="body2" color="textSecondary">
                           {new Date(post.sys.createdAt).toDateString()}
                         </Typography>
                       </Grid>
+                      <Divider />
                       <div className={classes.body}>
                         {documentToReactComponents(post.fields.body, options)}
                       </div>

@@ -54,6 +54,9 @@ const useStyles = makeStyles(theme => ({
     maxHeight: 120,
     overflow: "hidden",
   },
+  button: {
+    margin: theme.spacing(1),
+  },
 }))
 
 const options = {
@@ -138,7 +141,9 @@ const Blog = ({ posts }) => {
                                 }}
                                 as={`/post/${post.sys.id}`}
                               >
-                                <Button>Read More</Button>
+                                <Button className={classes.button}>
+                                  Read More
+                                </Button>
                               </Link>
                             </Grid>
                           </Grid>

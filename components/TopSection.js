@@ -161,9 +161,9 @@ const TopSection = ({ scrollNext, children }) => {
                     component={ButtonLink}
                     href={{
                       pathname: `/post`,
-                      query: { id: "3qyZQmguWxjqFpvWx4fYiJ" },
+                      query: { id: "62xKTKOTQj2lQP1rekH2Yp" },
                     }}
-                    as={`/post/${"3qyZQmguWxjqFpvWx4fYiJ"}`}
+                    as={`/post/${"62xKTKOTQj2lQP1rekH2Yp"}`}
                   >
                     About Me
                   </Button>
