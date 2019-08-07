@@ -156,9 +156,8 @@ const TopSection = ({ scrollNext, children }) => {
                     Projects
                   </Button>
 
-                  <Button
+                  <ButtonLink
                     variant="outlined"
-                    component={ButtonLink}
                     href={{
                       pathname: `/post`,
                       query: { id: "62xKTKOTQj2lQP1rekH2Yp" },
@@ -166,7 +165,7 @@ const TopSection = ({ scrollNext, children }) => {
                     as={`/post/${"62xKTKOTQj2lQP1rekH2Yp"}`}
                   >
                     About Me
-                  </Button>
+                  </ButtonLink>
                 </ButtonGroup>
               </Grid>
             </div>
