@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   postPaper: {
-    marginBottom: theme.spacing(4),
+    marginTop: theme.spacing(4),
     borderLeft: "1px solid transparent",
     padding: theme.spacing(3),
     transition: theme.transitions.create("background-color"),
@@ -103,70 +103,67 @@ const Blog = ({ posts }) => {
           direction="column"
           alignItems="center"
         >
-          <Grid item className={classes.postGridItem}>
-            <Typography
-              align="center"
-              variant="h3"
-              className={classes.titleFont}
-            >
-              Welcome
-            </Typography>
-          </Grid>
-
-          {posts.map(post => (
-            <Grid item className={classes.postGridItem} key={post.sys.id}>
-              <Link
-                href={{
-                  pathname: `/post`,
-                  query: { id: post.sys.id },
-                }}
-                as={`/post/${post.sys.id}`}
-              >
-                <Paper elevation={6} className={classes.postPaper}>
-                  <Grid
-                    container
-                    justify="flex-start"
-                    direction="column"
-                    spacing={2}
-                  >
-                    <Grid item>
-                      <Grid container justify="space-between">
-                        <Typography variant="h4" className={classes.titleFont}>
-                          {post.fields.title}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                          {new Date(post.sys.createdAt).toDateString()}
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                    <Grid item>
-                      <Grid container alignItems="center">
-                        <Grid item>
-                          {post.fields.media && (
-                            <Avatar
-                              src={post.fields.media[0].fields.file.url}
-                              className={classes.previewImageAvatar}
-                              component="span"
-                            />
-                          )}
-                        </Grid>
-                        <Grid item xs>
-                          <Typography>{post.fields.description}</Typography>
-                          <Button
-                            className={classes.readMoreButton}
-                            style={{ float: "right" }}
+          {posts
+            .sort((a, b) => {
+              return new Date(b.sys.createdAt) - new Date(a.sys.createdAt)
+            })
+            .map((post, index) => (
+              <Grid item className={classes.postGridItem} key={post.sys.id}>
+                {index > 0 && <Divider variant="middle" />}
+                <Link
+                  href={{
+                    pathname: `/post`,
+                    query: { id: post.sys.id },
+                  }}
+                  as={`/post/${post.sys.id}`}
+                >
+                  <Paper elevation={6} className={classes.postPaper}>
+                    <Grid
+                      container
+                      justify="flex-start"
+                      direction="column"
+                      spacing={2}
+                    >
+                      <Grid item>
+                        <Grid container justify="space-between">
+                          <Typography
+                            variant="h4"
+                            className={classes.titleFont}
                           >
-                            Read More
-                          </Button>
+                            {post.fields.title}
+                          </Typography>
+                          <Typography variant="body2" color="textSecondary">
+                            {new Date(post.sys.createdAt).toDateString()}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <Grid container alignItems="center">
+                          <Grid item>
+                            {post.fields.media && (
+                              <Avatar
+                                src={post.fields.media[0].fields.file.url}
+                                className={classes.previewImageAvatar}
+                                component="span"
+                              />
+                            )}
+                          </Grid>
+                          <Grid item xs>
+                            <Typography>{post.fields.description}</Typography>
+                            <Button
+                              className={classes.readMoreButton}
+                              style={{ float: "right" }}
+                            >
+                              Read More
+                            </Button>
+                          </Grid>
                         </Grid>
                       </Grid>
                     </Grid>
-                  </Grid>
-                </Paper>
-              </Link>
-              <Divider variant="middle" />
-            </Grid>
-          ))}
+                  </Paper>
+                </Link>
+              </Grid>
+            ))}
         </Grid>
 
         {/*<Grid container className={classes.grid} justify="center">

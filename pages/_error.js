@@ -14,6 +14,10 @@ const useStyles = makeStyles(theme => ({
   paddingTop5: {
     padding: theme.spacing(5),
   },
+  image: {
+    width: "100%",
+    maxWidth: "700px",
+  },
 }))
 
 const error = () => {
@@ -31,18 +35,16 @@ const error = () => {
         direction="column"
       >
         <Grid item>
-          <Typography
-            variant="h1"
-            align="center"
-            color="error"
-            className={classes.paddingTop5}
-          >
+          <img src="/static/images/notfound.svg" className={classes.image} />
+        </Grid>
+        <Grid item>
+          <Typography variant="h2" align="center">
             Page not found
           </Typography>
         </Grid>
         <Grid item className={classes.paddingTop5}>
           <Link href="/">
-            <Button>Go To Home Page</Button>
+            <Button variant="outlined">Go To Home Page</Button>
           </Link>
         </Grid>
       </Grid>
