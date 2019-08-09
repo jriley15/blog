@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 
     width: "100%",
     height: "100%",
+    paddingBottom: theme.spacing(10),
   },
 
   svg: {
@@ -65,6 +66,11 @@ const useStyles = makeStyles(theme => ({
     //padding: theme.spacing(1),
   },
   cardImage: {},
+
+  titleFont: {
+    fontWeight: 100,
+    marginBottom: theme.spacing(3),
+  },
 }))
 
 const ProjectSection = ({ children }) => {
@@ -173,7 +179,11 @@ const ProjectSection = ({ children }) => {
         {children}
         <Grid item xs={12}>
           <Fade up>
-            <Typography variant="h4" align="center">
+            <Typography
+              variant="h3"
+              align="center"
+              className={classes.titleFont}
+            >
               Projects
             </Typography>
           </Fade>

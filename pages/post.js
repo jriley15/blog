@@ -27,35 +27,44 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     height: "100%",
+    padding: theme.spacing(1),
     marginTop: theme.spacing(10),
   },
-  grid: {
-    width: "100%",
-    //padding: theme.spacing(1),
-    paddingTop: theme.spacing(3),
-  },
-  postContainer: {
-    padding: theme.spacing(1),
-    width: "100%",
-    maxWidth: "800px",
-  },
-  post: {
-    padding: theme.spacing(4),
-    width: "100%",
-  },
-  previewImage: {
-    maxHeight: "180px",
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  },
-  body: {
+
+  postsGridContainer: {},
+
+  postGridItem: {
     paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+
+    width: "700px",
+    maxWidth: "100%",
+  },
+
+  postPaper: {
+    marginBottom: theme.spacing(4),
+    borderLeft: "1px solid transparent",
+    padding: theme.spacing(3),
   },
 
   titleFont: {
     fontWeight: 100,
+  },
+
+  previewImageAvatar: {
+    //margin: 10,
+    width: 100,
+    height: 100,
+    float: "left",
+    marginRight: theme.spacing(2),
+  },
+
+  readMoreButton: {
+    //bottom: 0,
+    margin: theme.spacing(1),
+  },
+  divider: {
+    margin: theme.spacing(1),
   },
 }))
 
@@ -77,7 +86,7 @@ const options = {
     ),
     [BLOCKS.HEADING_2]: (node, children) => (
       <Typography
-        variant="h6"
+        variant="h5"
         component="h2"
         style={{
           marginBlockStart: "1em",
@@ -90,7 +99,7 @@ const options = {
     ),
     [BLOCKS.HEADING_3]: (node, children) => (
       <Typography
-        variant="h7"
+        variant="h6"
         component="h3"
         style={{
           marginBlockStart: "1em",
@@ -101,6 +110,15 @@ const options = {
         {children}
       </Typography>
     ),
+    [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
+      //console.log("asset: ", node)
+      return (
+        <img
+          src={node.data.target.fields.file.url}
+          style={{ maxWidth: "600px", margin: 8 }}
+        />
+      )
+    },
   },
 }
 
@@ -111,44 +129,32 @@ const Post = ({ post }) => {
     <>
       <NavBar />
       <div className={classes.root}>
-        <Grid container className={classes.grid} justify="center">
-          <Grid item key={post.id} className={classes.postContainer}>
-            <Paper className={classes.post} elevation={6}>
-              <Grid
-                container
-                direction="row"
-                wrap="nowrap"
-                className={classes.previewContainer}
-                spacing={2}
-              >
-                <Grid item xs={12}>
-                  <Grid
-                    container
-                    alignContent="space-between"
-                    className={classes.previewItem}
-                  >
-                    <Grid item xs={12}>
-                      <Grid container justify="space-between">
-                        <Typography
-                          variant="h3"
-                          className={classes.titleFont}
-                          gutterBottom
-                        >
-                          {post.fields.title}
-                        </Typography>
-                        <Typography variant="body1" color="textSecondary">
-                          {new Date(post.sys.createdAt).toDateString()}
-                        </Typography>
-                      </Grid>
-                      <Divider />
-
-                      <div className={classes.body}>
-                        {documentToReactComponents(post.fields.body, options)}
-                      </div>
-                    </Grid>
-                  </Grid>
-                </Grid>
+        <Grid
+          container
+          justify="center"
+          className={classes.postsGridContainer}
+          direction="column"
+          alignItems="center"
+        >
+          <Grid item className={classes.postGridItem}>
+            <Paper elevation={6} className={classes.postPaper}>
+              <Grid container justify="space-between">
+                <Typography
+                  variant="h3"
+                  className={classes.titleFont}
+                  gutterBottom
+                >
+                  {post.fields.title}
+                </Typography>
+                <Typography variant="body1" color="textSecondary">
+                  {new Date(post.sys.createdAt).toDateString()}
+                </Typography>
               </Grid>
+              <Divider className={classes.divider} />
+
+              <div className={classes.body}>
+                {documentToReactComponents(post.fields.body, options)}
+              </div>
             </Paper>
           </Grid>
         </Grid>

@@ -96,6 +96,11 @@ const useStyles = makeStyles(theme => ({
       transform: "translate(0px, 10px)",
     },
   },
+
+  titleFont: {
+    fontWeight: 100,
+    marginBottom: theme.spacing(3),
+  },
 }))
 
 const SkillSection = ({ scrollNext, children }) => {
@@ -108,9 +113,9 @@ const SkillSection = ({ scrollNext, children }) => {
         <Grid item>
           <Fade up>
             <Typography
-              variant="h4"
+              variant="h3"
               gutterBottom
-              className={classes.purple}
+              className={classes.titleFont}
               align="center"
             >
               Skills

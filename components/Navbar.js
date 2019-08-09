@@ -35,11 +35,11 @@ const useStyles = makeStyles(theme => ({
   navBar: {
     //background: "transparent",
     transition: "background-color 0.5s ease, box-shadow 0.5s ease",
-    //alignItems: "center",
+    alignItems: "center",
   },
   toolBar: {
-    //width: "100%",
-    //maxWidth: "1200px",
+    width: "100%",
+    maxWidth: "1200px",
   },
 }))
 

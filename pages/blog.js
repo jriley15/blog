@@ -140,25 +140,26 @@ const Blog = ({ posts }) => {
                       </Grid>
                     </Grid>
                     <Grid item>
-                      {post.fields.media && (
-                        <Avatar
-                          src={post.fields.media[0].fields.file.url}
-                          className={classes.previewImageAvatar}
-                          component="span"
-                        />
-                      )}
-                      <Typography>
-                        Description text test test test test test test test test
-                        test test test test test test test test test test test
-                        test test test test test test test test
-                      </Typography>
-
-                      <Button
-                        className={classes.readMoreButton}
-                        style={{ float: "right" }}
-                      >
-                        Read More
-                      </Button>
+                      <Grid container alignItems="center">
+                        <Grid item>
+                          {post.fields.media && (
+                            <Avatar
+                              src={post.fields.media[0].fields.file.url}
+                              className={classes.previewImageAvatar}
+                              component="span"
+                            />
+                          )}
+                        </Grid>
+                        <Grid item xs>
+                          <Typography>{post.fields.description}</Typography>
+                          <Button
+                            className={classes.readMoreButton}
+                            style={{ float: "right" }}
+                          >
+                            Read More
+                          </Button>
+                        </Grid>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Paper>
