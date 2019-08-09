@@ -87,7 +87,13 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: fade(theme.palette.common.black, 0.25),
     "&:hover": {
       backgroundColor: fade(theme.palette.common.black, 0.5),
+      transform: "scale(1.1)",
     },
+
+    transition:
+      "background-color 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+    transform: "scale(1, 1)",
+
     cursor: "pointer",
     borderRadius: "4px",
   },

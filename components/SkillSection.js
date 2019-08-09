@@ -52,8 +52,8 @@ const useStyles = makeStyles(theme => ({
   },
   skillsContainer: {
     //padding: theme.spacing(1),
-    width: "calc(100% - 72px)",
-    maxWidth: "700px",
+    width: "700px",
+    maxWidth: "100%",
     paddingTop: theme.spacing(4),
   },
   black: {
@@ -101,6 +101,9 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 100,
     marginBottom: theme.spacing(3),
   },
+  icons: {
+    padding: theme.spacing(3.5),
+  },
 }))
 
 const SkillSection = ({ scrollNext, children }) => {
@@ -125,8 +128,8 @@ const SkillSection = ({ scrollNext, children }) => {
         <Grid item className={classes.container}>
           <Grid container justify="center">
             <Grid item className={classes.skillsContainer}>
-              <Grid container justify="space-evenly" spacing={7}>
-                <Grid item>
+              <Grid container justify="space-evenly">
+                <Grid item className={classes.icons}>
                   <Typography
                     variant="h6"
                     className={classes.purple}
@@ -138,7 +141,7 @@ const SkillSection = ({ scrollNext, children }) => {
                   </Typography>
                   <ProgrammingIcons />
                 </Grid>
-                <Grid item>
+                <Grid item className={classes.icons}>
                   <Typography
                     variant="h6"
                     className={classes.purple}
@@ -150,7 +153,7 @@ const SkillSection = ({ scrollNext, children }) => {
                   </Typography>
                   <FrameworkIcons />
                 </Grid>
-                <Grid item>
+                <Grid item className={classes.icons}>
                   <Typography
                     variant="h6"
                     className={classes.purple}
@@ -162,19 +165,7 @@ const SkillSection = ({ scrollNext, children }) => {
                   </Typography>
                   <StorageIcons />
                 </Grid>
-                <Grid item>
-                  <Typography
-                    variant="h6"
-                    className={classes.purple}
-                    align="center"
-                    gutterBottom
-                    color="textSecondary"
-                  >
-                    Cloud Providers
-                  </Typography>
-                  <CloudIcons />
-                </Grid>
-                <Grid item>
+                <Grid item className={classes.icons}>
                   <Typography
                     variant="h6"
                     className={classes.purple}
@@ -186,7 +177,19 @@ const SkillSection = ({ scrollNext, children }) => {
                   </Typography>
                   <ToolIcons />
                 </Grid>
-                <Grid item>
+                <Grid item className={classes.icons}>
+                  <Typography
+                    variant="h6"
+                    className={classes.purple}
+                    align="center"
+                    gutterBottom
+                    color="textSecondary"
+                  >
+                    Cloud Providers
+                  </Typography>
+                  <CloudIcons />
+                </Grid>
+                <Grid item className={classes.icons}>
                   <Typography
                     variant="h6"
                     className={classes.purple}
