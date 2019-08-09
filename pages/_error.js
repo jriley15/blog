@@ -37,7 +37,7 @@ const error = () => {
             color="error"
             className={classes.paddingTop5}
           >
-            404 Page not found
+            Page not found
           </Typography>
         </Grid>
         <Grid item className={classes.paddingTop5}>

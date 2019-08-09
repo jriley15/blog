@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     height: "100%",
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(10),
   },
   grid: {
     width: "100%",
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: "800px",
   },
   post: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(4),
     width: "100%",
   },
   previewImage: {
@@ -52,6 +52,10 @@ const useStyles = makeStyles(theme => ({
   },
   body: {
     paddingTop: theme.spacing(2),
+  },
+
+  titleFont: {
+    fontWeight: 100,
   },
 }))
 
@@ -69,7 +73,33 @@ const options = {
       return <Typography color="textSecondary">{children}</Typography>
     },
     [BLOCKS.HEADING_1]: (node, children) => (
-      <Typography variant="h6">{children}</Typography>
+      <Typography variant="h5">{children}</Typography>
+    ),
+    [BLOCKS.HEADING_2]: (node, children) => (
+      <Typography
+        variant="h6"
+        component="h2"
+        style={{
+          marginBlockStart: "1em",
+          marginBlockEnd: "1em",
+          fontWeight: 400,
+        }}
+      >
+        {children}
+      </Typography>
+    ),
+    [BLOCKS.HEADING_3]: (node, children) => (
+      <Typography
+        variant="h7"
+        component="h3"
+        style={{
+          marginBlockStart: "1em",
+          marginBlockEnd: "1em",
+          fontWeight: 400,
+        }}
+      >
+        {children}
+      </Typography>
     ),
   },
 }
@@ -83,13 +113,7 @@ const Post = ({ post }) => {
       <div className={classes.root}>
         <Grid container className={classes.grid} justify="center">
           <Grid item key={post.id} className={classes.postContainer}>
-            <Paper
-              className={classes.post}
-              elevation={6}
-              onClick={() => {
-                console.log("goto blog post")
-              }}
-            >
+            <Paper className={classes.post} elevation={6}>
               <Grid
                 container
                 direction="row"
@@ -105,14 +129,19 @@ const Post = ({ post }) => {
                   >
                     <Grid item xs={12}>
                       <Grid container justify="space-between">
-                        <Typography variant="h4" gutterBottom>
+                        <Typography
+                          variant="h3"
+                          className={classes.titleFont}
+                          gutterBottom
+                        >
                           {post.fields.title}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary">
+                        <Typography variant="body1" color="textSecondary">
                           {new Date(post.sys.createdAt).toDateString()}
                         </Typography>
                       </Grid>
                       <Divider />
+
                       <div className={classes.body}>
                         {documentToReactComponents(post.fields.body, options)}
                       </div>

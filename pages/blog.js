@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react"
 import Link from "next/link"
 import NavBar from "../components/Navbar"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, fade } from "@material-ui/core/styles"
 import {
   Typography,
   Grid,
@@ -12,6 +12,9 @@ import {
   Avatar,
   Slide,
   CardActionArea,
+  Divider,
+  ButtonBase,
+  Box,
 } from "@material-ui/core"
 import { getPosts } from "../data/blog"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -26,35 +29,45 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     height: "100%",
-    marginTop: theme.spacing(8),
-  },
-  grid: {
-    width: "100%",
-    //padding: theme.spacing(1),
-    paddingTop: theme.spacing(3),
-  },
-  postContainer: {
     padding: theme.spacing(1),
-    width: "100%",
-    maxWidth: "800px",
-  },
-  post: {
-    padding: theme.spacing(2),
-    width: "100%",
-  },
-  previewImage: {
-    maxHeight: "180px",
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
+    marginTop: theme.spacing(10),
   },
 
-  body: {
-    maxHeight: 120,
-    overflow: "hidden",
+  postsGridContainer: {},
+
+  postGridItem: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
+
+    width: "700px",
+    maxWidth: "100%",
   },
-  button: {
+
+  postPaper: {
+    marginBottom: theme.spacing(4),
+    borderLeft: "1px solid transparent",
+    padding: theme.spacing(3),
+    transition: theme.transitions.create("background-color"),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    cursor: "pointer",
+  },
+
+  titleFont: {
+    fontWeight: 100,
+  },
+
+  previewImageAvatar: {
+    //margin: 10,
+    width: 100,
+    height: 100,
+    float: "left",
+    marginRight: theme.spacing(2),
+  },
+
+  readMoreButton: {
+    //bottom: 0,
     margin: theme.spacing(1),
   },
 }))
@@ -83,7 +96,79 @@ const Blog = ({ posts }) => {
     <>
       <NavBar />
       <div className={classes.root}>
-        <Grid container className={classes.grid} justify="center">
+        <Grid
+          container
+          justify="center"
+          className={classes.postsGridContainer}
+          direction="column"
+          alignItems="center"
+        >
+          <Grid item className={classes.postGridItem}>
+            <Typography
+              align="center"
+              variant="h3"
+              className={classes.titleFont}
+            >
+              Welcome
+            </Typography>
+          </Grid>
+
+          {posts.map(post => (
+            <Grid item className={classes.postGridItem} key={post.sys.id}>
+              <Link
+                href={{
+                  pathname: `/post`,
+                  query: { id: post.sys.id },
+                }}
+                as={`/post/${post.sys.id}`}
+              >
+                <Paper elevation={6} className={classes.postPaper}>
+                  <Grid
+                    container
+                    justify="flex-start"
+                    direction="column"
+                    spacing={2}
+                  >
+                    <Grid item>
+                      <Grid container justify="space-between">
+                        <Typography variant="h4" className={classes.titleFont}>
+                          {post.fields.title}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          {new Date(post.sys.createdAt).toDateString()}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid item>
+                      {post.fields.media && (
+                        <Avatar
+                          src={post.fields.media[0].fields.file.url}
+                          className={classes.previewImageAvatar}
+                          component="span"
+                        />
+                      )}
+                      <Typography>
+                        Description text test test test test test test test test
+                        test test test test test test test test test test test
+                        test test test test test test test test
+                      </Typography>
+
+                      <Button
+                        className={classes.readMoreButton}
+                        style={{ float: "right" }}
+                      >
+                        Read More
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </Link>
+              <Divider variant="middle" />
+            </Grid>
+          ))}
+        </Grid>
+
+        {/*<Grid container className={classes.grid} justify="center">
           <Grid item>
             <Grid container justify="center" direction="column">
               {posts.map(post => (
@@ -151,11 +236,12 @@ const Blog = ({ posts }) => {
                       </Grid>
                     </Grid>
                   </Paper>
+                  <Divider className={classes.divider} variant="middle" />
                 </Grid>
               ))}
             </Grid>
           </Grid>
-        </Grid>
+                              </Grid>*/}
       </div>
     </>
   )

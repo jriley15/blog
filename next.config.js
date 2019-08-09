@@ -7,6 +7,7 @@ module.exports = {
       "/": { page: "/" },
       "/projects": { page: "/index", query: { section: 2 } },
       "/blog": { page: "/blog" },
+      "/about": { page: "/post", query: { id: "62xKTKOTQj2lQP1rekH2Yp" } },
     }
 
     projects.map(project => {

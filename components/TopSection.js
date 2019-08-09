@@ -162,7 +162,7 @@ const TopSection = ({ scrollNext, children }) => {
                       pathname: `/post`,
                       query: { id: "62xKTKOTQj2lQP1rekH2Yp" },
                     }}
-                    as={`/post/${"62xKTKOTQj2lQP1rekH2Yp"}`}
+                    as={`/about`}
                   >
                     About Me
                   </ButtonLink>
