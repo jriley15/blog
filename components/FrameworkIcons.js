@@ -5,11 +5,11 @@ import Fade from "react-reveal/Fade"
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: "350px",
+    maxWidth: "300px",
   },
   icon: {
-    width: 110,
-    height: 110,
+    width: 100,
+    height: 100,
   },
   img: {
     width: 110,

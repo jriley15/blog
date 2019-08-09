@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
 
     //paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(4),
+    paddingBottom: theme.spacing(6),
   },
   plz: {
     //width: "100%",
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   skillsContainer: {
     //padding: theme.spacing(1),
     width: "calc(100% - 72px)",
-    maxWidth: "1200px",
+    maxWidth: "700px",
     paddingTop: theme.spacing(4),
   },
   black: {
