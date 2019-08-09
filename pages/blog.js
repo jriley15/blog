@@ -6,7 +6,6 @@ import {
   Typography,
   Grid,
   Button,
-  Fade,
   Zoom,
   Paper,
   Avatar,
@@ -17,13 +16,8 @@ import {
   Box,
 } from "@material-ui/core"
 import { getPosts } from "../data/blog"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
-import { Light as SyntaxHighlighter } from "react-syntax-highlighter"
-import js from "../node_modules/react-syntax-highlighter/dist/esm/languages/hljs/javascript"
-import style from "../node_modules/react-syntax-highlighter/dist/esm/styles/hljs/tomorrow-night-blue"
-
-SyntaxHighlighter.registerLanguage("javascript", js)
+import Fade from "react-reveal/Fade"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -45,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 
   postPaper: {
     marginTop: theme.spacing(4),
-    borderLeft: "1px solid transparent",
+    //borderLeft: "1px solid transparent",
     padding: theme.spacing(3),
     transition: theme.transitions.create("background-color"),
     "&:hover": {
@@ -73,12 +67,6 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const options = {
-  renderMark: {
-    //[MARKS.BOLD]: text => <Bold>{text}</Bold>,
-    [MARKS.CODE]: text => (
-      <SyntaxHighlighter style={style}>{text}</SyntaxHighlighter>
-    ),
-  },
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => {
       return <Typography color="textSecondary">{children}</Typography>
@@ -103,6 +91,15 @@ const Blog = ({ posts }) => {
           direction="column"
           alignItems="center"
         >
+          <Grid item className={classes.postGridItem}>
+            <Typography
+              align="center"
+              variant="h4"
+              className={classes.titleFont}
+            >
+              My Blog
+            </Typography>
+          </Grid>
           {posts
             .sort((a, b) => {
               return new Date(b.sys.createdAt) - new Date(a.sys.createdAt)
@@ -110,58 +107,60 @@ const Blog = ({ posts }) => {
             .map((post, index) => (
               <Grid item className={classes.postGridItem} key={post.sys.id}>
                 {index > 0 && <Divider variant="middle" />}
-                <Link
-                  href={{
-                    pathname: `/post`,
-                    query: { id: post.sys.id },
-                  }}
-                  as={`/post/${post.sys.id}`}
-                >
-                  <Paper elevation={6} className={classes.postPaper}>
-                    <Grid
-                      container
-                      justify="flex-start"
-                      direction="column"
-                      spacing={2}
-                    >
-                      <Grid item>
-                        <Grid container justify="space-between">
-                          <Typography
-                            variant="h4"
-                            className={classes.titleFont}
-                          >
-                            {post.fields.title}
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary">
-                            {new Date(post.sys.createdAt).toDateString()}
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                      <Grid item>
-                        <Grid container alignItems="center">
-                          <Grid item>
-                            {post.fields.media && (
-                              <Avatar
-                                src={post.fields.media[0].fields.file.url}
-                                className={classes.previewImageAvatar}
-                                component="span"
-                              />
-                            )}
-                          </Grid>
-                          <Grid item xs>
-                            <Typography>{post.fields.description}</Typography>
-                            <Button
-                              className={classes.readMoreButton}
-                              style={{ float: "right" }}
+                <Fade>
+                  <Link
+                    href={{
+                      pathname: `/post`,
+                      query: { id: post.sys.id },
+                    }}
+                    as={`/post/${post.sys.id}`}
+                  >
+                    <Paper elevation={6} className={classes.postPaper}>
+                      <Grid
+                        container
+                        justify="flex-start"
+                        direction="column"
+                        spacing={2}
+                      >
+                        <Grid item>
+                          <Grid container justify="space-between">
+                            <Typography
+                              variant="h4"
+                              className={classes.titleFont}
                             >
-                              Read More
-                            </Button>
+                              {post.fields.title}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary">
+                              {new Date(post.sys.createdAt).toDateString()}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <Grid container alignItems="center">
+                            <Grid item>
+                              {post.fields.media && (
+                                <Avatar
+                                  src={post.fields.media[0].fields.file.url}
+                                  className={classes.previewImageAvatar}
+                                  component="span"
+                                />
+                              )}
+                            </Grid>
+                            <Grid item xs>
+                              <Typography>{post.fields.description}</Typography>
+                              <Button
+                                className={classes.readMoreButton}
+                                style={{ float: "right" }}
+                              >
+                                Read More
+                              </Button>
+                            </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
-                    </Grid>
-                  </Paper>
-                </Link>
+                    </Paper>
+                  </Link>
+                </Fade>
               </Grid>
             ))}
         </Grid>

@@ -1,6 +1,6 @@
 import React from "react"
 import Link from "next/link"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, fade } from "@material-ui/core/styles"
 import {
   Typography,
   Grid,
@@ -14,6 +14,7 @@ import {
   CardMedia,
   CardActions,
   CardContent,
+  Divider,
 } from "@material-ui/core"
 import Fade from "react-reveal/Fade"
 import { projects } from "../data/projects"
@@ -69,7 +70,37 @@ const useStyles = makeStyles(theme => ({
 
   titleFont: {
     fontWeight: 100,
-    marginBottom: theme.spacing(3),
+  },
+
+  projectGridItem: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+
+    width: "700px",
+    maxWidth: "100%",
+  },
+
+  projectDiv: {
+    borderLeft: "1px solid transparent",
+    padding: theme.spacing(2),
+    transition: theme.transitions.create("background-color"),
+    backgroundColor: fade(theme.palette.common.black, 0.25),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.black, 0.5),
+    },
+    cursor: "pointer",
+    borderRadius: "4px",
+  },
+
+  previewImageAvatar: {
+    //margin: 10,
+    width: 150,
+    height: 150,
+    margin: theme.spacing(1),
+  },
+
+  divider: {
+    marginTop: theme.spacing(4),
   },
 }))
 
@@ -183,12 +214,91 @@ const ProjectSection = ({ children }) => {
               variant="h3"
               align="center"
               className={classes.titleFont}
+              gutterBottom
             >
               Projects
             </Typography>
           </Fade>
         </Grid>
-        <Grid item>
+
+        <Grid container direction="column" alignItems="center">
+          {projects.map((project, index) => (
+            <Grid
+              item
+              key={project.projectId}
+              className={classes.projectGridItem}
+            >
+              <Fade>
+                <Link
+                  href={{
+                    pathname: `/project`,
+                    query: { id: project.projectId },
+                  }}
+                  as={`/project/${project.projectId}`}
+                >
+                  <Grid
+                    container
+                    className={classes.projectDiv}
+                    justify="space-between"
+                    alignItems="center"
+                  >
+                    {index % 2 !== 0 && (
+                      <Grid item>
+                        <Avatar
+                          src={project.images[0].link}
+                          className={classes.previewImageAvatar}
+                          component="span"
+                        />
+                      </Grid>
+                    )}
+                    <Grid item xs>
+                      <Grid
+                        container
+                        direction="column"
+                        alignItems={index % 2 !== 0 ? "flex-end" : "flex-start"}
+                      >
+                        <Grid item>
+                          <Typography
+                            gutterBottom
+                            variant="h4"
+                            component="h2"
+                            className={classes.titleFont}
+                          >
+                            {project.title}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography
+                            variant="body1"
+                            component="p"
+                            color="textSecondary"
+                          >
+                            {project.description}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Button variant="outlined" style={{ marginTop: 8 }}>
+                            View More
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                    {index % 2 === 0 && (
+                      <Grid item>
+                        <Avatar
+                          src={project.images[0].link}
+                          className={classes.previewImageAvatar}
+                          component="span"
+                        />
+                      </Grid>
+                    )}
+                  </Grid>
+                </Link>
+              </Fade>
+            </Grid>
+          ))}
+
+          {/*
           <Grid container justify="center">
             <Grid item className={classes.projects}>
               <Grid container justify="center" spacing={2}>
@@ -242,6 +352,7 @@ const ProjectSection = ({ children }) => {
               </Grid>
             </Grid>
           </Grid>
+          */}
         </Grid>
       </Grid>
     </Grid>
