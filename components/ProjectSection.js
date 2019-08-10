@@ -100,9 +100,14 @@ const useStyles = makeStyles(theme => ({
 
   previewImageAvatar: {
     //margin: 10,
-    width: 150,
+    maxWidth: 220,
     height: 150,
-    margin: theme.spacing(1),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    display: "flex",
+    justifyContent: "center",
+    overflow: "hidden",
+    borderRadius: "3px",
   },
 
   divider: {
@@ -250,11 +255,12 @@ const ProjectSection = ({ children }) => {
                   >
                     {index % 2 !== 0 && (
                       <Grid item>
-                        <Avatar
-                          src={project.images[0].link}
-                          className={classes.previewImageAvatar}
-                          component="span"
-                        />
+                        <div className={classes.previewImageAvatar}>
+                          <img
+                            src={project.images[0].link}
+                            style={{ height: "100%" }}
+                          />
+                        </div>
                       </Grid>
                     )}
                     <Grid item xs>
@@ -278,6 +284,7 @@ const ProjectSection = ({ children }) => {
                             variant="body1"
                             component="p"
                             color="textSecondary"
+                            align={index % 2 !== 0 ? "right" : "left"}
                           >
                             {project.description}
                           </Typography>
@@ -291,11 +298,12 @@ const ProjectSection = ({ children }) => {
                     </Grid>
                     {index % 2 === 0 && (
                       <Grid item>
-                        <Avatar
-                          src={project.images[0].link}
-                          className={classes.previewImageAvatar}
-                          component="span"
-                        />
+                        <div className={classes.previewImageAvatar}>
+                          <img
+                            src={project.images[0].link}
+                            style={{ height: "100%" }}
+                          />
+                        </div>
                       </Grid>
                     )}
                   </Grid>

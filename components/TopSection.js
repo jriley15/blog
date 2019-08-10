@@ -60,11 +60,13 @@ const useStyles = makeStyles(theme => ({
     height: "100%",
     //paddingTop: theme.spacing(8),
   },
+
   bigAvatar: {
     margin: 10,
     width: 100,
     height: 100,
   },
+
   container: {
     width: "100%",
     height: "100%",
@@ -102,15 +104,6 @@ const TopSection = ({ scrollNext, children }) => {
 
   return (
     <Grid item className={classes.topSection}>
-      {/*<div className={classes.box}>
-        <div className={clsx(classes.wave, classes.one)}></div>
-        <div className={clsx(classes.wave, classes.two)}></div>
-        <div className={clsx(classes.wave, classes.three)}></div>
-        <div className={clsx(classes.wave, classes.four)}></div>
-        <div className={clsx(classes.wave, classes.five)}></div>
-        <div className={clsx(classes.wave, classes.six)}></div>
-        <div className={clsx(classes.wave, classes.seven)}></div>
-  </div>*/}
       {children}
       <Grid
         container
@@ -123,7 +116,7 @@ const TopSection = ({ scrollNext, children }) => {
             <div className={classes.greeting}>
               <Grid container justify="center" alignItems="center">
                 <Grid item>
-                  <Avatar
+                  <div
                     alt="Me"
                     src="https://www.jordanriley.me/static/media/me.c702f970.jpg"
                     className={classes.bigAvatar}

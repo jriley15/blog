@@ -115,7 +115,7 @@ const options = {
       return (
         <img
           src={node.data.target.fields.file.url}
-          style={{ maxWidth: "600px", margin: 8 }}
+          style={{ maxWidth: "90%", margin: 8 }}
         />
       )
     },

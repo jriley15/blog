@@ -14,6 +14,7 @@ import {
   Divider,
   ButtonBase,
   Box,
+  Link as MuiLink,
 } from "@material-ui/core"
 import { getPosts } from "../data/blog"
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
@@ -46,6 +47,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     cursor: "pointer",
+    borderRadius: "3px",
   },
 
   titleFont: {
@@ -54,15 +56,25 @@ const useStyles = makeStyles(theme => ({
 
   previewImageAvatar: {
     //margin: 10,
-    width: 100,
-    height: 100,
-    float: "left",
-    marginRight: theme.spacing(2),
+    width: 220,
+    height: 150,
+    marginLeft: theme.spacing(2),
+    display: "flex",
+    justifyContent: "center",
+    overflow: "hidden",
+    borderRadius: "3px",
   },
 
   readMoreButton: {
     //bottom: 0,
-    margin: theme.spacing(1),
+    //margin: theme.spacing(1),
+    color: "white",
+  },
+
+  divider: {
+    marginLeft: theme.spacing(4),
+
+    marginRight: theme.spacing(4),
   },
 }))
 
@@ -96,8 +108,12 @@ const Blog = ({ posts }) => {
               align="center"
               variant="h4"
               className={classes.titleFont}
+              gutterBottom
             >
               My Blog
+            </Typography>
+            <Typography align="center" color="textSecondary">
+              Various posts about tech and my life.
             </Typography>
           </Grid>
           {posts
@@ -106,7 +122,9 @@ const Blog = ({ posts }) => {
             })
             .map((post, index) => (
               <Grid item className={classes.postGridItem} key={post.sys.id}>
-                {index > 0 && <Divider variant="middle" />}
+                {index > 0 && (
+                  <Divider variant="middle" className={classes.divider} />
+                )}
                 <Fade>
                   <Link
                     href={{
@@ -115,7 +133,7 @@ const Blog = ({ posts }) => {
                     }}
                     as={`/post/${post.sys.id}`}
                   >
-                    <Paper elevation={6} className={classes.postPaper}>
+                    <div elevation={6} className={classes.postPaper}>
                       <Grid
                         container
                         justify="flex-start"
@@ -137,155 +155,37 @@ const Blog = ({ posts }) => {
                         </Grid>
                         <Grid item>
                           <Grid container alignItems="center">
+                            <Grid item xs>
+                              <Typography color="textSecondary">
+                                {post.fields.description}
+                                <MuiLink className={classes.readMoreButton}>
+                                  {" "}
+                                  Read More
+                                </MuiLink>
+                              </Typography>
+                            </Grid>
                             <Grid item>
                               {post.fields.media && (
-                                <Avatar
-                                  src={post.fields.media[0].fields.file.url}
-                                  className={classes.previewImageAvatar}
-                                  component="span"
-                                />
+                                <div className={classes.previewImageAvatar}>
+                                  <img
+                                    src={post.fields.media[0].fields.file.url}
+                                    style={{ height: "100%" }}
+                                  />
+                                </div>
                               )}
-                            </Grid>
-                            <Grid item xs>
-                              <Typography>{post.fields.description}</Typography>
-                              <Button
-                                className={classes.readMoreButton}
-                                style={{ float: "right" }}
-                              >
-                                Read More
-                              </Button>
                             </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
-                    </Paper>
+                    </div>
                   </Link>
                 </Fade>
               </Grid>
             ))}
         </Grid>
-
-        {/*<Grid container className={classes.grid} justify="center">
-          <Grid item>
-            <Grid container justify="center" direction="column">
-              {posts.map(post => (
-                <Grid item key={post.sys.id} className={classes.postContainer}>
-                  <Paper
-                    className={classes.post}
-                    elevation={6}
-                    onClick={() => {
-                      console.log("goto blog post")
-                    }}
-                  >
-                    <Grid
-                      container
-                      direction="row"
-                      wrap="nowrap"
-                      className={classes.previewContainer}
-                      spacing={2}
-                    >
-                      <Grid item>
-                        {post.fields.media && (
-                          <img
-                            src={post.fields.media[0].fields.file.url}
-                            className={classes.previewImage}
-                          />
-                        )}
-                      </Grid>
-                      <Grid item xs={12}>
-                        <Grid
-                          container
-                          alignContent="space-between"
-                          className={classes.previewItem}
-                        >
-                          <Grid item xs={12}>
-                            <Grid container justify="space-between">
-                              <Typography variant="h5">
-                                {post.fields.title}
-                              </Typography>
-                              <Typography variant="body2" color="textSecondary">
-                                {new Date(post.sys.createdAt).toDateString()}
-                              </Typography>
-                            </Grid>
-                            <div className={classes.body}>
-                              {documentToReactComponents(
-                                post.fields.body,
-                                options
-                              )}
-                            </div>
-                          </Grid>
-                          <Grid item xs={12}>
-                            <Grid container justify="flex-end">
-                              <Link
-                                href={{
-                                  pathname: `/post`,
-                                  query: { id: post.sys.id },
-                                }}
-                                as={`/post/${post.sys.id}`}
-                              >
-                                <Button className={classes.button}>
-                                  Read More
-                                </Button>
-                              </Link>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  </Paper>
-                  <Divider className={classes.divider} variant="middle" />
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
-                              </Grid>*/}
       </div>
     </>
   )
-
-  /*
-
-<Paper className={classes.post} elevation={6}>
-                <Grid
-                  container
-                  direction="row"
-                  wrap="nowrap"
-                  className={classes.previewContainer}
-                  spacing={1}
-                >
-                  <Grid item>
-                    {post.fields.media && (
-                      <img
-                        src={post.fields.media[0].fields.file.url}
-                        className={classes.previewImage}
-                      />
-                    )}
-                  </Grid>
-                  <Grid item className={classes.content}>
-                    <Grid container>
-                      <Grid item xs={12}>
-                        <Grid container justify="space-between">
-                          <Typography variant="h5">
-                            {post.fields.title}
-                          </Typography>
-                          <Typography variant="body2" color="textSecondary">
-                            {new Date(post.sys.createdAt).toDateString()}
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                      <Grid item style={{ maxHeight: 170, overflow: "hidden" }}>
-                        {
-                          documentToReactComponents(
-                            post.fields.body,
-                            options
-                          )[0]
-                        }
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Paper>
-  */
 }
 
 Blog.getInitialProps = async () => {
