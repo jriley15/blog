@@ -11,7 +11,7 @@ const styles = theme => ({
       padding: theme.spacing.unit * 4,
     },
 
-    maxWidth: "900px",
+    maxWidth: "700px",
   },
 })
 

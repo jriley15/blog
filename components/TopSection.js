@@ -13,10 +13,12 @@ import {
   Slide,
   Fab,
   ButtonGroup,
+  Tooltip,
 } from "@material-ui/core"
 import clsx from "clsx"
 import DownArrow from "@material-ui/icons/KeyboardArrowDown"
 import ButtonLink from "./common/ButtonLink"
+import EmailIcon from "@material-ui/icons/Email"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -51,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   buttonGroup: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(2),
   },
 
   greeting: {
@@ -78,7 +80,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   scrollArrow: {
-    bottom: "25vh",
+    bottom: "13vw",
     position: "absolute",
     animation: "bounce .3s infinite alternate",
     animationName: "$bounce",
@@ -96,6 +98,10 @@ const useStyles = makeStyles(theme => ({
     "100%": {
       transform: "translate(0px, 10px)",
     },
+  },
+
+  icon: {
+    width: "24px",
   },
 }))
 
@@ -116,7 +122,7 @@ const TopSection = ({ scrollNext, children }) => {
             <div className={classes.greeting}>
               <Grid container justify="center" alignItems="center">
                 <Grid item>
-                  <div
+                  <Avatar
                     alt="Me"
                     src="https://www.jordanriley.me/static/media/me.c702f970.jpg"
                     className={classes.bigAvatar}
@@ -134,32 +140,82 @@ const TopSection = ({ scrollNext, children }) => {
               <Grid
                 container
                 justify="center"
-                spacing={1}
+                spacing={4}
                 className={classes.buttonGroup}
+                direction="column"
+                alignItems="center"
               >
-                <ButtonGroup size="large">
-                  <Button
+                <Grid item>
+                  <ButtonGroup size="large">
+                    {/*<Button
                     variant="outlined"
                     onClick={() => window.open("https://github.com/jriley15")}
                   >
                     Github
-                  </Button>
+                  </Button>*/}
 
-                  <Button variant="outlined" onClick={() => scrollNext(2)}>
-                    Projects
-                  </Button>
+                    <Button variant="outlined" onClick={() => scrollNext(2)}>
+                      Projects
+                    </Button>
 
-                  <ButtonLink
-                    variant="outlined"
-                    href={{
-                      pathname: `/post`,
-                      query: { id: "62xKTKOTQj2lQP1rekH2Yp" },
-                    }}
-                    as={`/about`}
-                  >
-                    About Me
-                  </ButtonLink>
-                </ButtonGroup>
+                    <ButtonLink
+                      variant="outlined"
+                      href={{
+                        pathname: `/post`,
+                        query: { id: "62xKTKOTQj2lQP1rekH2Yp" },
+                      }}
+                      as={`/about`}
+                    >
+                      About Me
+                    </ButtonLink>
+                  </ButtonGroup>
+                </Grid>
+                <Grid item>
+                  <Grid container justify="center" spacing={2}>
+                    <Grid item>
+                      <Fab
+                        aria-label="github"
+                        size="small"
+                        color="default"
+                        onClick={() =>
+                          window.open("https://github.com/jriley15")
+                        }
+                      >
+                        <img
+                          src="https://image.flaticon.com/icons/svg/25/25231.svg"
+                          className={classes.icon}
+                        />
+                      </Fab>
+                    </Grid>
+                    <Grid item>
+                      <Fab
+                        aria-label="linkedin"
+                        size="small"
+                        color="default"
+                        onClick={() =>
+                          window.open(
+                            "https://www.linkedin.com/in/jordan-riley-090564158/"
+                          )
+                        }
+                      >
+                        <img
+                          src="https://image.flaticon.com/icons/svg/174/174857.svg"
+                          className={classes.icon}
+                        />
+                      </Fab>
+                    </Grid>
+                    <Grid item>
+                      <Tooltip
+                        title="Click to copy email to clipboard"
+                        interactive
+                      >
+                        <Fab aria-label="linkedin" size="small" color="default">
+                          <EmailIcon />
+                        </Fab>
+                      </Tooltip>
+                    </Grid>
+                  </Grid>
+                </Grid>
               </Grid>
             </div>
           </Fade>

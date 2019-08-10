@@ -19,16 +19,19 @@ import {
 import { getPosts } from "../data/blog"
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import Fade from "react-reveal/Fade"
+import Head from "next/head"
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     height: "100%",
-    padding: theme.spacing(1),
-    marginTop: theme.spacing(10),
+
+    backgroundColor: theme.palette.background.paper,
   },
 
-  postsGridContainer: {},
+  postsGridContainer: {
+    padding: theme.spacing(1),
+  },
 
   postGridItem: {
     paddingTop: theme.spacing(2),
@@ -36,6 +39,15 @@ const useStyles = makeStyles(theme => ({
 
     width: "700px",
     maxWidth: "100%",
+  },
+
+  titleGridItem: {
+    marginTop: theme.spacing(8),
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+    backgroundColor: theme.palette.background.default,
+    width: "100%",
+    boxShadow: "inset 0 0 20px rgba(0,0,0,.5)",
   },
 
   postPaper: {
@@ -56,7 +68,7 @@ const useStyles = makeStyles(theme => ({
 
   previewImageAvatar: {
     //margin: 10,
-    width: 220,
+    width: 230,
     height: 150,
     marginLeft: theme.spacing(2),
     display: "flex",
@@ -94,8 +106,24 @@ const Blog = ({ posts }) => {
 
   return (
     <>
+      <Head>
+        <title>Blog | Jordan Portfolio</title>
+      </Head>
       <NavBar />
       <div className={classes.root}>
+        <div className={classes.titleGridItem}>
+          <Typography
+            align="center"
+            variant="h3"
+            className={classes.titleFont}
+            gutterBottom
+          >
+            Welcome to my blog
+          </Typography>
+          <Typography align="center" color="textSecondary">
+            Various posts about tech and my life.
+          </Typography>
+        </div>
         <Grid
           container
           justify="center"
@@ -103,22 +131,9 @@ const Blog = ({ posts }) => {
           direction="column"
           alignItems="center"
         >
-          <Grid item className={classes.postGridItem}>
-            <Typography
-              align="center"
-              variant="h4"
-              className={classes.titleFont}
-              gutterBottom
-            >
-              My Blog
-            </Typography>
-            <Typography align="center" color="textSecondary">
-              Various posts about tech and my life.
-            </Typography>
-          </Grid>
           {posts
             .sort((a, b) => {
-              return new Date(b.sys.createdAt) - new Date(a.sys.createdAt)
+              return new Date(b.sys.updatedAt) - new Date(a.sys.updatedAt)
             })
             .map((post, index) => (
               <Grid item className={classes.postGridItem} key={post.sys.id}>
@@ -141,21 +156,18 @@ const Blog = ({ posts }) => {
                         spacing={2}
                       >
                         <Grid item>
-                          <Grid container justify="space-between">
-                            <Typography
-                              variant="h4"
-                              className={classes.titleFont}
-                            >
-                              {post.fields.title}
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary">
-                              {new Date(post.sys.createdAt).toDateString()}
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                        <Grid item>
                           <Grid container alignItems="center">
                             <Grid item xs>
+                              <Typography
+                                variant="h4"
+                                className={classes.titleFont}
+                                gutterBottom
+                              >
+                                {post.fields.title}
+                              </Typography>
+                              <Typography variant="body2" gutterBottom>
+                                {new Date(post.sys.createdAt).toDateString()}
+                              </Typography>
                               <Typography color="textSecondary">
                                 {post.fields.description}
                                 <MuiLink className={classes.readMoreButton}>

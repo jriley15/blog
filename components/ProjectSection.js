@@ -30,6 +30,8 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100%",
     paddingBottom: theme.spacing(10),
+
+    overflowX: "hidden",
   },
 
   svg: {
@@ -78,6 +80,14 @@ const useStyles = makeStyles(theme => ({
 
     width: "700px",
     maxWidth: "100%",
+
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+
+    [theme.breakpoints.up("md")]: {
+      paddingLeft: theme.spacing(0),
+      paddingRight: theme.spacing(0),
+    },
   },
 
   projectDiv: {
@@ -228,6 +238,15 @@ const ProjectSection = ({ children }) => {
               gutterBottom
             >
               Projects
+            </Typography>
+            <Typography
+              color="textSecondary"
+              variant="body1"
+              align="center"
+              gutterBottom
+            >
+              Documentation on some of the notable projects I've worked on over
+              the years.
             </Typography>
           </Fade>
         </Grid>

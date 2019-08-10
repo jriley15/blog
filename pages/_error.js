@@ -37,12 +37,12 @@ const error = () => {
         <Grid item>
           <img src="/static/images/notfound.svg" className={classes.image} />
         </Grid>
-        <Grid item>
-          <Typography variant="h2" align="center">
+        <Grid item className={classes.paddingTop5}>
+          <Typography variant="h2" align="center" gutterBottom>
             Page not found
           </Typography>
         </Grid>
-        <Grid item className={classes.paddingTop5}>
+        <Grid item>
           <Link href="/">
             <Button variant="outlined">Go To Home Page</Button>
           </Link>

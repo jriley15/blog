@@ -123,6 +123,15 @@ const SkillSection = ({ scrollNext, children }) => {
             >
               Skills
             </Typography>
+            <Typography
+              color="textSecondary"
+              variant="body1"
+              align="center"
+              gutterBottom
+            >
+              A list of all the technical skills I've aquired through school,
+              work, and self-teaching.
+            </Typography>
           </Fade>
         </Grid>
         <Grid item className={classes.container}>
@@ -135,7 +144,6 @@ const SkillSection = ({ scrollNext, children }) => {
                     className={classes.purple}
                     align="center"
                     gutterBottom
-                    color="textSecondary"
                   >
                     Programming Languages
                   </Typography>
@@ -147,7 +155,6 @@ const SkillSection = ({ scrollNext, children }) => {
                     className={classes.purple}
                     align="center"
                     gutterBottom
-                    color="textSecondary"
                   >
                     Frameworks
                   </Typography>
@@ -159,7 +166,6 @@ const SkillSection = ({ scrollNext, children }) => {
                     className={classes.purple}
                     align="center"
                     gutterBottom
-                    color="textSecondary"
                   >
                     Storage
                   </Typography>
@@ -171,7 +177,6 @@ const SkillSection = ({ scrollNext, children }) => {
                     className={classes.purple}
                     align="center"
                     gutterBottom
-                    color="textSecondary"
                   >
                     Tools
                   </Typography>
@@ -183,7 +188,6 @@ const SkillSection = ({ scrollNext, children }) => {
                     className={classes.purple}
                     align="center"
                     gutterBottom
-                    color="textSecondary"
                   >
                     Cloud Providers
                   </Typography>
@@ -195,7 +199,6 @@ const SkillSection = ({ scrollNext, children }) => {
                     className={classes.purple}
                     align="center"
                     gutterBottom
-                    color="textSecondary"
                   >
                     Operating Systems
                   </Typography>

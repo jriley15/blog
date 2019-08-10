@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   },
   toolBar: {
     width: "100%",
-    maxWidth: "1200px",
+    maxWidth: "1080px",
   },
 }))
 
@@ -68,10 +68,10 @@ export default function NavBar({ scrollNext, type }) {
             type === "index"
               ? y === 0
                 ? "transparent"
-                : "#212121"
+                : "rgba(120, 80, 228)"
               : "rgba(120, 80, 228)",
           boxShadow:
-            y === 0
+            y === 0 && type === "index"
               ? "none"
               : "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
         }}
@@ -95,7 +95,7 @@ export default function NavBar({ scrollNext, type }) {
             <Link
               prefetch
               href={{ pathname: "/index", query: { section: 2 } }}
-              as="/index"
+              as="/projects"
             >
               <Button size="large" className={classes.navButton}>
                 Projects
@@ -103,25 +103,14 @@ export default function NavBar({ scrollNext, type }) {
             </Link>
           )}
 
-          {/*<Button
-            size="large"
-            className={classes.navButton}
-            onClick={() => scrollNext(1)}
-          >
-            Skills
-          </Button>
-
-          <Button size="large" className={classes.navButton}>
-            About
-          </Button>*/}
-          <Button className={classes.navButton} size="large">
-            Resume
-          </Button>
           <Link href="/blog">
             <Button className={classes.navButton} size="large">
               Blog
             </Button>
           </Link>
+          <Button className={classes.navButton} size="large">
+            Resume
+          </Button>
           <Button
             variant="outlined"
             className={classes.navButton}

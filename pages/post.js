@@ -13,6 +13,7 @@ import {
   Slide,
   CardActionArea,
   Divider,
+  Box,
 } from "@material-ui/core"
 import { getPost } from "../data/blog"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
@@ -21,6 +22,7 @@ import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter"
 //import js from "../node_modules/react-syntax-highlighter/dist/esm/languages/hljs/javascript"
 import style from "../node_modules/react-syntax-highlighter/dist/esm/styles/prism/vs-dark"
+import Head from "next/head"
 //SyntaxHighlighter.registerLanguage("javascript", js)
 
 const useStyles = makeStyles(theme => ({
@@ -113,10 +115,12 @@ const options = {
     [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
       //console.log("asset: ", node)
       return (
-        <img
-          src={node.data.target.fields.file.url}
-          style={{ maxWidth: "90%", margin: 8 }}
-        />
+        <Box display="flex" justifyContent="center" style={{ width: "100%" }}>
+          <img
+            src={node.data.target.fields.file.url}
+            style={{ maxWidth: "250px", margin: 8 }}
+          />
+        </Box>
       )
     },
   },
@@ -127,6 +131,9 @@ const Post = ({ post }) => {
 
   return (
     <>
+      <Head>
+        <title>{post.fields.title}</title>
+      </Head>
       <NavBar />
       <div className={classes.root}>
         <Grid

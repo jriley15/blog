@@ -8,7 +8,9 @@ import Dot from "@material-ui/icons/FiberManualRecord"
 import Gallery from "./Gallery"
 
 const styles = theme => ({
-  sliderContainer: {},
+  sliderContainer: {
+    maxWidth: 700,
+  },
 
   image: {
     maxHeight: "250px",
@@ -209,6 +211,7 @@ class Carousel extends Component {
           direction="column"
           justify="center"
           alignItems="center"
+          alignContent="center"
           spacing={1}
         >
           <Grid item className={classes.sliderContainer}>
@@ -218,6 +221,7 @@ class Carousel extends Component {
               justify="center"
               alignItems="center"
               spacing={1}
+              wrap="nowrap"
             >
               <Grid item>
                 <IconButton

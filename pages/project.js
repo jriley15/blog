@@ -6,6 +6,7 @@ import JMarkdown from "../components/JMarkdown"
 import Carousel from "../components/gallery/Carousel"
 import WebIcon from "@material-ui/icons/Web"
 import { projects } from "../data/projects"
+import Head from "next/head"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,6 +39,13 @@ const useStyles = makeStyles(theme => ({
     width: "24px",
     height: "24px",
   },
+  titleFont: {
+    fontWeight: 100,
+  },
+
+  carousel: {
+    maxWidth: 700,
+  },
 }))
 
 const Page = ({ project }) => {
@@ -45,6 +53,9 @@ const Page = ({ project }) => {
 
   return (
     <>
+      <Head>
+        <title>{project.title}</title>
+      </Head>
       <NavBar />
       <div className={classes.root}>
         <Grid
@@ -54,13 +65,18 @@ const Page = ({ project }) => {
           justify="center"
         >
           <Grid item xs={12}>
-            <Typography align="center" variant="h2" gutterBottom>
+            <Typography
+              align="center"
+              variant="h3"
+              gutterBottom
+              className={classes.titleFont}
+            >
               {project.title}
             </Typography>
           </Grid>
 
           <Grid item xs={12}>
-            <Typography align="center" gutterBottom>
+            <Typography align="center" gutterBottom color="textSecondary">
               {project.description}
             </Typography>
           </Grid>
