@@ -108,9 +108,11 @@ export default function NavBar({ scrollNext, type }) {
               Blog
             </Button>
           </Link>
-          <Button className={classes.navButton} size="large">
-            Resume
-          </Button>
+          <Link href="/resume">
+            <Button className={classes.navButton} size="large">
+              Resume
+            </Button>
+          </Link>
           <Button
             variant="outlined"
             className={classes.navButton}

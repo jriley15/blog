@@ -209,7 +209,14 @@ const TopSection = ({ scrollNext, children }) => {
                         title="Click to copy email to clipboard"
                         interactive
                       >
-                        <Fab aria-label="linkedin" size="small" color="default">
+                        <Fab
+                          aria-label="linkedin"
+                          size="small"
+                          color="default"
+                          onClick={() => {
+                            navigator.clipboard.writeText("jordanr3@live.com")
+                          }}
+                        >
                           <EmailIcon />
                         </Fab>
                       </Tooltip>
