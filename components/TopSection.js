@@ -30,16 +30,12 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100vh", //"55vh",
 
-    [theme.breakpoints.up("sm")]: {
-      //height: "55vh", //"55vh",
-    },
-
     //backgroundColor: theme.palette.primary.main,
     //https://digileaders.com/wp-content/uploads/2018/09/coding-on-laptop_4460x4460-e1537450504196.jpg
     //https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JrbItQz/white-polygonal-geometric-surface-seamless-loop-4k-uhd-3840x2160_nyllfzz7e__F0000.png
 
     background:
-      "linear-gradient(rgba(120, 80, 228, 0.8), rgba(13, 186, 134, 0.8)), url('/static/images/bg.png') no-repeat center",
+      "linear-gradient(rgba(120, 80, 228, 0.8), rgba(13, 186, 134, 0.8)), url('/static/images/bg2.jpg') no-repeat center",
     backgroundSize: "cover",
     position: "relative",
     backgroundAttachment: "fixed",
@@ -54,12 +50,12 @@ const useStyles = makeStyles(theme => ({
 
   buttonGroup: {
     marginTop: theme.spacing(2),
+    maxWidth: "100%",
   },
 
   greeting: {
-    padding: theme.spacing(1),
-    maxWidth: "750px",
     height: "100%",
+    marginBottom: "13vw",
     //paddingTop: theme.spacing(8),
   },
 
@@ -72,11 +68,7 @@ const useStyles = makeStyles(theme => ({
   container: {
     width: "100%",
     height: "100%",
-  },
-
-  test: {
-    position: "absolute",
-    top: "35vh",
+    padding: theme.spacing(1),
   },
 
   scrollArrow: {
@@ -88,6 +80,11 @@ const useStyles = makeStyles(theme => ({
 
     "&:hover": {
       animation: "none",
+    },
+
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
     },
   },
 
@@ -117,7 +114,7 @@ const TopSection = ({ scrollNext, children }) => {
         alignItems="center"
         className={classes.container}
       >
-        <Grid item className={classes.test}>
+        <Grid item>
           <Fade in={true} timeout={500}>
             <div className={classes.greeting}>
               <Grid container justify="center" alignItems="center">
@@ -204,7 +201,7 @@ const TopSection = ({ scrollNext, children }) => {
                         />
                       </Fab>
                     </Grid>
-                    <Grid item>
+                    {/*<Grid item>
                       <Tooltip
                         title="Click to copy email to clipboard"
                         interactive
@@ -212,15 +209,14 @@ const TopSection = ({ scrollNext, children }) => {
                         <Fab
                           aria-label="linkedin"
                           size="small"
-                          color="default"
                           onClick={() => {
                             navigator.clipboard.writeText("jordanr3@live.com")
                           }}
                         >
-                          <EmailIcon />
+                          <EmailIcon style={{ color: "#303030" }} />
                         </Fab>
-                      </Tooltip>
-                    </Grid>
+                        </Tooltip>
+                    </Grid>*/}
                   </Grid>
                 </Grid>
               </Grid>

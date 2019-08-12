@@ -26,11 +26,17 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100%",
 
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#fafafa",
+    color: theme.palette.common.black,
+    marginTop: theme.spacing(5),
+    [theme.breakpoints.up("sm")]: {
+      marginTop: theme.spacing(8),
+    },
   },
 
   postsGridContainer: {
     padding: theme.spacing(1),
+    paddingBottom: theme.spacing(8),
   },
 
   postGridItem: {
@@ -39,15 +45,26 @@ const useStyles = makeStyles(theme => ({
 
     width: "700px",
     maxWidth: "100%",
+
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
+
+    transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+    transform: "scale(1, 1)",
   },
 
   titleGridItem: {
-    marginTop: theme.spacing(8),
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+    backgroundColor: "#2b313c",
     width: "100%",
     boxShadow: "inset 0 0 20px rgba(0,0,0,.5)",
+    color: theme.palette.common.white,
+  },
+
+  textSecondary: {
+    color: "rgba(0, 0, 0, 0.54)",
   },
 
   postPaper: {
@@ -80,20 +97,21 @@ const useStyles = makeStyles(theme => ({
   readMoreButton: {
     //bottom: 0,
     //margin: theme.spacing(1),
-    color: "white",
+    //color: "white",
   },
 
   divider: {
     marginLeft: theme.spacing(4),
 
     marginRight: theme.spacing(4),
+    backgroundColor: "rgba(0, 0, 0, 0.12)",
   },
 }))
 
 const options = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => {
-      return <Typography color="textSecondary">{children}</Typography>
+      return <Typography>{children}</Typography>
     },
     [BLOCKS.HEADING_1]: (node, children) => (
       <Typography variant="h6">{children}</Typography>
@@ -118,7 +136,7 @@ const Blog = ({ posts }) => {
             className={classes.titleFont}
             gutterBottom
           >
-            Welcome to my blog
+            Welcome to my Blog
           </Typography>
           <Typography align="center" color="textSecondary">
             Various posts about tech and my life.
@@ -137,9 +155,6 @@ const Blog = ({ posts }) => {
             })
             .map((post, index) => (
               <Grid item className={classes.postGridItem} key={post.sys.id}>
-                {index > 0 && (
-                  <Divider variant="middle" className={classes.divider} />
-                )}
                 <Fade>
                   <Link
                     href={{
@@ -165,10 +180,14 @@ const Blog = ({ posts }) => {
                               >
                                 {post.fields.title}
                               </Typography>
-                              <Typography variant="body2" gutterBottom>
+                              <Typography
+                                variant="body2"
+                                gutterBottom
+                                className={classes.textSecondary}
+                              >
                                 {new Date(post.sys.createdAt).toDateString()}
                               </Typography>
-                              <Typography color="textSecondary">
+                              <Typography>
                                 {post.fields.description}
                                 <MuiLink className={classes.readMoreButton}>
                                   {" "}

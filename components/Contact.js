@@ -6,7 +6,14 @@ import DialogActions from "@material-ui/core/DialogActions"
 import DialogContent from "@material-ui/core/DialogContent"
 import DialogContentText from "@material-ui/core/DialogContentText"
 import DialogTitle from "@material-ui/core/DialogTitle"
-import { Slide, Grid, Fab, Divider, Typography } from "@material-ui/core"
+import {
+  Slide,
+  Grid,
+  Fab,
+  Divider,
+  Typography,
+  Tooltip,
+} from "@material-ui/core"
 import EmailIcon from "@material-ui/icons/Email"
 import { makeStyles } from "@material-ui/core/styles"
 import { grey, green, indigo } from "@material-ui/core/colors"
@@ -100,16 +107,21 @@ export default function Contact({ open, handleClose }) {
             alignItems="center"
           >
             <Grid item>
-              <Fab
-                variant="extended"
-                size="medium"
-                aria-label="add"
-                color="primary"
-                className={classes.emailButton}
-              >
-                <EmailIcon className={classes.extendedIcon} />
-                Email: Jordanr3@live.com
-              </Fab>
+              <Tooltip title="Click to copy email to clipboard" interactive>
+                <Fab
+                  variant="extended"
+                  size="medium"
+                  aria-label="add"
+                  color="primary"
+                  className={classes.emailButton}
+                  onClick={() => {
+                    navigator.clipboard.writeText("jordanr3@live.com")
+                  }}
+                >
+                  <EmailIcon className={classes.extendedIcon} />
+                  Email: Jordanr3@live.com
+                </Fab>
+              </Tooltip>
             </Grid>
             <Grid item>
               <Fab

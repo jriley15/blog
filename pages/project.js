@@ -13,20 +13,26 @@ const useStyles = makeStyles(theme => ({
     //padding: theme.spacing(1),
     //background:
     //  "linear-gradient(rgba(120, 80, 228, 0.8), rgba(13, 186, 134, 0.8)), url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JrbItQz/white-polygonal-geometric-surface-seamless-loop-4k-uhd-3840x2160_nyllfzz7e__F0000.png') no-repeat center",
-    backgroundColor: "#424242",
+    backgroundColor: "#fafafa",
+    color: theme.palette.common.black,
     backgroundSize: "cover",
     position: "relative",
     backgroundAttachment: "fixed",
     width: "100%",
     height: "100%",
+    marginTop: theme.spacing(5),
+    [theme.breakpoints.up("sm")]: {
+      marginTop: theme.spacing(8),
+    },
   },
   topSection: {
     boxShadow: "inset 0 0 20px rgba(0,0,0,.5)",
     padding: theme.spacing(1),
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    backgroundColor: "#303030",
-    marginTop: theme.spacing(8),
+    backgroundColor: "#2b313c",
+
+    color: theme.palette.common.white,
   },
   markDown: {
     marginLeft: theme.spacing.unit * 2,
@@ -45,6 +51,9 @@ const useStyles = makeStyles(theme => ({
 
   carousel: {
     maxWidth: 700,
+  },
+  paddingBottom: {
+    paddingBottom: theme.spacing(2),
   },
 }))
 
@@ -68,14 +77,14 @@ const Page = ({ project }) => {
             <Typography
               align="center"
               variant="h3"
-              gutterBottom
               className={classes.titleFont}
+              gutterBottom
             >
               {project.title}
             </Typography>
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} className={classes.paddingBottom}>
             <Typography align="center" gutterBottom color="textSecondary">
               {project.description}
             </Typography>

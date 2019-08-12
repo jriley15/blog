@@ -30,7 +30,13 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100%",
     padding: theme.spacing(1),
-    marginTop: theme.spacing(10),
+    marginTop: theme.spacing(5),
+    [theme.breakpoints.up("sm")]: {
+      marginTop: theme.spacing(8),
+    },
+    //backgroundColor: theme.palette.common.white,
+
+    color: theme.palette.common.black,
   },
 
   postsGridContainer: {},
@@ -47,6 +53,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(4),
     borderLeft: "1px solid transparent",
     padding: theme.spacing(3),
+    backgroundColor: "#fafafa",
+    color: theme.palette.common.black,
   },
 
   titleFont: {
@@ -67,6 +75,11 @@ const useStyles = makeStyles(theme => ({
   },
   divider: {
     margin: theme.spacing(1),
+    backgroundColor: "rgba(0, 0, 0, 0.12)",
+  },
+
+  textSecondary: {
+    color: "rgba(0, 0, 0, 0.54)",
   },
 }))
 
@@ -81,7 +94,17 @@ const options = {
   },
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => {
-      return <Typography color="textSecondary">{children}</Typography>
+      return (
+        <Typography
+          style={
+            {
+              /* color: "rgba(0, 0, 0, 0.54)" */
+            }
+          }
+        >
+          {children}
+        </Typography>
+      )
     },
     [BLOCKS.HEADING_1]: (node, children) => (
       <Typography variant="h5">{children}</Typography>
@@ -153,10 +176,13 @@ const Post = ({ post }) => {
                 >
                   {post.fields.title}
                 </Typography>
-                <Typography variant="body1" color="textSecondary">
+                <Typography variant="body1" className={classes.textSecondary}>
                   {new Date(post.sys.createdAt).toDateString()}
                 </Typography>
               </Grid>
+              <Typography className={classes.textSecondary}>
+                {post.fields.description}
+              </Typography>
               <Divider className={classes.divider} />
 
               <div className={classes.body}>

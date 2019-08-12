@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     paddingBottom: theme.spacing(8),
     //height: "calc(100vh - 56px)",
+    backgroundColor: "#303030",
   },
   skillsContainer: {
     //padding: theme.spacing(1),
