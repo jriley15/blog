@@ -136,7 +136,7 @@ const Blog = ({ posts }) => {
       <NavBar />
       <div className={classes.root}>
         <div className={classes.titleGridItem}>
-          <form name="contact" netlify>
+          <form name="contact" method="POST" data-netlify="true">
             <p>
               <label>
                 Name <input type="text" name="name" />

@@ -27,7 +27,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
-          <form name="contact" netlify>
+          <form name="contact" method="POST" data-netlify="true">
             <p>
               <label>
                 Name <input type="text" name="name" />
