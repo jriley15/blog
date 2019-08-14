@@ -22,7 +22,7 @@ import { projects } from "../data/projects"
 const useStyles = makeStyles(theme => ({
   root: {
     background:
-      "linear-gradient(rgba(13, 186, 134, 0.8), rgba(120, 80, 228, 0.8)), url('/static/images/bg2.jpg') no-repeat center",
+      "linear-gradient(rgba(13, 186, 134, 0.8), rgba(120, 80, 228, 0.8)), url('https://images.jrdn.tech/bg2.jpg') no-repeat center",
     backgroundSize: "cover",
     position: "relative",
     backgroundAttachment: "fixed",
