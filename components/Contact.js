@@ -17,6 +17,7 @@ import {
 import EmailIcon from "@material-ui/icons/Email"
 import { makeStyles } from "@material-ui/core/styles"
 import { grey, green, indigo } from "@material-ui/core/colors"
+import { useTheme } from "@material-ui/styles"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
@@ -80,10 +81,23 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(2),
     marginTop: theme.spacing(2),
   },
+
+  dialogPaper: {
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: theme.spacing(1) + "px !important",
+      marginRight: theme.spacing(1) + "px !important",
+    },
+
+    overflow: "visible",
+  },
 }))
 
 export default function Contact({ open, handleClose }) {
   const classes = useStyles()
+
+  let theme = useTheme()
+
+  let scrollProp = theme.breakpoints.down["sm"] ? { scroll: "body" } : {}
 
   return (
     <div>
@@ -91,8 +105,10 @@ export default function Contact({ open, handleClose }) {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
-        fullWidth
         TransitionComponent={Transition}
+        PaperProps={{ classes: { root: classes.dialogPaper } }}
+        maxWidth="sm"
+        {...scrollProp}
       >
         <DialogTitle id="form-dialog-title">Contact Me</DialogTitle>
         <DialogContent dividers>

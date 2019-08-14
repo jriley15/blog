@@ -8,13 +8,15 @@ import VerticalTabs from "../components/resume/VerticalTabs"
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    height: "100%",
 
     marginTop: theme.spacing(5),
     [theme.breakpoints.up("sm")]: {
       marginTop: theme.spacing(8),
     },
-    backgroundColor: "#fafafa",
+    backgroundColor: theme.palette.grey[200], //"#fafafa",
+    backgroundImage: "url('/static/images/interlaced.png')",
+
+    minHeight: "calc(100vh - 168px)",
   },
 
   gridContainer: {
@@ -31,6 +33,35 @@ const useStyles = makeStyles(theme => ({
   },
   titleFont: {
     fontWeight: 100,
+  },
+
+  desktopResume: {
+    height: "1200px",
+    minWidth: "818px",
+    width: "100%",
+
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
+  },
+
+  mobileResume: {
+    height: "inherit",
+    display: "block",
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
+  },
+  downloadButtons: {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
+    },
+  },
+  button: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
 }))
 const Resume = () => {
@@ -59,15 +90,53 @@ const Resume = () => {
             >
               My Resume
             </Typography>
-            <Typography color="textSecondary" align="center" gutterBottom>
-              Try out the interactive web resume below or download the PDF
-              document
-            </Typography>
-            <Box display="flex" justifyContent="center">
-              <Button variant="contained">Download PDF</Button>
+            <Box
+              display="flex"
+              justifyContent="center"
+              className={classes.downloadButtons}
+            >
+              <Button
+                variant="contained"
+                className={classes.button}
+                component="a"
+                href="/static/documents/resume.pdf"
+                download="Jordan Riley Resume 2019"
+              >
+                Download PDF
+              </Button>
+              <Button variant="contained" className={classes.button}>
+                Download Word Doc
+              </Button>
             </Box>
           </div>
-          <VerticalTabs />
+          {/*<VerticalTabs />*/}
+          <div className={classes.desktopResume}>
+            <object
+              data="/static/documents/resume.pdf"
+              type="application/pdf"
+              width="100%"
+              height="100%"
+            />
+          </div>
+
+          <div className={classes.mobileResume}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              height="100%"
+            >
+              <Button
+                variant="contained"
+                style={{ marginTop: 16 }}
+                onClick={() => {
+                  window.open("/static/documents/resume.pdf")
+                }}
+              >
+                View PDF on Mobile
+              </Button>
+            </Box>
+          </div>
         </Box>
       </div>
     </>

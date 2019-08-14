@@ -26,7 +26,8 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100%",
 
-    backgroundColor: "#fafafa",
+    backgroundColor: theme.palette.grey[200], //"#fafafa",
+    backgroundImage: "url('/static/images/interlaced.png')",
     color: theme.palette.common.black,
     marginTop: theme.spacing(5),
     [theme.breakpoints.up("sm")]: {
@@ -68,7 +69,9 @@ const useStyles = makeStyles(theme => ({
   },
 
   postPaper: {
-    marginTop: theme.spacing(4),
+    [theme.breakpoints.up("sm")]: {
+      marginTop: theme.spacing(4),
+    },
     //borderLeft: "1px solid transparent",
     padding: theme.spacing(3),
     transition: theme.transitions.create("background-color"),
@@ -77,6 +80,8 @@ const useStyles = makeStyles(theme => ({
     },
     cursor: "pointer",
     borderRadius: "3px",
+    backgroundColor: "white",
+    color: "black",
   },
 
   titleFont: {
@@ -126,6 +131,7 @@ const Blog = ({ posts }) => {
     <>
       <Head>
         <title>Blog | Jordan Portfolio</title>
+        <meta name="description" content="My Personal Blog" />
       </Head>
       <NavBar />
       <div className={classes.root}>
@@ -163,7 +169,7 @@ const Blog = ({ posts }) => {
                     }}
                     as={`/post/${post.sys.id}`}
                   >
-                    <div elevation={6} className={classes.postPaper}>
+                    <Paper elevation={6} className={classes.postPaper}>
                       <Grid
                         container
                         justify="flex-start"
@@ -208,7 +214,7 @@ const Blog = ({ posts }) => {
                           </Grid>
                         </Grid>
                       </Grid>
-                    </div>
+                    </Paper>
                   </Link>
                 </Fade>
               </Grid>

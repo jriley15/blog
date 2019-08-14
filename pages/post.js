@@ -35,7 +35,9 @@ const useStyles = makeStyles(theme => ({
       marginTop: theme.spacing(8),
     },
     //backgroundColor: theme.palette.common.white,
-
+    backgroundColor: theme.palette.grey[200], //"#fafafa",
+    backgroundImage: "url('/static/images/interlaced.png')",
+    minHeight: "calc(100vh - 168px)",
     color: theme.palette.common.black,
   },
 
@@ -50,6 +52,9 @@ const useStyles = makeStyles(theme => ({
   },
 
   postPaper: {
+    [theme.breakpoints.up("sm")]: {
+      marginTop: theme.spacing(4),
+    },
     marginBottom: theme.spacing(4),
     borderLeft: "1px solid transparent",
     padding: theme.spacing(3),
@@ -156,6 +161,7 @@ const Post = ({ post }) => {
     <>
       <Head>
         <title>{post.fields.title}</title>
+        <meta name="description" content={post.fields.description} />
       </Head>
       <NavBar />
       <div className={classes.root}>

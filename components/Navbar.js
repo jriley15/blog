@@ -8,8 +8,24 @@ import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 import Link from "next/link"
 import useScrollPosition from "../hooks/useScrollPosition"
-import { Grid } from "@material-ui/core"
+import {
+  Grid,
+  Fab,
+  Box,
+  Tooltip,
+  Drawer,
+  List,
+  ListItemIcon,
+  ListItemText,
+  ListItem,
+} from "@material-ui/core"
 import Contact from "./Contact"
+import EmailIcon from "@material-ui/icons/Email"
+import ContactMail from "@material-ui/icons/ContactMail"
+import Home from "@material-ui/icons/Home"
+import { default as ListIcon } from "@material-ui/icons/List"
+import FormatAlignCenter from "@material-ui/icons/FormatAlignCenter"
+import Build from "@material-ui/icons/Build"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,9 +53,41 @@ const useStyles = makeStyles(theme => ({
     transition: "background-color 0.5s ease, box-shadow 0.5s ease",
     alignItems: "center",
   },
-  toolBar: {
+  desktopToolBar: {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
+    },
     width: "100%",
     maxWidth: "1080px",
+  },
+
+  mobileToolbar: {
+    width: "100%",
+    display: "flex",
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
+  },
+
+  icon: {
+    width: "24px",
+  },
+
+  socials: {
+    position: "fixed",
+    zIndex: theme.zIndex.modal,
+    //left: 0,
+    top: "calc(50% - 100px)",
+    right: 0,
+    paddingRight: theme.spacing(1) / 2,
+  },
+  fab: {
+    margin: theme.spacing(1) / 2,
+  },
+
+  list: {
+    width: 200,
   },
 }))
 
@@ -48,14 +96,24 @@ export default function NavBar({ scrollNext, type }) {
 
   const y = useScrollPosition()
 
-  const [open, setOpen] = useState(false)
+  const [contactOpen, setContactOpen] = useState(false)
 
-  function handleClickOpen() {
-    setOpen(true)
+  const [drawerOpen, setDrawerOpen] = useState(false)
+
+  function handleContactOpen() {
+    setContactOpen(true)
   }
 
-  function handleClose() {
-    setOpen(false)
+  function handleContactClose() {
+    setContactOpen(false)
+  }
+
+  function handleDrawerOpen() {
+    setDrawerOpen(true)
+  }
+
+  function handleDrawerClose() {
+    setDrawerOpen(false)
   }
 
   return (
@@ -76,7 +134,7 @@ export default function NavBar({ scrollNext, type }) {
               : "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
         }}
       >
-        <Toolbar className={classes.toolBar}>
+        <Toolbar className={classes.desktopToolBar}>
           <Link href="/">
             <img src="/static/images/Jrdn.png" className={classes.logo} />
           </Link>
@@ -116,15 +174,121 @@ export default function NavBar({ scrollNext, type }) {
           <Button
             variant="outlined"
             className={classes.navButton}
-            onClick={handleClickOpen}
+            onClick={handleContactOpen}
             size="large"
           >
             Contact
           </Button>
         </Toolbar>
+
+        <Toolbar className={classes.mobileToolbar}>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+            onClick={handleDrawerOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+          <div className={classes.grow} />
+          <Link href="/">
+            <img src="/static/images/Jrdn.png" className={classes.logo} />
+          </Link>
+        </Toolbar>
       </AppBar>
 
-      <Contact open={open} handleClose={handleClose} />
+      <Contact open={contactOpen} handleClose={handleContactClose} />
+
+      {/* Floating social icons */}
+      <Box className={classes.socials} display="flex" flexDirection="column">
+        <Fab
+          aria-label="github"
+          size="small"
+          color="default"
+          onClick={() => window.open("https://github.com/jriley15")}
+          className={classes.fab}
+        >
+          <img
+            src="https://image.flaticon.com/icons/svg/25/25231.svg"
+            className={classes.icon}
+          />
+        </Fab>
+        <Fab
+          aria-label="linkedin"
+          size="small"
+          color="default"
+          onClick={() =>
+            window.open("https://www.linkedin.com/in/jordan-riley-090564158/")
+          }
+          className={classes.fab}
+        >
+          <img
+            src="https://image.flaticon.com/icons/svg/174/174857.svg"
+            className={classes.icon}
+          />
+        </Fab>
+        <Tooltip title="Click to copy email to clipboard" interactive>
+          <Fab
+            aria-label="linkedin"
+            size="small"
+            onClick={() => {
+              navigator.clipboard.writeText("jordanr3@live.com")
+            }}
+            className={classes.fab}
+          >
+            <EmailIcon style={{ color: "#303030" }} />
+          </Fab>
+        </Tooltip>
+      </Box>
+
+      {/* Responsive mobile nav drawer */}
+      <Drawer open={drawerOpen} onClose={handleDrawerClose}>
+        <List className={classes.list}>
+          <Link href="/blog">
+            <ListItem>
+              <ListItemIcon>
+                <Home />
+              </ListItemIcon>
+              <ListItemText primary={"Home"} />
+            </ListItem>
+          </Link>
+          <Link
+            prefetch
+            href={{ pathname: "/index", query: { section: 2 } }}
+            as="/projects"
+          >
+            <ListItem>
+              <ListItemIcon>
+                <Build />
+              </ListItemIcon>
+              <ListItemText primary={"Projects"} />
+            </ListItem>
+          </Link>
+          <Link href="/blog">
+            <ListItem>
+              <ListItemIcon>
+                <FormatAlignCenter />
+              </ListItemIcon>
+              <ListItemText primary={"Blog"} />
+            </ListItem>
+          </Link>
+          <Link href="/resume">
+            <ListItem>
+              <ListItemIcon>
+                <ListIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Resume"} />
+            </ListItem>
+          </Link>
+          <ListItem button onClick={handleContactOpen}>
+            <ListItemIcon>
+              <ContactMail />
+            </ListItemIcon>
+            <ListItemText primary={"Contact"} />
+          </ListItem>
+        </List>
+      </Drawer>
     </div>
   )
 }

@@ -54,6 +54,8 @@ const useStyles = makeStyles(theme => ({
     height: "100%",
     paddingBottom: theme.spacing(8),
     paddingTop: theme.spacing(8),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
   },
   projects: {
     width: "calc(100% - 16px)",
@@ -80,9 +82,6 @@ const useStyles = makeStyles(theme => ({
 
     width: "700px",
     maxWidth: "100%",
-
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
 
     [theme.breakpoints.up("md")]: {
       paddingLeft: theme.spacing(0),

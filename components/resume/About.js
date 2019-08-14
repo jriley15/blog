@@ -25,6 +25,9 @@ export default () => {
         Jordan Riley
       </Typography>
       <Typography className={classes.textSecondary} align="center">
+        Jordanr3@live.com | 602-722-5083
+      </Typography>
+      <Typography className={classes.textSecondary} align="center" gutterBottom>
         Phoenix, Arizona
       </Typography>
       <Typography>

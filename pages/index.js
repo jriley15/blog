@@ -16,6 +16,7 @@ import TopSection from "../components/TopSection"
 import SkillSection from "../components/SkillSection"
 import ProjectSection from "../components/ProjectSection"
 import Head from "next/head"
+
 /*
 const IndexPage = () => (
   <Layout>
@@ -87,6 +88,7 @@ const IndexPage = ({ query }) => {
     <>
       <Head>
         <title>Home | Jordan Portfolio</title>
+        <meta name="description" content="My Portfolio" />
       </Head>
       <NavBar scrollNext={scrollNext} type="index" />
       <div className={classes.root}>

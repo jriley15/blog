@@ -105,6 +105,11 @@ const useStyles = makeStyles(theme => ({
   icons: {
     padding: theme.spacing(3.5),
   },
+
+  heading: {
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+  },
 }))
 
 const SkillSection = ({ scrollNext, children }) => {
@@ -112,7 +117,13 @@ const SkillSection = ({ scrollNext, children }) => {
 
   return (
     <Grid item className={classes.root}>
-      <Grid container justify="center" direction="column" alignItems="center">
+      <Grid
+        container
+        justify="center"
+        direction="column"
+        alignItems="center"
+        className={classes.heading}
+      >
         {children}
         <Grid item>
           <Fade up>

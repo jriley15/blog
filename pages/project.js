@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("sm")]: {
       marginTop: theme.spacing(8),
     },
+    minHeight: "calc(100vh - 168px)",
   },
   topSection: {
     boxShadow: "inset 0 0 20px rgba(0,0,0,.5)",
@@ -64,6 +65,7 @@ const Page = ({ project }) => {
     <>
       <Head>
         <title>{project.title}</title>
+        <meta name="description" content={project.description} />
       </Head>
       <NavBar />
       <div className={classes.root}>
