@@ -243,9 +243,7 @@ export default function Contact({ open, handleClose }) {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Close</Button>
-            <Button onClick={handleClose} type="submit">
-              Send Message
-            </Button>
+            <Button type="submit">Send Message</Button>
           </DialogActions>
         </form>
       </Dialog>
