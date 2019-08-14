@@ -90,6 +90,7 @@ const IndexPage = ({ query }) => {
         <title>Home | Jordan Portfolio</title>
         <meta name="description" content="My Portfolio" />
       </Head>
+      <img src={"/static/images/bg2.jpg"} style={{ display: "none" }} />
       <NavBar scrollNext={scrollNext} type="index" />
       <div className={classes.root}>
         <Grid container justify="center" alignItems="center">
