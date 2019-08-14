@@ -111,120 +111,123 @@ export default function Contact({ open, handleClose }) {
         {...scrollProp}
       >
         <DialogTitle id="form-dialog-title">Contact Me</DialogTitle>
-        <DialogContent dividers>
-          <DialogContentText align="center">
-            Contact me through email or social media
-          </DialogContentText>
+        <form name="contact" method="POST" data-netlify="true">
+          <DialogContent dividers>
+            <DialogContentText align="center">
+              Contact me through email or social media
+            </DialogContentText>
 
-          <Grid
-            container
-            justify="center"
-            alignContent="center"
-            alignItems="center"
-          >
-            <Grid item>
-              <Tooltip title="Click to copy email to clipboard" interactive>
+            <Grid
+              container
+              justify="center"
+              alignContent="center"
+              alignItems="center"
+            >
+              <Grid item>
+                <Tooltip title="Click to copy email to clipboard" interactive>
+                  <Fab
+                    variant="extended"
+                    size="medium"
+                    aria-label="add"
+                    color="primary"
+                    className={classes.emailButton}
+                    onClick={() => {
+                      navigator.clipboard.writeText("jordanr3@live.com")
+                    }}
+                  >
+                    <EmailIcon className={classes.extendedIcon} />
+                    Email: Jordanr3@live.com
+                  </Fab>
+                </Tooltip>
+              </Grid>
+              <Grid item>
                 <Fab
                   variant="extended"
                   size="medium"
                   aria-label="add"
-                  color="primary"
-                  className={classes.emailButton}
-                  onClick={() => {
-                    navigator.clipboard.writeText("jordanr3@live.com")
-                  }}
+                  className={classes.darkButton}
+                  onClick={() =>
+                    window.open(
+                      "https://www.linkedin.com/in/jordan-riley-090564158/"
+                    )
+                  }
                 >
-                  <EmailIcon className={classes.extendedIcon} />
-                  Email: Jordanr3@live.com
+                  <img
+                    src="https://image.flaticon.com/icons/svg/174/174857.svg"
+                    className={classes.linkedInIcon}
+                  />
+                  LinkedIn
                 </Fab>
-              </Tooltip>
+              </Grid>
+              <Grid item>
+                <Fab
+                  variant="extended"
+                  size="medium"
+                  aria-label="add"
+                  className={classes.margin}
+                  onClick={() => window.open("https://github.com/jriley15")}
+                >
+                  <img
+                    src="https://image.flaticon.com/icons/svg/25/25231.svg"
+                    className={classes.linkedInIcon}
+                  />
+                  Github: jriley15
+                </Fab>
+              </Grid>
+              <Grid item>
+                <Fab
+                  variant="extended"
+                  size="medium"
+                  aria-label="add"
+                  className={classes.discordButton}
+                  onClick={() =>
+                    window.open(
+                      "https://discordapp.com/users/287019890588778498"
+                    )
+                  }
+                >
+                  <img
+                    src="https://discordapp.com/assets/1c8a54f25d101bdc607cec7228247a9a.svg"
+                    className={classes.discordIcon}
+                  />
+                  Discord: JORDAN#8399
+                </Fab>
+              </Grid>
+              <Grid item>
+                <Fab
+                  variant="extended"
+                  size="medium"
+                  aria-label="add"
+                  className={classes.devpostButton}
+                  onClick={() => window.open("https://devpost.com/JordanRiley")}
+                >
+                  <img
+                    src="https://cdn.iconscout.com/icon/free/png-256/dev-post-555431.png"
+                    className={classes.discordIcon}
+                  />
+                  Devpost
+                </Fab>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Fab
-                variant="extended"
-                size="medium"
-                aria-label="add"
-                className={classes.darkButton}
-                onClick={() =>
-                  window.open(
-                    "https://www.linkedin.com/in/jordan-riley-090564158/"
-                  )
-                }
-              >
-                <img
-                  src="https://image.flaticon.com/icons/svg/174/174857.svg"
-                  className={classes.linkedInIcon}
-                />
-                LinkedIn
-              </Fab>
-            </Grid>
-            <Grid item>
-              <Fab
-                variant="extended"
-                size="medium"
-                aria-label="add"
-                className={classes.margin}
-                onClick={() => window.open("https://github.com/jriley15")}
-              >
-                <img
-                  src="https://image.flaticon.com/icons/svg/25/25231.svg"
-                  className={classes.linkedInIcon}
-                />
-                Github: jriley15
-              </Fab>
-            </Grid>
-            <Grid item>
-              <Fab
-                variant="extended"
-                size="medium"
-                aria-label="add"
-                className={classes.discordButton}
-                onClick={() =>
-                  window.open("https://discordapp.com/users/287019890588778498")
-                }
-              >
-                <img
-                  src="https://discordapp.com/assets/1c8a54f25d101bdc607cec7228247a9a.svg"
-                  className={classes.discordIcon}
-                />
-                Discord: JORDAN#8399
-              </Fab>
-            </Grid>
-            <Grid item>
-              <Fab
-                variant="extended"
-                size="medium"
-                aria-label="add"
-                className={classes.devpostButton}
-                onClick={() => window.open("https://devpost.com/JordanRiley")}
-              >
-                <img
-                  src="https://cdn.iconscout.com/icon/free/png-256/dev-post-555431.png"
-                  className={classes.discordIcon}
-                />
-                Devpost
-              </Fab>
-            </Grid>
-          </Grid>
 
-          <Divider className={classes.divider} variant="middle" />
+            <Divider className={classes.divider} variant="middle" />
 
-          <Typography align="center" color="textSecondary">
-            Or send me a message with the form below
-          </Typography>
-          <form netlify>
+            <Typography align="center" color="textSecondary">
+              Or send me a message with the form below
+            </Typography>
             <TextField
               margin="dense"
               id="name"
               label="Name"
-              type="email"
               fullWidth
+              name="name"
             />
             <TextField
               margin="dense"
               id="email"
               label="Email Address"
               type="email"
+              name="email"
               fullWidth
             />
             <TextField
@@ -233,15 +236,18 @@ export default function Contact({ open, handleClose }) {
               margin="dense"
               id="email"
               label="Message"
-              type="email"
+              name="message"
               fullWidth
             />
-          </form>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
-          <Button onClick={handleClose}>Send Message</Button>
-        </DialogActions>
+            <Button type="submit">Send Message</Button>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Close</Button>
+            <Button onClick={handleClose} type="submit">
+              Send Message
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </div>
   )
