@@ -212,29 +212,31 @@ export default function Contact({ open, handleClose }) {
           <Typography align="center" color="textSecondary">
             Or send me a message with the form below
           </Typography>
-          <TextField
-            margin="dense"
-            id="name"
-            label="Name"
-            type="email"
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            id="email"
-            label="Email Address"
-            type="email"
-            fullWidth
-          />
-          <TextField
-            multiline
-            rows={5}
-            margin="dense"
-            id="email"
-            label="Message"
-            type="email"
-            fullWidth
-          />
+          <form netlify>
+            <TextField
+              margin="dense"
+              id="name"
+              label="Name"
+              type="email"
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="email"
+              label="Email Address"
+              type="email"
+              fullWidth
+            />
+            <TextField
+              multiline
+              rows={5}
+              margin="dense"
+              id="email"
+              label="Message"
+              type="email"
+              fullWidth
+            />
+          </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>
