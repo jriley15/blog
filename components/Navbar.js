@@ -123,11 +123,7 @@ export default function NavBar({ scrollNext, type }) {
         className={classes.navBar}
         style={{
           backgroundColor:
-            type === "index"
-              ? y === 0
-                ? "transparent"
-                : "rgba(120, 80, 228)"
-              : "rgba(120, 80, 228)",
+            type === "index" && y === 0 ? "transparent" : "rgb(120, 80, 228)",
           boxShadow:
             y === 0 && type === "index"
               ? "none"
