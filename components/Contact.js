@@ -235,7 +235,7 @@ export default function Contact({ open, handleClose }) {
               multiline
               rows={5}
               margin="dense"
-              id="email"
+              id="message"
               label="Message"
               name="message"
               fullWidth
