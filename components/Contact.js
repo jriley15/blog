@@ -83,9 +83,10 @@ const useStyles = makeStyles(theme => ({
   },
 
   dialogPaper: {
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: theme.spacing(1) + "px !important",
-      marginRight: theme.spacing(1) + "px !important",
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      maxWidth: "100% !important",
     },
 
     overflow: "visible",
@@ -97,22 +98,23 @@ export default function Contact({ open, handleClose }) {
 
   let theme = useTheme()
 
-  let scrollProp = theme.breakpoints.down["sm"] ? { scroll: "body" } : {}
+  let scrollProp = theme.breakpoints.up["sm"] ? {} : { scroll: "body" }
 
   return (
     <div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-        TransitionComponent={Transition}
-        PaperProps={{ classes: { root: classes.dialogPaper } }}
-        maxWidth="sm"
-        {...scrollProp}
-      >
-        <DialogTitle id="form-dialog-title">Contact Me</DialogTitle>
-        <form name="contactnew" method="post" data-netlify="true">
-          <input type="hidden" name="form-name" value="contactnew" />
+      <form name="contactnew" method="post" data-netlify="true">
+        <input type="hidden" name="form-name" value="contactnew" />
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="form-dialog-title"
+          TransitionComponent={Transition}
+          PaperProps={{ classes: { root: classes.dialogPaper } }}
+          maxWidth="sm"
+          {...scrollProp}
+        >
+          <DialogTitle id="form-dialog-title">Contact Me</DialogTitle>
+
           <DialogContent dividers>
             <DialogContentText align="center">
               Contact me through email or social media
@@ -244,8 +246,8 @@ export default function Contact({ open, handleClose }) {
             <Button onClick={handleClose}>Close</Button>
             <Button type="submit">Send Message</Button>
           </DialogActions>
-        </form>
-      </Dialog>
+        </Dialog>
+      </form>
     </div>
   )
 }

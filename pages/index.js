@@ -69,6 +69,7 @@ const IndexPage = ({ query }) => {
   //https://www.jordanriley.me/static/media/me.c702f970.jpg
 
   const scrollNext = (index, b) => {
+    console.log(index)
     switch (parseInt(index, 10)) {
       case 0:
         topRef.current.scrollIntoView({ behavior: b ? "auto" : "smooth" })

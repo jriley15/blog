@@ -4,6 +4,7 @@ const useScrollPosition = () => {
   const [yOffset, setYOffset] = useState(0)
 
   useEffect(() => {
+    setYOffset(window.pageYOffset)
     function handleScroll() {
       setYOffset(window.pageYOffset)
     }

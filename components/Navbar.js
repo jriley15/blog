@@ -26,6 +26,7 @@ import Home from "@material-ui/icons/Home"
 import { default as ListIcon } from "@material-ui/icons/List"
 import FormatAlignCenter from "@material-ui/icons/FormatAlignCenter"
 import Build from "@material-ui/icons/Build"
+import Slide from "@material-ui/core/Slide"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -130,6 +131,7 @@ export default function NavBar({ scrollNext, type }) {
               : "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)",
         }}
       >
+        {/* Desktop nav bar */}
         <Toolbar className={classes.desktopToolBar}>
           <Link href="/">
             <img src="/static/images/Jrdn.png" className={classes.logo} />
@@ -177,6 +179,7 @@ export default function NavBar({ scrollNext, type }) {
           </Button>
         </Toolbar>
 
+        {/* Mobile nav bar */}
         <Toolbar className={classes.mobileToolbar}>
           <IconButton
             edge="start"
@@ -187,7 +190,9 @@ export default function NavBar({ scrollNext, type }) {
           >
             <MenuIcon />
           </IconButton>
+
           <div className={classes.grow} />
+
           <Link href="/">
             <img src="/static/images/Jrdn.png" className={classes.logo} />
           </Link>
@@ -196,71 +201,49 @@ export default function NavBar({ scrollNext, type }) {
 
       <Contact open={contactOpen} handleClose={handleContactClose} />
 
-      {/* Floating social icons */}
-      <Box className={classes.socials} display="flex" flexDirection="column">
-        <Fab
-          aria-label="github"
-          size="small"
-          color="default"
-          onClick={() => window.open("https://github.com/jriley15")}
-          className={classes.fab}
-        >
-          <img
-            src="https://image.flaticon.com/icons/svg/25/25231.svg"
-            className={classes.icon}
-          />
-        </Fab>
-        <Fab
-          aria-label="linkedin"
-          size="small"
-          color="default"
-          onClick={() =>
-            window.open("https://www.linkedin.com/in/jordan-riley-090564158/")
-          }
-          className={classes.fab}
-        >
-          <img
-            src="https://image.flaticon.com/icons/svg/174/174857.svg"
-            className={classes.icon}
-          />
-        </Fab>
-        <Tooltip title="Click to copy email to clipboard" interactive>
-          <Fab
-            aria-label="linkedin"
-            size="small"
-            onClick={() => {
-              navigator.clipboard.writeText("jordanr3@live.com")
-            }}
-            className={classes.fab}
-          >
-            <EmailIcon style={{ color: "#303030" }} />
-          </Fab>
-        </Tooltip>
-      </Box>
-
       {/* Responsive mobile nav drawer */}
       <Drawer open={drawerOpen} onClose={handleDrawerClose}>
         <List className={classes.list}>
           <Link href="/">
-            <ListItem>
+            <ListItem
+              onClick={async () => {
+                await handleDrawerClose()
+              }}
+            >
               <ListItemIcon>
                 <Home />
               </ListItemIcon>
               <ListItemText primary={"Home"} />
             </ListItem>
           </Link>
-          <Link
-            prefetch
-            href={{ pathname: "/index", query: { section: 2 } }}
-            as="/projects"
-          >
-            <ListItem>
+
+          {type === "index" ? (
+            <ListItem
+              onClick={async () => {
+                await handleDrawerClose()
+                scrollNext(2)
+              }}
+            >
               <ListItemIcon>
                 <Build />
               </ListItemIcon>
               <ListItemText primary={"Projects"} />
             </ListItem>
-          </Link>
+          ) : (
+            <Link
+              prefetch
+              href={{ pathname: "/index", query: { section: 2 } }}
+              as="/projects"
+            >
+              <ListItem>
+                <ListItemIcon>
+                  <Build />
+                </ListItemIcon>
+                <ListItemText primary={"Projects"} />
+              </ListItem>
+            </Link>
+          )}
+
           <Link href="/blog">
             <ListItem>
               <ListItemIcon>
