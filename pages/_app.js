@@ -28,6 +28,7 @@ class MyApp extends App {
 
   handleRouteChange = url => {
     ReactGA.pageview(url)
+
     //console.log("page view: ", url)
   }
 
