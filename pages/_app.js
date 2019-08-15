@@ -14,6 +14,14 @@ class MyApp extends App {
     if (jssStyles) {
       jssStyles.parentNode.removeChild(jssStyles)
     }
+    if (process.browser) {
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag("js", new Date())
+      gtag("config", "UA-145349824-1")
+    }
   }
 
   render() {
