@@ -102,17 +102,17 @@ export default function Contact({ open, handleClose }) {
 
   return (
     <div>
-      <form name="contactnew" method="post" data-netlify="true">
-        <input type="hidden" name="form-name" value="contactnew" />
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="form-dialog-title"
-          TransitionComponent={Transition}
-          PaperProps={{ classes: { root: classes.dialogPaper } }}
-          maxWidth="sm"
-          {...scrollProp}
-        >
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+        TransitionComponent={Transition}
+        PaperProps={{ classes: { root: classes.dialogPaper } }}
+        maxWidth="sm"
+        {...scrollProp}
+      >
+        <form name="contactnew" method="post" data-netlify="true">
+          <input type="hidden" name="form-name" value="contactnew" />
           <DialogTitle id="form-dialog-title">Contact Me</DialogTitle>
 
           <DialogContent dividers>
@@ -246,8 +246,8 @@ export default function Contact({ open, handleClose }) {
             <Button onClick={handleClose}>Close</Button>
             <Button type="submit">Send Message</Button>
           </DialogActions>
-        </Dialog>
-      </form>
+        </form>
+      </Dialog>
     </div>
   )
 }
