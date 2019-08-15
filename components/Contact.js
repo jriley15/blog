@@ -218,14 +218,13 @@ export default function Contact({ open, handleClose }) {
             </Typography>
             <TextField
               margin="dense"
-              id="name"
               label="Name"
+              type="text"
               fullWidth
               name="name"
             />
             <TextField
               margin="dense"
-              id="email"
               label="Email Address"
               type="email"
               name="email"
@@ -235,7 +234,7 @@ export default function Contact({ open, handleClose }) {
               multiline
               rows={5}
               margin="dense"
-              id="message"
+              type="text"
               label="Message"
               name="message"
               fullWidth
