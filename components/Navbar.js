@@ -241,7 +241,7 @@ export default function NavBar({ scrollNext, type }) {
       {/* Responsive mobile nav drawer */}
       <Drawer open={drawerOpen} onClose={handleDrawerClose}>
         <List className={classes.list}>
-          <Link href="/blog">
+          <Link href="/">
             <ListItem>
               <ListItemIcon>
                 <Home />

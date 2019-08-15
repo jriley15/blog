@@ -27,16 +27,6 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
-          <form
-            name="contactnew"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            hidden
-          >
-            <input type="text" name="name" />
-            <input type="email" name="email" />
-            <textarea name="message" />
-          </form>
           <Main />
           <NextScript />
         </body>
