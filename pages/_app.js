@@ -6,6 +6,8 @@ import CssBaseline from "@material-ui/core/CssBaseline"
 import theme from "../theme"
 import NavBar from "../components/Navbar"
 import Footer from "../components/Footer"
+import ReactGA from "react-ga"
+import Router from "next/router"
 
 class MyApp extends App {
   componentDidMount() {
@@ -14,14 +16,19 @@ class MyApp extends App {
     if (jssStyles) {
       jssStyles.parentNode.removeChild(jssStyles)
     }
-    if (process.browser) {
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-      gtag("js", new Date())
-      gtag("config", "UA-145349824-1")
-    }
+
+    //Google analytics scripts
+    ReactGA.initialize("UA-145349824-1")
+    Router.events.on("routeChangeStart", this.handleRouteChange)
+  }
+
+  componentWillUnmount() {
+    Router.events.off("routeChangeStart", this.handleRouteChange)
+  }
+
+  handleRouteChange = url => {
+    ReactGA.pageview(url)
+    //console.log("page view: ", url)
   }
 
   render() {
