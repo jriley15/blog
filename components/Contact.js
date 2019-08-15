@@ -111,8 +111,8 @@ export default function Contact({ open, handleClose }) {
         {...scrollProp}
       >
         <DialogTitle id="form-dialog-title">Contact Me</DialogTitle>
-        <form name="contact" method="post" data-netlify="true">
-          <input type="hidden" name="form-name" value="contact" />
+        <form name="contact2" method="post" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact2" />
           <DialogContent dividers>
             <DialogContentText align="center">
               Contact me through email or social media
@@ -230,7 +230,7 @@ export default function Contact({ open, handleClose }) {
               name="email"
               fullWidth
             />
-            {/*<TextField
+            <TextField
               multiline
               rows={5}
               margin="dense"
@@ -238,10 +238,7 @@ export default function Contact({ open, handleClose }) {
               label="Message"
               name="message"
               fullWidth
-            />*/}
-            <label>
-              Message: <textarea name="message" />
-            </label>
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Close</Button>
