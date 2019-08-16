@@ -11,6 +11,9 @@ import {
   Tooltip,
 } from "@material-ui/core"
 import EmailIcon from "@material-ui/icons/Email"
+import useScrollPosition from "../hooks/useScrollPosition"
+import { useTheme } from "@material-ui/styles"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,24 +42,37 @@ const useStyles = makeStyles(theme => ({
   socials: {
     position: "fixed",
     zIndex: theme.zIndex.modal,
-    //left: 0,
-    top: "calc(50% - 100px)",
+
+    top: "calc(50% - 72px)",
+    //top: theme.spacing(8.5),
+    [theme.breakpoints.down("xs")]: {
+      top: theme.spacing(8),
+      //left: theme.spacing(7),
+      //flexDirection: "row",
+    },
     right: 0,
-    paddingRight: theme.spacing(1) / 2,
+    paddingRight: theme.spacing(0.4),
+    transition: "opacity 0.5s",
   },
+
   fab: {
-    margin: theme.spacing(1) / 2,
+    margin: theme.spacing(0.5),
   },
 }))
 
-const Footer = () => {
+const Footer = ({ routeChanged }) => {
   const classes = useStyles()
 
   const [mountIcons, setMountIcons] = useState(false)
 
+  const y = useScrollPosition()
+
   useEffect(() => {
     setMountIcons(true)
   }, [])
+
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down("xs"))
 
   return (
     <div className={classes.root}>
@@ -71,7 +87,22 @@ const Footer = () => {
       </Grid>
 
       {/* Floating social icons */}
-      <Box className={classes.socials} display="flex" flexDirection="column">
+      <Box
+        className={classes.socials}
+        flexDirection="column"
+        display="flex"
+        style={{
+          opacity: routeChanged
+            ? mobile
+              ? 0
+              : 0.5
+            : y === 0
+            ? 1
+            : mobile
+            ? 0
+            : 0.5,
+        }}
+      >
         <Slide direction="up" in={mountIcons} unmountOnExit timeout={500}>
           <Fab
             aria-label="github"

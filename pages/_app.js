@@ -10,6 +10,10 @@ import ReactGA from "react-ga"
 import Router from "next/router"
 
 class MyApp extends App {
+  state = {
+    routeChanged: false,
+  }
+
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side")
@@ -19,6 +23,8 @@ class MyApp extends App {
 
     //Google analytics scripts
     ReactGA.initialize("UA-145349824-1")
+
+    ReactGA.pageview(window.location.pathname)
     Router.events.on("routeChangeStart", this.handleRouteChange)
   }
 
@@ -28,7 +34,7 @@ class MyApp extends App {
 
   handleRouteChange = url => {
     ReactGA.pageview(url)
-
+    this.setState({ routeChanged: true })
     //console.log("page view: ", url)
   }
 
@@ -46,7 +52,7 @@ class MyApp extends App {
 
           <Component {...pageProps} />
 
-          <Footer />
+          <Footer routeChanged={this.state.routeChanged} />
         </ThemeProvider>
       </Container>
     )
