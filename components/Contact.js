@@ -96,10 +96,6 @@ const useStyles = makeStyles(theme => ({
 export default function Contact({ open, handleClose }) {
   const classes = useStyles()
 
-  let theme = useTheme()
-
-  let scrollProp = theme.breakpoints.up["sm"] ? {} : { scroll: "body" }
-
   return (
     <div>
       <Dialog
@@ -109,7 +105,7 @@ export default function Contact({ open, handleClose }) {
         TransitionComponent={Transition}
         PaperProps={{ classes: { root: classes.dialogPaper } }}
         maxWidth="sm"
-        {...scrollProp}
+        scroll="body"
       >
         <form name="contactnew" method="post" data-netlify="true">
           <input type="hidden" name="form-name" value="contactnew" />

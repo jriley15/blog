@@ -165,7 +165,7 @@ const Blog = ({ posts }) => {
               return (
                 <Grid item className={classes.postGridItem} key={post.sys.id}>
                   {/*<Fade>*/}
-                  <Transition key={index} in={true} appear={true}>
+                  <Transition key={index} in={true} appear={true} timeout={0}>
                     {state => (
                       <div
                         style={{
