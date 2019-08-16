@@ -11,6 +11,7 @@ import {
   Tooltip,
 } from "@material-ui/core"
 import EmailIcon from "@material-ui/icons/Email"
+import useScrollPosition from "../hooks/useScrollPosition"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,13 +40,20 @@ const useStyles = makeStyles(theme => ({
   socials: {
     position: "fixed",
     zIndex: theme.zIndex.modal,
-    //left: 0,
-    top: "calc(50% - 100px)",
+
+    top: "calc(50% - 72px)",
+
+    [theme.breakpoints.down("xs")]: {
+      top: theme.spacing(0.5),
+      left: theme.spacing(10),
+      flexDirection: "row",
+    },
     right: 0,
-    paddingRight: theme.spacing(1) / 2,
+    paddingRight: theme.spacing(0.4),
+    transition: "opacity 0.5s",
   },
   fab: {
-    margin: theme.spacing(1) / 2,
+    margin: theme.spacing(0.5),
   },
 }))
 
@@ -53,6 +61,8 @@ const Footer = () => {
   const classes = useStyles()
 
   const [mountIcons, setMountIcons] = useState(false)
+
+  const y = useScrollPosition()
 
   useEffect(() => {
     setMountIcons(true)
@@ -71,7 +81,12 @@ const Footer = () => {
       </Grid>
 
       {/* Floating social icons */}
-      <Box className={classes.socials} display="flex" flexDirection="column">
+      <Box
+        className={classes.socials}
+        display="flex"
+        flexDirection="column"
+        style={{ opacity: y === 0 ? 1 : 0.5 }}
+      >
         <Slide direction="up" in={mountIcons} unmountOnExit timeout={500}>
           <Fab
             aria-label="github"

@@ -71,22 +71,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
 
-  icon: {
-    width: "24px",
-  },
-
-  socials: {
-    position: "fixed",
-    zIndex: theme.zIndex.modal,
-    //left: 0,
-    top: "calc(50% - 100px)",
-    right: 0,
-    paddingRight: theme.spacing(1) / 2,
-  },
-  fab: {
-    margin: theme.spacing(1) / 2,
-  },
-
   list: {
     width: 200,
   },
