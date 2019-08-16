@@ -1,25 +1,13 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import Link from "next/link"
 import NavBar from "../components/Navbar"
 import { makeStyles, fade } from "@material-ui/core/styles"
-import {
-  Typography,
-  Grid,
-  Button,
-  Zoom,
-  Paper,
-  Avatar,
-  Slide,
-  CardActionArea,
-  Divider,
-  ButtonBase,
-  Box,
-  Link as MuiLink,
-} from "@material-ui/core"
+import { Typography, Grid, Paper, Link as MuiLink } from "@material-ui/core"
 import { getPosts } from "../data/blog"
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import Fade from "react-reveal/Fade"
 import Head from "next/head"
+import Transition from "react-transition-group/Transition"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -127,6 +115,20 @@ const options = {
 const Blog = ({ posts }) => {
   const classes = useStyles()
 
+  const duration = 500
+
+  const defaultStyle = {
+    transition: `opacity ${duration}ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform ${duration}ms cubic-bezier(0.4, 0, 0.2, 1) 0ms`,
+    opacity: 0,
+    transform: "scale(0)",
+    willChange: "transform",
+  }
+
+  const transitionStyles = {
+    entering: { opacity: 0, transform: "scale(0)" },
+    entered: { opacity: 1, transform: "scale(1, 1)" },
+  }
+
   return (
     <>
       <Head>
@@ -159,66 +161,88 @@ const Blog = ({ posts }) => {
             .sort((a, b) => {
               return new Date(b.sys.updatedAt) - new Date(a.sys.updatedAt)
             })
-            .map((post, index) => (
-              <Grid item className={classes.postGridItem} key={post.sys.id}>
-                <Fade>
-                  <Link
-                    href={{
-                      pathname: `/post`,
-                      query: { id: post.sys.id },
-                    }}
-                    as={`/post/${post.sys.id}`}
-                  >
-                    <Paper elevation={6} className={classes.postPaper}>
-                      <Grid
-                        container
-                        justify="flex-start"
-                        direction="column"
-                        spacing={2}
+            .map((post, index) => {
+              return (
+                <Grid item className={classes.postGridItem} key={post.sys.id}>
+                  {/*<Fade>*/}
+                  <Transition key={index} in={true} appear={true}>
+                    {state => (
+                      <div
+                        style={{
+                          ...defaultStyle,
+                          ...transitionStyles[state],
+                          transitionDelay: (index - 1) * 125 + "ms",
+                        }}
                       >
-                        <Grid item>
-                          <Grid container alignItems="center">
-                            <Grid item xs>
-                              <Typography
-                                variant="h4"
-                                className={classes.titleFont}
-                                gutterBottom
-                              >
-                                {post.fields.title}
-                              </Typography>
-                              <Typography
-                                variant="body2"
-                                gutterBottom
-                                className={classes.textSecondary}
-                              >
-                                {new Date(post.sys.createdAt).toDateString()}
-                              </Typography>
-                              <Typography>
-                                {post.fields.description}
-                                <MuiLink className={classes.readMoreButton}>
-                                  {" "}
-                                  Read More
-                                </MuiLink>
-                              </Typography>
+                        <Link
+                          href={{
+                            pathname: `/post`,
+                            query: { id: post.sys.id },
+                          }}
+                          as={`/post/${post.sys.id}`}
+                        >
+                          <Paper elevation={6} className={classes.postPaper}>
+                            <Grid
+                              container
+                              justify="flex-start"
+                              direction="column"
+                              spacing={2}
+                            >
+                              <Grid item>
+                                <Grid container alignItems="center">
+                                  <Grid item xs>
+                                    <Typography
+                                      variant="h4"
+                                      className={classes.titleFont}
+                                      gutterBottom
+                                    >
+                                      {post.fields.title}
+                                    </Typography>
+                                    <Typography
+                                      variant="body2"
+                                      gutterBottom
+                                      className={classes.textSecondary}
+                                    >
+                                      {new Date(
+                                        post.sys.createdAt
+                                      ).toDateString()}
+                                    </Typography>
+                                    <Typography>
+                                      {post.fields.description}
+                                      <MuiLink
+                                        className={classes.readMoreButton}
+                                      >
+                                        {" "}
+                                        Read More
+                                      </MuiLink>
+                                    </Typography>
+                                  </Grid>
+                                  <Grid item>
+                                    {post.fields.media && (
+                                      <div
+                                        className={classes.previewImageAvatar}
+                                      >
+                                        <img
+                                          src={
+                                            post.fields.media[0].fields.file.url
+                                          }
+                                          style={{ height: "100%" }}
+                                        />
+                                      </div>
+                                    )}
+                                  </Grid>
+                                </Grid>
+                              </Grid>
                             </Grid>
-                            <Grid item>
-                              {post.fields.media && (
-                                <div className={classes.previewImageAvatar}>
-                                  <img
-                                    src={post.fields.media[0].fields.file.url}
-                                    style={{ height: "100%" }}
-                                  />
-                                </div>
-                              )}
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Paper>
-                  </Link>
-                </Fade>
-              </Grid>
-            ))}
+                          </Paper>
+                        </Link>
+                      </div>
+                    )}
+                  </Transition>
+                  {/*</Fade>*/}
+                </Grid>
+              )
+            })}
         </Grid>
       </div>
     </>

@@ -19,6 +19,8 @@ class MyApp extends App {
 
     //Google analytics scripts
     ReactGA.initialize("UA-145349824-1")
+
+    this.handleRouteChange(window.location.pathname)
     Router.events.on("routeChangeStart", this.handleRouteChange)
   }
 
