@@ -37,6 +37,8 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: "cover",
     position: "relative",
     backgroundAttachment: "fixed",
+
+    WebkitBackgroundSize: "cover",
   },
 
   svg: {
