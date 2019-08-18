@@ -29,11 +29,12 @@ const useStyles = makeStyles(theme => ({
     //https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JrbItQz/white-polygonal-geometric-surface-seamless-loop-4k-uhd-3840x2160_nyllfzz7e__F0000.png
 
     background:
-      "-webkit-linear-gradient(rgba(120, 80, 228, 0.8), rgba(13, 186, 134, 0.8)), url('https://images.jrdn.tech/bg2.jpg') no-repeat center",
+      "linear-gradient(rgba(120, 80, 228, 0.8), rgba(13, 186, 134, 0.8)), url('https://images.jrdn.tech/bg2.jpg') no-repeat center",
     backgroundSize: "cover",
     position: "relative",
-    //backgroundAttachment: "fixed",
-    WebkitBackgroundSize: "cover",
+    [theme.breakpoints.up("sm")]: {
+      backgroundAttachment: "fixed",
+    },
   },
 
   svg: {
