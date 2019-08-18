@@ -16,15 +16,14 @@ import {
   Box,
 } from "@material-ui/core"
 import { getPost, urlFor } from "../data/blog"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
-
-import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter"
-//import js from "../node_modules/react-syntax-highlighter/dist/esm/languages/hljs/javascript"
-import style from "../node_modules/react-syntax-highlighter/dist/esm/styles/prism/vs-dark"
+import BlockContent from "@sanity/block-content-to-react"
 import Head from "next/head"
-//SyntaxHighlighter.registerLanguage("javascript", js)
-const BlockContent = require("@sanity/block-content-to-react")
+
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter"
+import js from "../node_modules/react-syntax-highlighter/dist/esm/languages/hljs/javascript"
+import docco from "../node_modules/react-syntax-highlighter/dist/esm/styles/hljs/shades-of-purple"
+
+SyntaxHighlighter.registerLanguage("javascript", js)
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -100,7 +99,6 @@ const serializers = {
 
   block: props => {
     const style = props.node.style || "normal"
-    console.log(props.node)
 
     if (props.node._type === "image") {
       return (
@@ -114,7 +112,7 @@ const serializers = {
         </Box>
       )
     }
-
+    //console.log(props.node)
     switch (style) {
       case "h2":
         return (
@@ -142,6 +140,12 @@ const serializers = {
           >
             {props.children}
           </Typography>
+        )
+      case "code":
+        return (
+          <SyntaxHighlighter style={docco}>
+            {props.node.children[0].text.replace(/(\r\n|\n|\r)/gm, "\n")}
+          </SyntaxHighlighter>
         )
     }
 
