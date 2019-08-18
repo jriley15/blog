@@ -3,7 +3,6 @@ import Head from "next/head"
 import NavBar from "../components/Navbar"
 import { makeStyles } from "@material-ui/styles"
 import { Grid, Typography, Tabs, Tab, Box, Button } from "@material-ui/core"
-import VerticalTabs from "../components/resume/VerticalTabs"
 
 const useStyles = makeStyles(theme => ({
   root: {
