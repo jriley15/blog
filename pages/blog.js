@@ -29,7 +29,9 @@ const useStyles = makeStyles(theme => ({
   },
 
   postGridItem: {
-    paddingTop: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      paddingTop: theme.spacing(2),
+    },
     paddingBottom: theme.spacing(2),
 
     width: "700px",
@@ -159,90 +161,78 @@ const Blog = ({ posts }) => {
         >
           {posts
             .sort((a, b) => {
-              return new Date(b.sys.updatedAt) - new Date(a.sys.updatedAt)
+              return new Date(b.publishedAt) - new Date(a.publishedAt)
             })
-            .map((post, index) => {
-              return (
-                <Grid item className={classes.postGridItem} key={post.sys.id}>
-                  {/*<Fade>*/}
-                  <Transition key={index} in={true} appear={true} timeout={0}>
-                    {state => (
-                      <div
-                        style={{
-                          ...defaultStyle,
-                          ...transitionStyles[state],
-                          transitionDelay: (index - 1) * 125 + "ms",
+            .map((post, index) => (
+              <Grid item className={classes.postGridItem} key={post._id}>
+                <Transition key={index} in={true} appear={true} timeout={0}>
+                  {state => (
+                    <div
+                      style={{
+                        ...defaultStyle,
+                        ...transitionStyles[state],
+                        transitionDelay: (index - 1) * 125 + "ms",
+                      }}
+                    >
+                      <Link
+                        href={{
+                          pathname: `/post`,
+                          query: { id: post._id },
                         }}
+                        as={`/post/${post.slug.current}`}
                       >
-                        <Link
-                          href={{
-                            pathname: `/post`,
-                            query: { id: post.sys.id },
-                          }}
-                          as={`/post/${post.sys.id}`}
-                        >
-                          <Paper elevation={6} className={classes.postPaper}>
-                            <Grid
-                              container
-                              justify="flex-start"
-                              direction="column"
-                              spacing={2}
-                            >
-                              <Grid item>
-                                <Grid container alignItems="center">
-                                  <Grid item xs>
-                                    <Typography
-                                      variant="h4"
-                                      className={classes.titleFont}
-                                      gutterBottom
-                                    >
-                                      {post.fields.title}
-                                    </Typography>
-                                    <Typography
-                                      variant="body2"
-                                      gutterBottom
-                                      className={classes.textSecondary}
-                                    >
-                                      {new Date(
-                                        post.sys.createdAt
-                                      ).toDateString()}
-                                    </Typography>
-                                    <Typography>
-                                      {post.fields.description}
-                                      <MuiLink
-                                        className={classes.readMoreButton}
-                                      >
-                                        {" "}
-                                        Read More
-                                      </MuiLink>
-                                    </Typography>
-                                  </Grid>
-                                  <Grid item>
-                                    {post.fields.media && (
-                                      <div
-                                        className={classes.previewImageAvatar}
-                                      >
-                                        <img
-                                          src={
-                                            post.fields.media[0].fields.file.url
-                                          }
-                                          style={{ height: "100%" }}
-                                        />
-                                      </div>
-                                    )}
-                                  </Grid>
+                        <Paper elevation={6} className={classes.postPaper}>
+                          <Grid
+                            container
+                            justify="flex-start"
+                            direction="column"
+                            spacing={2}
+                          >
+                            <Grid item>
+                              <Grid container alignItems="center">
+                                <Grid item xs>
+                                  <Typography
+                                    variant="h4"
+                                    className={classes.titleFont}
+                                    gutterBottom
+                                  >
+                                    {post.title}
+                                  </Typography>
+                                  <Typography
+                                    variant="body2"
+                                    gutterBottom
+                                    className={classes.textSecondary}
+                                  >
+                                    {new Date(post._createdAt).toDateString()}
+                                  </Typography>
+                                  <Typography>
+                                    {post.description}
+                                    <MuiLink className={classes.readMoreButton}>
+                                      {" "}
+                                      Read More
+                                    </MuiLink>
+                                  </Typography>
+                                </Grid>
+                                <Grid item>
+                                  {post.mainImage.asset && (
+                                    <div className={classes.previewImageAvatar}>
+                                      <img
+                                        src={post.mainImageUrl}
+                                        style={{ height: "100%" }}
+                                      />
+                                    </div>
+                                  )}
                                 </Grid>
                               </Grid>
                             </Grid>
-                          </Paper>
-                        </Link>
-                      </div>
-                    )}
-                  </Transition>
-                  {/*</Fade>*/}
-                </Grid>
-              )
-            })}
+                          </Grid>
+                        </Paper>
+                      </Link>
+                    </div>
+                  )}
+                </Transition>
+              </Grid>
+            ))}
         </Grid>
       </div>
     </>

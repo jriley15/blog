@@ -15,7 +15,7 @@ import {
   Divider,
   Box,
 } from "@material-ui/core"
-import { getPost } from "../data/blog"
+import { getPost, urlFor } from "../data/blog"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 
@@ -24,6 +24,7 @@ import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter"
 import style from "../node_modules/react-syntax-highlighter/dist/esm/styles/prism/vs-dark"
 import Head from "next/head"
 //SyntaxHighlighter.registerLanguage("javascript", js)
+const BlockContent = require("@sanity/block-content-to-react")
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -88,70 +89,69 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const options = {
-  renderMark: {
-    //[MARKS.BOLD]: text => <Bold>{text}</Bold>,
-    [MARKS.CODE]: text => (
-      <SyntaxHighlighter style={style} language="javascript">
-        {text}
-      </SyntaxHighlighter>
+const serializers = {
+  types: {
+    code: props => (
+      <pre data-language={props.node.language}>
+        <code>{props.node.code}</code>
+      </pre>
     ),
   },
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => {
+
+  block: props => {
+    const style = props.node.style || "normal"
+    console.log(props.node)
+
+    if (props.node._type === "image") {
       return (
-        <Typography
-          style={
-            {
-              /* color: "rgba(0, 0, 0, 0.54)" */
-            }
-          }
-        >
-          {children}
-        </Typography>
-      )
-    },
-    [BLOCKS.HEADING_1]: (node, children) => (
-      <Typography variant="h5">{children}</Typography>
-    ),
-    [BLOCKS.HEADING_2]: (node, children) => (
-      <Typography
-        variant="h5"
-        component="h2"
-        style={{
-          marginBlockStart: "1em",
-          marginBlockEnd: "1em",
-          fontWeight: 400,
-        }}
-      >
-        {children}
-      </Typography>
-    ),
-    [BLOCKS.HEADING_3]: (node, children) => (
-      <Typography
-        variant="h6"
-        component="h3"
-        style={{
-          marginBlockStart: "1em",
-          marginBlockEnd: "1em",
-          fontWeight: 400,
-        }}
-      >
-        {children}
-      </Typography>
-    ),
-    [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
-      //console.log("asset: ", node)
-      return (
-        <Box display="flex" justifyContent="center" style={{ width: "100%" }}>
+        <Box display="flex" justifyContent="center">
           <img
-            src={node.data.target.fields.file.url}
-            style={{ maxWidth: "250px", margin: 8 }}
+            src={urlFor(props.node)
+              .width(400)
+              .url()}
+            style={{ maxWidth: "calc(100% - 16px)" }}
           />
         </Box>
       )
-    },
+    }
+
+    switch (style) {
+      case "h2":
+        return (
+          <Typography
+            variant="h5"
+            style={{
+              marginBlockStart: "1em",
+              marginBlockEnd: "1em",
+              fontWeight: 400,
+            }}
+          >
+            {props.children}
+          </Typography>
+        )
+      case "h3":
+        return (
+          <Typography
+            variant="h6"
+            component="h3"
+            style={{
+              marginBlockStart: "1em",
+              marginBlockEnd: "1em",
+              fontWeight: 400,
+            }}
+          >
+            {props.children}
+          </Typography>
+        )
+    }
+
+    return <Typography gutterBottom>{props.children}</Typography>
   },
+  listItem: props => (
+    <li>
+      <Typography variant="body1">{props.children}</Typography>
+    </li>
+  ),
 }
 
 const Post = ({ post }) => {
@@ -160,8 +160,8 @@ const Post = ({ post }) => {
   return (
     <>
       <Head>
-        <title>{post.fields.title}</title>
-        <meta name="description" content={post.fields.description} />
+        <title>{post.title}</title>
+        <meta name="description" content={post.description} />
       </Head>
       <NavBar />
       <div className={classes.root}>
@@ -180,19 +180,20 @@ const Post = ({ post }) => {
                   className={classes.titleFont}
                   gutterBottom
                 >
-                  {post.fields.title}
+                  {post.title}
                 </Typography>
                 <Typography variant="body1" className={classes.textSecondary}>
-                  {new Date(post.sys.createdAt).toDateString()}
+                  {new Date(post._createdAt).toDateString()}
                 </Typography>
               </Grid>
               <Typography className={classes.textSecondary}>
-                {post.fields.description}
+                {post.description}
               </Typography>
               <Divider className={classes.divider} />
 
               <div className={classes.body}>
-                {documentToReactComponents(post.fields.body, options)}
+                {/*documentToReactComponents(post.body, options)*/}
+                <BlockContent blocks={post.body} serializers={serializers} />
               </div>
             </Paper>
           </Grid>

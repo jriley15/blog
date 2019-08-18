@@ -21,9 +21,9 @@ module.exports = {
     let posts = await getPosts()
 
     posts.map(post => {
-      pathMap[`/post/${post.sys.id}`] = {
+      pathMap[`/post/${post.slug.current}`] = {
         page: "/post",
-        query: { id: post.sys.id },
+        query: { id: post._id },
       }
     })
 
