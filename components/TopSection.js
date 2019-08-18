@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
       "-webkit-linear-gradient(rgba(120, 80, 228, 0.8), rgba(13, 186, 134, 0.8)), url('https://images.jrdn.tech/bg2.jpg') no-repeat center",
     backgroundSize: "cover",
     position: "relative",
-    backgroundAttachment: "fixed",
+    //backgroundAttachment: "fixed",
     WebkitBackgroundSize: "cover",
   },
 
