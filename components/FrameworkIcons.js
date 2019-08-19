@@ -108,6 +108,7 @@ const FrameworkIcons = () => {
           <img
             src="/static/images/spring-boot-logo.png"
             className={classes.img}
+            alt="spring"
           />
         </Grid>
       </Grid>

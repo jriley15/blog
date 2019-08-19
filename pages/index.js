@@ -85,6 +85,7 @@ const IndexPage = ({ query, projects }) => {
       <img
         src={"https://images.jrdn.tech/bg2.jpg"}
         style={{ display: "none" }}
+        alt="preview"
       />
       <NavBar scrollNext={scrollNext} type="index" />
       <div className={classes.root}>

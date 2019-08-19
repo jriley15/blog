@@ -114,6 +114,7 @@ const Footer = ({ routeChanged }) => {
             <img
               src="https://image.flaticon.com/icons/svg/25/25231.svg"
               className={classes.icon}
+              alt="github"
             />
           </Fab>
         </Slide>
@@ -130,6 +131,7 @@ const Footer = ({ routeChanged }) => {
             <img
               src="https://image.flaticon.com/icons/svg/174/174857.svg"
               className={classes.icon}
+              alt="linkedin"
             />
           </Fab>
         </Slide>
@@ -144,7 +146,7 @@ const Footer = ({ routeChanged }) => {
                 }}
                 className={classes.fab}
               >
-                <EmailIcon style={{ color: "#303030" }} />
+                <EmailIcon style={{ color: "#303030" }} alt="email" />
               </Fab>
             </Tooltip>
           </div>

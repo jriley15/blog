@@ -121,6 +121,7 @@ const Page = ({ project }) => {
                   <img
                     src="/static/images/github.svg"
                     className={classes.icon}
+                    alt="github"
                   />
                 </Button>
               </Grid>

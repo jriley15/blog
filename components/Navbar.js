@@ -118,7 +118,11 @@ export default function NavBar({ scrollNext, type }) {
         {/* Desktop nav bar */}
         <Toolbar className={classes.desktopToolBar}>
           <Link href="/">
-            <img src="/static/images/Jrdn.png" className={classes.logo} />
+            <img
+              src="/static/images/Jrdn.png"
+              className={classes.logo}
+              alt="logo"
+            />
           </Link>
           <div className={classes.grow} />
 
@@ -178,7 +182,11 @@ export default function NavBar({ scrollNext, type }) {
           <div className={classes.grow} />
 
           <Link href="/">
-            <img src="/static/images/Jrdn.png" className={classes.logo} />
+            <img
+              src="/static/images/Jrdn.png"
+              className={classes.logo}
+              alt="logo"
+            />
           </Link>
         </Toolbar>
       </AppBar>

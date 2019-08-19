@@ -123,7 +123,7 @@ const ProjectSection = ({ children, projects }) => {
       >
         <g transform="">
           <linearGradient
-            id="lg-0.6590519274487807"
+            id="lg-0.6590519274487806"
             x1="0"
             x2="0"
             y1="0"
@@ -137,7 +137,7 @@ const ProjectSection = ({ children, projects }) => {
           </linearGradient>
           <path
             d="M 0 0 L 0 36.2045 Q 192 158.048 384 116.843 T 768 62.023 T 1152 125.819 T 1536 127.126 T 1920 78.8686 L 1920 0 Z"
-            fill="url(#lg-0.6590519274487807)"
+            fill="url(#lg-0.6590519274487806)"
           >
             <animate
               attributeName="d"
@@ -152,7 +152,7 @@ const ProjectSection = ({ children, projects }) => {
           </path>
           <path
             d="M 0 0 L 0 53.7289 Q 192 145.332 384 122.041 T 768 155.519 T 1152 172.429 T 1536 80.4428 T 1920 89.6896 L 1920 0 Z"
-            fill="url(#lg-0.6590519274487807)"
+            fill="url(#lg-0.6590519274487806)"
           >
             <animate
               attributeName="d"
@@ -167,7 +167,7 @@ const ProjectSection = ({ children, projects }) => {
           </path>
           <path
             d="M 0 0 L 0 172.407 Q 192 169.925 384 135.344 T 768 115.569 T 1152 178.953 T 1536 81.8777 T 1920 80.4988 L 1920 0 Z"
-            fill="url(#lg-0.6590519274487807)"
+            fill="url(#lg-0.6590519274487806)"
           >
             <animate
               attributeName="d"
@@ -182,7 +182,7 @@ const ProjectSection = ({ children, projects }) => {
           </path>
           <path
             d="M 0 0 L 0 82.9192 Q 192 119.971 384 86.7467 T 768 68.2538 T 1152 169.708 T 1536 110.348 T 1920 154.984 L 1920 0 Z"
-            fill="url(#lg-0.6590519274487807)"
+            fill="url(#lg-0.6590519274487806)"
           >
             <animate
               attributeName="d"
@@ -197,7 +197,7 @@ const ProjectSection = ({ children, projects }) => {
           </path>
           <path
             d="M 0 0 L 0 157.586 Q 192 195.632 384 156.88 T 768 57.8927 T 1152 58.8645 T 1536 119.462 T 1920 126.791 L 1920 0 Z"
-            fill="url(#lg-0.6590519274487807)"
+            fill="url(#lg-0.6590519274487806)"
           >
             <animate
               attributeName="d"
@@ -260,6 +260,7 @@ const ProjectSection = ({ children, projects }) => {
                           <img
                             src={project.images[0]}
                             style={{ height: "100%" }}
+                            alt="preview"
                           />
                         </div>
                       </Grid>
@@ -303,6 +304,7 @@ const ProjectSection = ({ children, projects }) => {
                           <img
                             src={project.images[0]}
                             style={{ height: "100%" }}
+                            alt="preview"
                           />
                         </div>
                       </Grid>

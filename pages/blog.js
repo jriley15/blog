@@ -219,6 +219,7 @@ const Blog = ({ posts }) => {
                                       <img
                                         src={post.mainImageUrl}
                                         style={{ height: "100%" }}
+                                        alt="preview"
                                       />
                                     </div>
                                   )}
