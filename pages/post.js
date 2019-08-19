@@ -15,7 +15,7 @@ import {
   Divider,
   Box,
 } from "@material-ui/core"
-import { getPost, urlFor } from "../data/blog"
+import { getPost } from "../data/blog"
 import BlockContent from "@sanity/block-content-to-react"
 import Head from "next/head"
 import serializers from "../components/common/serializers"
@@ -86,49 +86,53 @@ const useStyles = makeStyles(theme => ({
 const Post = ({ post }) => {
   const classes = useStyles()
 
-  return (
-    <>
-      <Head>
-        <title>{post.title}</title>
-        <meta name="description" content={post.description} />
-      </Head>
-      <NavBar />
-      <div className={classes.root}>
-        <Grid
-          container
-          justify="center"
-          className={classes.postsGridContainer}
-          direction="column"
-          alignItems="center"
-        >
-          <Grid item className={classes.postGridItem}>
-            <Paper elevation={6} className={classes.postPaper}>
-              <Grid container justify="space-between">
-                <Typography
-                  variant="h3"
-                  className={classes.titleFont}
-                  gutterBottom
-                >
-                  {post.title}
+  //corrupt data fix
+  if (post) {
+    return (
+      <>
+        <Head>
+          <title>{post.title}</title>
+          <meta name="description" content={post.description} />
+        </Head>
+        <NavBar />
+        <div className={classes.root}>
+          <Grid
+            container
+            justify="center"
+            className={classes.postsGridContainer}
+            direction="column"
+            alignItems="center"
+          >
+            <Grid item className={classes.postGridItem}>
+              <Paper elevation={6} className={classes.postPaper}>
+                <Grid container justify="space-between">
+                  <Typography
+                    variant="h3"
+                    className={classes.titleFont}
+                    gutterBottom
+                  >
+                    {post.title}
+                  </Typography>
+                  <Typography variant="body1" className={classes.textSecondary}>
+                    {new Date(post._createdAt).toDateString()}
+                  </Typography>
+                </Grid>
+                <Typography className={classes.textSecondary}>
+                  {post.description}
                 </Typography>
-                <Typography variant="body1" className={classes.textSecondary}>
-                  {new Date(post._createdAt).toDateString()}
-                </Typography>
-              </Grid>
-              <Typography className={classes.textSecondary}>
-                {post.description}
-              </Typography>
-              <Divider className={classes.divider} />
+                <Divider className={classes.divider} />
 
-              <div className={classes.body}>
-                <BlockContent blocks={post.body} serializers={serializers} />
-              </div>
-            </Paper>
+                <div className={classes.body}>
+                  <BlockContent blocks={post.body} serializers={serializers} />
+                </div>
+              </Paper>
+            </Grid>
           </Grid>
-        </Grid>
-      </div>
-    </>
-  )
+        </div>
+      </>
+    )
+  }
+  return null
 }
 
 Post.getInitialProps = async ({ query: { id } }) => {
