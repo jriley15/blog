@@ -1,23 +1,8 @@
 import React from "react"
 import Link from "next/link"
 import { makeStyles, fade } from "@material-ui/core/styles"
-import {
-  Typography,
-  Grid,
-  Button,
-  Zoom,
-  Paper,
-  Avatar,
-  Slide,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardActions,
-  CardContent,
-  Divider,
-} from "@material-ui/core"
+import { Typography, Grid, Button } from "@material-ui/core"
 import Fade from "react-reveal/Fade"
-import { projects } from "../data/projects"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -126,9 +111,10 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ProjectSection = ({ children }) => {
+const ProjectSection = ({ children, projects }) => {
   const classes = useStyles()
 
+  console.log("projects: ", projects)
   return (
     <Grid item className={classes.root}>
       <svg
@@ -254,18 +240,14 @@ const ProjectSection = ({ children }) => {
 
         <Grid container direction="column" alignItems="center">
           {projects.map((project, index) => (
-            <Grid
-              item
-              key={project.projectId}
-              className={classes.projectGridItem}
-            >
+            <Grid item key={project._id} className={classes.projectGridItem}>
               <Fade>
                 <Link
                   href={{
                     pathname: `/project`,
-                    query: { id: project.projectId },
+                    query: { id: project._id },
                   }}
-                  as={`/project/${project.projectId}`}
+                  as={`/project/${project.slug.current}`}
                 >
                   <Grid
                     container
@@ -277,7 +259,7 @@ const ProjectSection = ({ children }) => {
                       <Grid item>
                         <div className={classes.previewImageAvatar}>
                           <img
-                            src={project.images[0].link}
+                            src={project.images[0]}
                             style={{ height: "100%" }}
                           />
                         </div>
@@ -320,7 +302,7 @@ const ProjectSection = ({ children }) => {
                       <Grid item>
                         <div className={classes.previewImageAvatar}>
                           <img
-                            src={project.images[0].link}
+                            src={project.images[0]}
                             style={{ height: "100%" }}
                           />
                         </div>
@@ -331,62 +313,6 @@ const ProjectSection = ({ children }) => {
               </Fade>
             </Grid>
           ))}
-
-          {/*
-          <Grid container justify="center">
-            <Grid item className={classes.projects}>
-              <Grid container justify="center" spacing={2}>
-                {projects.map((project, index) => (
-                  <Grid
-                    item
-                    className={classes.cardContainer}
-                    key={project.projectId}
-                  >
-                    <Fade>
-                      <Link
-                        href={{
-                          pathname: `/project`,
-                          query: { id: project.projectId },
-                        }}
-                        as={`/project/${project.projectId}`}
-                      >
-                        <Card className={classes.card} raised>
-                          <CardActionArea>
-                            <CardMedia
-                              component="img"
-                              alt="Contemplative Reptile"
-                              height="200"
-                              image={project.images[0].link}
-                              title="Contemplative Reptile"
-                              className={classes.cardImage}
-                            />
-                            <CardContent>
-                              <Typography
-                                gutterBottom
-                                variant="h5"
-                                component="h2"
-                              >
-                                {project.title.length > 30
-                                  ? project.title.substring(0, 25) + ".."
-                                  : project.title}
-                              </Typography>
-                              <Typography variant="body2" component="p">
-                                {project.description}
-                              </Typography>
-                            </CardContent>
-                          </CardActionArea>
-                          <CardActions>
-                            <Button size="small">View More</Button>
-                          </CardActions>
-                        </Card>
-                      </Link>
-                    </Fade>
-                  </Grid>
-                ))}
-              </Grid>
-            </Grid>
-          </Grid>
-          */}
         </Grid>
       </Grid>
     </Grid>

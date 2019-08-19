@@ -182,14 +182,6 @@ class Carousel extends Component {
     this.updateTranslation()
 
     window.addEventListener("resize", this.updateTranslation)
-
-    const { images } = this.state
-
-    for (let i = 0; i < images.length; i++) {
-      images[i].id = i
-    }
-
-    this.setState({ images: images })
   }
 
   openGallery = id => {
@@ -251,13 +243,13 @@ class Carousel extends Component {
                     alignItems="center"
                     spacing={1}
                   >
-                    {images.map(image => (
-                      <Grid item key={image.imageId}>
+                    {images.map((image, index) => (
+                      <Grid item key={index}>
                         <img
-                          src={image.link}
+                          src={image}
                           className={classes.image}
                           style={{ width: this.state.imageWidth }}
-                          onClick={() => this.openGallery(image.id)}
+                          onClick={() => this.openGallery(index)}
                         />
                       </Grid>
                     ))}

@@ -2,20 +2,12 @@ import React, { useRef, useEffect } from "react"
 import Link from "next/link"
 import NavBar from "../components/Navbar"
 import { makeStyles } from "@material-ui/core/styles"
-import {
-  Typography,
-  Grid,
-  Button,
-  Fade,
-  Zoom,
-  Paper,
-  Avatar,
-  Slide,
-} from "@material-ui/core"
+import { Typography, Grid } from "@material-ui/core"
 import TopSection from "../components/TopSection"
 import SkillSection from "../components/SkillSection"
 import ProjectSection from "../components/ProjectSection"
 import Head from "next/head"
+import { getProjects } from "../data/projects"
 
 /*
 const IndexPage = () => (
@@ -50,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const IndexPage = ({ query }) => {
+const IndexPage = ({ query, projects }) => {
   const classes = useStyles()
 
   let topRef = useRef(null)
@@ -108,7 +100,7 @@ const IndexPage = ({ query }) => {
             </div>
           </SkillSection>
 
-          <ProjectSection scrollNext={scrollNext}>
+          <ProjectSection scrollNext={scrollNext} projects={projects}>
             <div className={classes.scrollContainer}>
               <div ref={projectsRef} className={classes.scrollElement} />
             </div>
@@ -119,8 +111,8 @@ const IndexPage = ({ query }) => {
   )
 }
 
-IndexPage.getInitialProps = ({ query }) => {
-  return { query }
+IndexPage.getInitialProps = async ({ query }) => {
+  return { query, projects: await getProjects() }
 }
 
 export default IndexPage

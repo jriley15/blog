@@ -1,4 +1,4 @@
-const projects = require("./data/projects").projects
+const { getProjects } = require("./data/projects")
 const { getPosts } = require("./data/blog")
 
 module.exports = {
@@ -11,10 +11,12 @@ module.exports = {
       "/about": { page: "/post", query: { id: "62xKTKOTQj2lQP1rekH2Yp" } },
     }
 
+    let projects = await getProjects()
+
     projects.map(project => {
-      pathMap[`/project/${project.projectId}`] = {
+      pathMap[`/project/${project.slug.current}`] = {
         page: "/project",
-        query: { id: project.projectId },
+        query: { id: project._id },
       }
     })
 

@@ -1,12 +1,14 @@
 import React from "react"
 import NavBar from "../components/Navbar"
 import { classes, makeStyles } from "@material-ui/styles"
-import { Grid, Typography, Button } from "@material-ui/core"
+import { Grid, Typography, Button, Box } from "@material-ui/core"
 import JMarkdown from "../components/JMarkdown"
 import Carousel from "../components/gallery/Carousel"
 import WebIcon from "@material-ui/icons/Web"
-import { projects } from "../data/projects"
+import { getProject } from "../data/projects"
 import Head from "next/head"
+import serializers from "../components/common/serializers"
+import BlockContent from "@sanity/block-content-to-react"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -125,18 +127,19 @@ const Page = ({ project }) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid container justify="center">
-          <Grid item>
-            <JMarkdown content={project.markDown} />
-          </Grid>
-        </Grid>
+        <Box display="flex" justifyContent="center" p={2}>
+          <div style={{ maxWidth: 700 }}>
+            <BlockContent blocks={project.body} serializers={serializers} />
+          </div>
+        </Box>
       </div>
     </>
   )
 }
 
-Page.getInitialProps = ({ query: { id } }) => {
-  return { project: projects.find(p => p.projectId == id) }
+Page.getInitialProps = async ({ query: { id } }) => {
+  console.log("id: ", id)
+  return { project: await getProject(id) }
 }
 
 export default Page
