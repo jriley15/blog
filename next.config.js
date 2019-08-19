@@ -8,7 +8,10 @@ module.exports = {
       "/projects": { page: "/index", query: { section: 2 } },
       "/blog": { page: "/blog" },
       "/resume": { page: "/resume" },
-      "/about": { page: "/post", query: { id: "62xKTKOTQj2lQP1rekH2Yp" } },
+      "/about": {
+        page: "/post",
+        query: { id: "600070f0-79bb-4c98-80f5-c982f46f36bc" },
+      },
     }
 
     let projects = await getProjects()

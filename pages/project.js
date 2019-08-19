@@ -103,8 +103,8 @@ const Page = ({ project }) => {
                 <Button
                   variant="contained"
                   color="primary"
-                  disabled={!project.demoLink}
-                  onClick={() => window.open(project.demoLink)}
+                  disabled={!project.demo}
+                  onClick={() => window.open(project.demo)}
                 >
                   Live Demo
                   <WebIcon className={classes.icon} />
@@ -113,11 +113,11 @@ const Page = ({ project }) => {
               <Grid item>
                 <Button
                   variant="contained"
-                  disabled={!project.sourceLink}
+                  disabled={!project.repository}
                   className={classes.button}
-                  onClick={() => window.open(project.sourceLink)}
+                  onClick={() => window.open(project.repository)}
                 >
-                  Repository {!project.sourceLink && "(private)"}
+                  Repository {!project.repository && "(private)"}
                   <img
                     src="/static/images/github.svg"
                     className={classes.icon}
