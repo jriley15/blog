@@ -138,7 +138,6 @@ const Page = ({ project }) => {
 }
 
 Page.getInitialProps = async ({ query: { id } }) => {
-  console.log("id: ", id)
   return { project: await getProject(id) }
 }
 

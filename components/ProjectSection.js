@@ -114,7 +114,6 @@ const useStyles = makeStyles(theme => ({
 const ProjectSection = ({ children, projects }) => {
   const classes = useStyles()
 
-  console.log("projects: ", projects)
   return (
     <Grid item className={classes.root}>
       <svg
