@@ -28,7 +28,16 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
-          <Forms />
+          <form
+            name="contactportfolio"
+            netlify
+            netlify-honeypot="bot-field"
+            hidden
+          >
+            <input type="text" name="name" />
+            <input type="email" name="email" />
+            <textarea name="message" />
+          </form>
           <Main />
           <NextScript />
         </body>
