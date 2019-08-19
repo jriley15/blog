@@ -1,20 +1,7 @@
 import React, { useRef, useEffect } from "react"
-import Link from "next/link"
 import NavBar from "../components/Navbar"
 import { makeStyles } from "@material-ui/core/styles"
-import {
-  Typography,
-  Grid,
-  Button,
-  Fade,
-  Zoom,
-  Paper,
-  Avatar,
-  Slide,
-  CardActionArea,
-  Divider,
-  Box,
-} from "@material-ui/core"
+import { Typography, Grid, Paper, Divider } from "@material-ui/core"
 import { getPost } from "../data/blog"
 import BlockContent from "@sanity/block-content-to-react"
 import Head from "next/head"

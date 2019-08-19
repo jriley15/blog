@@ -117,7 +117,7 @@ const TopSection = ({ scrollNext, children }) => {
                 <Grid item>
                   <Avatar
                     alt="Me"
-                    src="https://www.jordanriley.me/static/media/me.c702f970.jpg"
+                    src="https://images.jrdn.tech/me.jpg"
                     className={classes.bigAvatar}
                   />
                 </Grid>

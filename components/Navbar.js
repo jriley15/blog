@@ -2,17 +2,12 @@ import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
-import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import IconButton from "@material-ui/core/IconButton"
 import MenuIcon from "@material-ui/icons/Menu"
 import Link from "next/link"
 import useScrollPosition from "../hooks/useScrollPosition"
 import {
-  Grid,
-  Fab,
-  Box,
-  Tooltip,
   Drawer,
   List,
   ListItemIcon,
@@ -20,13 +15,11 @@ import {
   ListItem,
 } from "@material-ui/core"
 import Contact from "./Contact"
-import EmailIcon from "@material-ui/icons/Email"
 import ContactMail from "@material-ui/icons/ContactMail"
 import Home from "@material-ui/icons/Home"
 import { default as ListIcon } from "@material-ui/icons/List"
 import FormatAlignCenter from "@material-ui/icons/FormatAlignCenter"
 import Build from "@material-ui/icons/Build"
-import Slide from "@material-ui/core/Slide"
 
 const useStyles = makeStyles(theme => ({
   root: {

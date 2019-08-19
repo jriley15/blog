@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react"
-import Link from "next/link"
 import { makeStyles } from "@material-ui/core/styles"
-import {
-  Grid,
-  Button,
-  Typography,
-  Box,
-  Slide,
-  Fab,
-  Tooltip,
-} from "@material-ui/core"
+import { Grid, Typography, Box, Slide, Fab, Tooltip } from "@material-ui/core"
 import EmailIcon from "@material-ui/icons/Email"
 import useScrollPosition from "../hooks/useScrollPosition"
 import { useTheme } from "@material-ui/styles"
