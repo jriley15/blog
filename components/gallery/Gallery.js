@@ -146,6 +146,7 @@ class Gallery extends Component {
               src={images[selected + index]}
               style={{ maxWidth: "100%" }}
               onClick={this.handleClose}
+              alt="project image"
             />
 
             <Fab

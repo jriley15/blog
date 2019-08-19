@@ -250,6 +250,7 @@ class Carousel extends Component {
                           className={classes.image}
                           style={{ width: this.state.imageWidth }}
                           onClick={() => this.openGallery(index)}
+                          alt="project image"
                         />
                       </Grid>
                     ))}
