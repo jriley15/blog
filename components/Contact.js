@@ -107,8 +107,8 @@ export default function Contact({ open, handleClose }) {
         maxWidth="sm"
         scroll="body"
       >
-        <form name="contactnew" method="post" data-netlify="true">
-          <input type="hidden" name="form-name" value="contactnew" />
+        <form name="contact" method="post" data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
           <DialogTitle id="form-dialog-title">Contact Me</DialogTitle>
 
           <DialogContent dividers>
