@@ -107,7 +107,12 @@ export default function Contact({ open, handleClose }) {
         maxWidth="sm"
         scroll="body"
       >
-        <form name="contactForm" method="post" data-netlify="true">
+        <form
+          name="contactForm"
+          method="post"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+        >
           <input type="hidden" name="form-name" value="contactForm" />
           <DialogTitle id="form-dialog-title">Contact Me</DialogTitle>
 
