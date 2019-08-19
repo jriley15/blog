@@ -121,7 +121,6 @@ const Post = ({ post }) => {
               <Divider className={classes.divider} />
 
               <div className={classes.body}>
-                {/*documentToReactComponents(post.body, options)*/}
                 <BlockContent blocks={post.body} serializers={serializers} />
               </div>
             </Paper>
