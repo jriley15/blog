@@ -28,12 +28,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
-          <form
-            name="contactportfolio"
-            netlify
-            netlify-honeypot="bot-field"
-            hidden
-          >
+          <form name="idk" netlify netlify-honeypot="bot-field" hidden>
             <input type="text" name="name" />
             <input type="email" name="email" />
             <textarea name="message" />
