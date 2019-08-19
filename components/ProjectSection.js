@@ -238,82 +238,88 @@ const ProjectSection = ({ children, projects }) => {
         </Grid>
 
         <Grid container direction="column" alignItems="center">
-          {projects.map((project, index) => (
-            <Grid item key={project._id} className={classes.projectGridItem}>
-              <Fade>
-                <Link
-                  href={{
-                    pathname: `/project`,
-                    query: { id: project._id },
-                  }}
-                  as={`/project/${project.slug.current}`}
-                >
-                  <Grid
-                    container
-                    className={classes.projectDiv}
-                    justify="space-between"
-                    alignItems="center"
+          {projects
+            .sort((a, b) => {
+              return new Date(b.publishedAt) - new Date(a.publishedAt)
+            })
+            .map((project, index) => (
+              <Grid item key={project._id} className={classes.projectGridItem}>
+                <Fade>
+                  <Link
+                    href={{
+                      pathname: `/project`,
+                      query: { id: project._id },
+                    }}
+                    as={`/project/${project.slug.current}`}
                   >
-                    {index % 2 !== 0 && (
-                      <Grid item>
-                        <div className={classes.previewImageAvatar}>
-                          <img
-                            src={project.images[0]}
-                            style={{ height: "100%" }}
-                            alt="preview"
-                          />
-                        </div>
+                    <Grid
+                      container
+                      className={classes.projectDiv}
+                      justify="space-between"
+                      alignItems="center"
+                    >
+                      {index % 2 !== 0 && (
+                        <Grid item>
+                          <div className={classes.previewImageAvatar}>
+                            <img
+                              src={project.images[0]}
+                              style={{ height: "100%" }}
+                              alt="preview"
+                            />
+                          </div>
+                        </Grid>
+                      )}
+                      <Grid item xs>
+                        <Grid
+                          container
+                          direction="column"
+                          alignItems={
+                            index % 2 !== 0 ? "flex-end" : "flex-start"
+                          }
+                        >
+                          <Grid item>
+                            <Typography
+                              gutterBottom
+                              variant="h4"
+                              component="h2"
+                              className={classes.titleFont}
+                            >
+                              {project.title}
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Typography
+                              variant="body1"
+                              component="p"
+                              color="textSecondary"
+                              align={index % 2 !== 0 ? "right" : "left"}
+                            >
+                              {project.description}
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Button variant="outlined" style={{ marginTop: 8 }}>
+                              View More
+                            </Button>
+                          </Grid>
+                        </Grid>
                       </Grid>
-                    )}
-                    <Grid item xs>
-                      <Grid
-                        container
-                        direction="column"
-                        alignItems={index % 2 !== 0 ? "flex-end" : "flex-start"}
-                      >
+                      {index % 2 === 0 && (
                         <Grid item>
-                          <Typography
-                            gutterBottom
-                            variant="h4"
-                            component="h2"
-                            className={classes.titleFont}
-                          >
-                            {project.title}
-                          </Typography>
+                          <div className={classes.previewImageAvatar}>
+                            <img
+                              src={project.images[0]}
+                              style={{ height: "100%" }}
+                              alt="preview"
+                            />
+                          </div>
                         </Grid>
-                        <Grid item>
-                          <Typography
-                            variant="body1"
-                            component="p"
-                            color="textSecondary"
-                            align={index % 2 !== 0 ? "right" : "left"}
-                          >
-                            {project.description}
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Button variant="outlined" style={{ marginTop: 8 }}>
-                            View More
-                          </Button>
-                        </Grid>
-                      </Grid>
+                      )}
                     </Grid>
-                    {index % 2 === 0 && (
-                      <Grid item>
-                        <div className={classes.previewImageAvatar}>
-                          <img
-                            src={project.images[0]}
-                            style={{ height: "100%" }}
-                            alt="preview"
-                          />
-                        </div>
-                      </Grid>
-                    )}
-                  </Grid>
-                </Link>
-              </Fade>
-            </Grid>
-          ))}
+                  </Link>
+                </Fade>
+              </Grid>
+            ))}
         </Grid>
       </Grid>
     </Grid>

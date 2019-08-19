@@ -214,10 +214,10 @@ const Blog = ({ posts }) => {
                                   </Typography>
                                 </Grid>
                                 <Grid item>
-                                  {post.mainImage.asset && (
+                                  {post.previewImage && (
                                     <div className={classes.previewImageAvatar}>
                                       <img
-                                        src={post.mainImageUrl}
+                                        src={post.previewImage}
                                         style={{ height: "100%" }}
                                         alt="preview"
                                       />

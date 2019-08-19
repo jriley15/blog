@@ -10,9 +10,7 @@ const builder = imageUrlBuilder(sanityClient)
 
 module.exports = {
   getPosts: async function() {
-    let posts = await sanityClient.fetch(
-      "*[_type == 'post']{..., 'mainImageUrl': mainImage.asset->url}"
-    )
+    let posts = await sanityClient.fetch("*[_type == 'post']")
     //console.log(posts)
     return posts
   },
