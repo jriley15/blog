@@ -108,12 +108,12 @@ export default function Contact({ open, handleClose }) {
         scroll="body"
       >
         <form
-          name="idk"
+          name="contact"
           method="post"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
         >
-          <input type="hidden" name="form-name" value="idk" />
+          <input type="hidden" name="form-name" value="contact" />
           <DialogTitle id="form-dialog-title">Contact Me</DialogTitle>
 
           <DialogContent dividers>
