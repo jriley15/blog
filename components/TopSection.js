@@ -154,7 +154,7 @@ const TopSection = ({ scrollNext, children }) => {
                       variant="outlined"
                       href={{
                         pathname: `/post`,
-                        query: { id: "62xKTKOTQj2lQP1rekH2Yp" },
+                        query: { id: "600070f0-79bb-4c98-80f5-c982f46f36bc" },
                       }}
                       as={`/about`}
                     >
