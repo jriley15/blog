@@ -28,6 +28,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
+          <Forms />
           <Main />
           <NextScript />
         </body>

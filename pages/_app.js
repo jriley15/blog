@@ -35,7 +35,7 @@ class MyApp extends App {
   handleRouteChange = url => {
     ReactGA.pageview(url)
     this.setState({ routeChanged: true })
-    //console.log("page view: ", url)
+    console.log("page view: ", url)
   }
 
   render() {
