@@ -80,12 +80,17 @@ const IndexPage = ({ query, projects }) => {
       <Head>
         <title>Home | Jordan Portfolio</title>
         <meta name="description" content="My Portfolio" />
+
+        <script
+          src="https://cdn.jsdelivr.net/gh/tengbao/vanta/vendor/three.r92.min.js"
+          defer
+        />
+        <script
+          src="https://cdn.jsdelivr.net/gh/tengbao/vanta/dist/vanta.net.min.js"
+          defer
+        />
       </Head>
-      <img
-        src={"https://images.jrdn.tech/bg2.jpg"}
-        style={{ display: "none" }}
-        alt="preview"
-      />
+
       <NavBar scrollNext={scrollNext} type="index" />
       <div className={classes.root}>
         <Grid container justify="center" alignItems="center">

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { makeStyles } from "@material-ui/core/styles"
 import {
@@ -18,13 +18,12 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     height: "100%",
-    overflowX: "hidden",
   },
 
   topSection: {
     width: "100%",
     height: "100vh", //"55vh",
-
+    overflowX: "hidden",
     //backgroundColor: theme.palette.primary.main,
     //https://digileaders.com/wp-content/uploads/2018/09/coding-on-laptop_4460x4460-e1537450504196.jpg
     //https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JrbItQz/white-polygonal-geometric-surface-seamless-loop-4k-uhd-3840x2160_nyllfzz7e__F0000.png
@@ -42,6 +41,7 @@ const useStyles = makeStyles(theme => ({
     position: "absolute",
     bottom: 0,
     width: "100%",
+    height: "7vh",
     //backgroundColor: theme.palette.background.default,
   },
 
@@ -103,19 +103,37 @@ const TopSection = ({ scrollNext, children }) => {
 
   const vantaBackground = useRef(null)
 
-  useEffect(() => {
-    let effect = window.VANTA.NET({
-      el: vantaBackground.current,
-      color: "rgb(120, 80, 228)",
-      backgroundColor: "#2b313c",
+  const [reRender, setReRender] = useState(0)
 
-      /*color: 0x606165,
-      shininess: 18.0,
-      waveHeight: 5.5,
-      zoom: 0.95,*/
-    })
+  const checkScripts = () => {
+    if (window.VANTA) {
+      return window.VANTA.NET({
+        el: vantaBackground.current,
+        color: "rgb(120, 80, 228)",
+        backgroundColor: "#2b313c",
+      })
+    }
+    return null
+  }
+
+  //hacky way to wait until 3jsscript  loads to start drawing the animated background
+  useEffect(() => {
+    let effect = checkScripts()
+    let interval = null
+
+    if (!effect) {
+      interval = setInterval(() => {
+        effect = checkScripts()
+        if (effect) {
+          clearInterval(interval)
+        }
+        console.log("checking scripts")
+      }, 10)
+    }
+
     return () => {
       if (effect) effect.destroy()
+      clearInterval(interval)
     }
   }, [])
 
@@ -129,60 +147,58 @@ const TopSection = ({ scrollNext, children }) => {
         className={classes.container}
       >
         <Grid item>
-          <Fade in={true} timeout={500}>
-            <div className={classes.greeting}>
-              <Grid container justify="center" alignItems="center">
-                <Grid item>
-                  <Avatar
-                    alt="Me"
-                    src="https://images.jrdn.tech/me.jpg"
-                    className={classes.bigAvatar}
-                  />
-                </Grid>
-                <Grid>
-                  <Typography variant="h2" align="center">
-                    Hello, I'm Jordan Riley
-                  </Typography>
-                </Grid>
+          <div className={classes.greeting}>
+            <Grid container justify="center" alignItems="center">
+              <Grid item>
+                <Avatar
+                  alt="Me"
+                  src="https://images.jrdn.tech/me.jpg"
+                  className={classes.bigAvatar}
+                />
               </Grid>
-              <Typography variant="body1" align="center" color="textSecondary">
-                A software developer / student based in Phoenix, Arizona.
-              </Typography>
-              <Grid
-                container
-                justify="center"
-                className={classes.buttonGroup}
-                direction="column"
-                alignItems="center"
-              >
-                <Grid item>
-                  <ButtonGroup size="large">
-                    {/*<Button
+              <Grid>
+                <Typography variant="h2" align="center">
+                  Hello, I'm Jordan Riley
+                </Typography>
+              </Grid>
+            </Grid>
+            <Typography variant="body1" align="center" color="textSecondary">
+              A software developer / student based in Phoenix, Arizona.
+            </Typography>
+            <Grid
+              container
+              justify="center"
+              className={classes.buttonGroup}
+              direction="column"
+              alignItems="center"
+            >
+              <Grid item>
+                <ButtonGroup size="large">
+                  {/*<Button
                     variant="outlined"
                     onClick={() => window.open("https://github.com/jriley15")}
                   >
                     Github
                   </Button>*/}
 
-                    <Button variant="outlined" onClick={() => scrollNext(2)}>
-                      Projects
-                    </Button>
+                  <Button variant="outlined" onClick={() => scrollNext(2)}>
+                    Projects
+                  </Button>
 
-                    <ButtonLink
-                      variant="outlined"
-                      href={{
-                        pathname: `/post`,
-                        query: { id: "600070f0-79bb-4c98-80f5-c982f46f36bc" },
-                      }}
-                      as={`/about`}
-                    >
-                      About Me
-                    </ButtonLink>
-                  </ButtonGroup>
-                </Grid>
+                  <ButtonLink
+                    variant="outlined"
+                    href={{
+                      pathname: `/post`,
+                      query: { id: "600070f0-79bb-4c98-80f5-c982f46f36bc" },
+                    }}
+                    as={`/about`}
+                  >
+                    About Me
+                  </ButtonLink>
+                </ButtonGroup>
               </Grid>
-            </div>
-          </Fade>
+            </Grid>
+          </div>
         </Grid>
       </Grid>
       <Box
@@ -204,7 +220,6 @@ const TopSection = ({ scrollNext, children }) => {
       </Box>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        height="7vh"
         viewBox="0 0 100 100"
         className={classes.svg}
         preserveAspectRatio="none"
