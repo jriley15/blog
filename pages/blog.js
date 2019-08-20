@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 
   titleGridItem: {
     paddingTop: theme.spacing(3),
-
+    //paddingBottom: theme.spacing(3),
     backgroundColor: "#2b313c",
     width: "100%",
     //boxShadow: "inset 0 0 20px rgba(0,0,0,.5)",
@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
     },
     cursor: "pointer",
     borderRadius: "3px",
-    backgroundColor: "rgba(255,255,255, 0.2)",
+    backgroundColor: "rgba(255,255,255, 0.1)",
     //color: "black",
   },
 

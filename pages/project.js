@@ -14,8 +14,10 @@ const useStyles = makeStyles(theme => ({
     //padding: theme.spacing(1),
     //background:
     //  "linear-gradient(rgba(120, 80, 228, 0.8), rgba(13, 186, 134, 0.8)), url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JrbItQz/white-polygonal-geometric-surface-seamless-loop-4k-uhd-3840x2160_nyllfzz7e__F0000.png') no-repeat center",
-    backgroundColor: "#fafafa",
-    color: theme.palette.common.black,
+    //backgroundColor: "#fafafa",
+    background: "rgba(255,255,255,0.1)",
+
+    //color: theme.palette.common.black,
     backgroundSize: "cover",
     position: "relative",
     backgroundAttachment: "fixed",

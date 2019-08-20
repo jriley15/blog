@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(4),
     borderLeft: "1px solid transparent",
     padding: theme.spacing(3),
-    backgroundColor: "transparent", //"#fafafa",
+    backgroundColor: "rgba(255, 255, 255, 0.1)", //"#fafafa",
     //color: theme.palette.common.black,
   },
 
