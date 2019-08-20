@@ -7,12 +7,14 @@ import Fade from "react-reveal/Fade"
 const useStyles = makeStyles(theme => ({
   root: {
     background:
-      "linear-gradient(rgba(13, 186, 134, 0.8), rgba(120, 80, 228, 0.8)), url('https://images.jrdn.tech/bg2.jpg') no-repeat center",
+      "linear-gradient(rgba(0, 0, 0, 0.6), rgba(	0, 0, 0, 0.6)), url('https://digileaders.com/wp-content/uploads/2018/09/coding-on-laptop_4460x4460-e1537450504196.jpg') no-repeat center",
+
     backgroundSize: "cover",
     position: "relative",
     [theme.breakpoints.up("sm")]: {
       backgroundAttachment: "fixed",
     },
+    boxShadow: "inset 0 0 20px rgba(0,0,0,.5)",
 
     width: "100%",
     height: "100%",
@@ -81,9 +83,9 @@ const useStyles = makeStyles(theme => ({
     borderLeft: "1px solid transparent",
     padding: theme.spacing(2),
     transition: theme.transitions.create("background-color"),
-    backgroundColor: fade(theme.palette.common.black, 0.25),
+    backgroundColor: fade(theme.palette.background.default, 0.9),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.black, 0.5),
+      //backgroundColor: fade(theme.palette.background.default, 0.5),
       transform: "scale(1.1)",
     },
 

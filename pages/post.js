@@ -17,10 +17,10 @@ const useStyles = makeStyles(theme => ({
       marginTop: theme.spacing(8),
     },
     //backgroundColor: theme.palette.common.white,
-    backgroundColor: theme.palette.grey[200], //"#fafafa",
-    backgroundImage: "url('/static/images/interlaced.png')",
+    //backgroundColor: theme.palette.grey[200], //"#fafafa",
+    //backgroundImage: "url('/static/images/interlaced.png')",
     minHeight: "calc(100vh - 168px)",
-    color: theme.palette.common.black,
+    //color: theme.palette.common.black,
   },
 
   postsGridContainer: {},
@@ -40,8 +40,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(4),
     borderLeft: "1px solid transparent",
     padding: theme.spacing(3),
-    backgroundColor: "#fafafa",
-    color: theme.palette.common.black,
+    backgroundColor: "transparent", //"#fafafa",
+    //color: theme.palette.common.black,
   },
 
   titleFont: {
@@ -62,11 +62,11 @@ const useStyles = makeStyles(theme => ({
   },
   divider: {
     margin: theme.spacing(1),
-    backgroundColor: "rgba(0, 0, 0, 0.12)",
+    //backgroundColor: "rgba(0, 0, 0, 0.12)",
   },
 
   textSecondary: {
-    color: "rgba(0, 0, 0, 0.54)",
+    //color: "rgba(0, 0, 0, 0.54)",
   },
 }))
 
@@ -91,7 +91,7 @@ const Post = ({ post }) => {
             alignItems="center"
           >
             <Grid item className={classes.postGridItem}>
-              <Paper elevation={6} className={classes.postPaper}>
+              <Paper elevation={0} className={classes.postPaper}>
                 <Grid container justify="space-between">
                   <Typography
                     variant="h3"

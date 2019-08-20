@@ -12,8 +12,8 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("sm")]: {
       marginTop: theme.spacing(8),
     },
-    backgroundColor: theme.palette.grey[200], //"#fafafa",
-    backgroundImage: "url('/static/images/interlaced.png')",
+    //backgroundColor: theme.palette.grey[200], //"#fafafa",
+    //backgroundImage: "url('/static/images/interlaced.png')",
 
     minHeight: "calc(100vh - 168px)",
   },

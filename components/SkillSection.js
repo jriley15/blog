@@ -49,7 +49,8 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     paddingBottom: theme.spacing(12),
     //height: "calc(100vh - 56px)",
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: "rgb(27, 28, 29)",
+    boxShadow: "rgba(0, 0, 0, 0.1) 0px -1px 1px inset",
   },
   skillsContainer: {
     //padding: theme.spacing(1),
@@ -220,7 +221,7 @@ const SkillSection = ({ scrollNext, children }) => {
             </Grid>
           </Grid>
         </Grid>
-        {/*<Fab
+        <Fab
           size="small"
           color="primary"
           aria-label="Next"
@@ -229,7 +230,7 @@ const SkillSection = ({ scrollNext, children }) => {
           onClick={() => scrollNext(2)}
         >
           <DownArrow fontSize="large" />
-        </Fab>*/}
+        </Fab>
       </Grid>
     </Grid>
   )

@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     height: "100%",
+    overflowX: "hidden",
   },
 
   topSection: {
@@ -81,11 +82,6 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       animation: "none",
     },
-
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "flex",
-    },
   },
 
   "@keyframes bounce": {
@@ -108,12 +104,15 @@ const TopSection = ({ scrollNext, children }) => {
   const vantaBackground = useRef(null)
 
   useEffect(() => {
-    let effect = window.VANTA.WAVES({
-      el: "#my-element",
-      color: 0x606165,
+    let effect = window.VANTA.NET({
+      el: vantaBackground.current,
+      color: "rgb(120, 80, 228)",
+      backgroundColor: "#2b313c",
+
+      /*color: 0x606165,
       shininess: 18.0,
       waveHeight: 5.5,
-      zoom: 0.95,
+      zoom: 0.95,*/
     })
     return () => {
       if (effect) effect.destroy()
@@ -121,7 +120,7 @@ const TopSection = ({ scrollNext, children }) => {
   }, [])
 
   return (
-    <Grid item className={classes.topSection} id="my-element">
+    <Grid item className={classes.topSection} ref={vantaBackground}>
       {children}
       <Grid
         container
@@ -205,14 +204,14 @@ const TopSection = ({ scrollNext, children }) => {
       </Box>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        height="80"
+        height="7vh"
         viewBox="0 0 100 100"
         className={classes.svg}
         preserveAspectRatio="none"
       >
         <path
           d="M 0 0 L 0 100 L 50 100 M 50 100 L 100 0 l 100 100"
-          fill="#2b313c"
+          fill="rgb(27, 28, 29)"
         />
       </svg>
       {/*

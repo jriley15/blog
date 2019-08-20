@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100%",
 
-    backgroundColor: theme.palette.grey[200], //"#fafafa",
-    backgroundImage: "url('/static/images/interlaced.png')",
+    backgroundColor: "#2b313c",
+    //backgroundImage: "url('/static/images/interlaced.png')",
     color: theme.palette.common.black,
     marginTop: theme.spacing(5),
     [theme.breakpoints.up("sm")]: {
@@ -47,15 +47,15 @@ const useStyles = makeStyles(theme => ({
 
   titleGridItem: {
     paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
+
     backgroundColor: "#2b313c",
     width: "100%",
-    boxShadow: "inset 0 0 20px rgba(0,0,0,.5)",
+    //boxShadow: "inset 0 0 20px rgba(0,0,0,.5)",
     color: theme.palette.common.white,
   },
 
   textSecondary: {
-    color: "rgba(0, 0, 0, 0.54)",
+    //color: "rgba(0, 0, 0, 0.54)",
   },
 
   postPaper: {
@@ -70,8 +70,8 @@ const useStyles = makeStyles(theme => ({
     },
     cursor: "pointer",
     borderRadius: "3px",
-    backgroundColor: "white",
-    color: "black",
+    backgroundColor: "rgba(255,255,255, 0.2)",
+    //color: "black",
   },
 
   titleFont: {
