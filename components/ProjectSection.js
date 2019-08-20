@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
 
     width: "100%",
     height: "100%",
-    paddingBottom: theme.spacing(10),
+    paddingTop: theme.spacing(6),
+    paddingBottom: theme.spacing(6),
 
     overflowX: "hidden",
   },
@@ -39,8 +40,8 @@ const useStyles = makeStyles(theme => ({
   projectContainer: {
     //width: "100%",
     height: "100%",
-    paddingBottom: theme.spacing(8),
-    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(4),
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
   },
@@ -116,7 +117,7 @@ const ProjectSection = ({ children, projects }) => {
 
   return (
     <Grid item className={classes.root}>
-      <svg
+      {/*<svg
         className={classes.svg}
         viewBox="0 0 1920 250"
         preserveAspectRatio="xMidYMid"
@@ -211,7 +212,7 @@ const ProjectSection = ({ children, projects }) => {
             />
           </path>
         </g>
-      </svg>
+      </svg>*/}
 
       <Grid container justify="center" className={classes.projectContainer}>
         {children}

@@ -47,9 +47,9 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     paddingTop: theme.spacing(8),
     position: "relative",
-    paddingBottom: theme.spacing(8),
+    paddingBottom: theme.spacing(12),
     //height: "calc(100vh - 56px)",
-    backgroundColor: "#303030",
+    backgroundColor: theme.palette.background.default,
   },
   skillsContainer: {
     //padding: theme.spacing(1),
@@ -80,7 +80,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   scrollArrow: {
-    bottom: theme.spacing(2),
+    bottom: theme.spacing(4),
     position: "absolute",
     animation: "bounce .3s infinite alternate",
     animationName: "$bounce",
@@ -220,7 +220,7 @@ const SkillSection = ({ scrollNext, children }) => {
             </Grid>
           </Grid>
         </Grid>
-        <Fab
+        {/*<Fab
           size="small"
           color="primary"
           aria-label="Next"
@@ -229,7 +229,7 @@ const SkillSection = ({ scrollNext, children }) => {
           onClick={() => scrollNext(2)}
         >
           <DownArrow fontSize="large" />
-        </Fab>
+        </Fab>*/}
       </Grid>
     </Grid>
   )

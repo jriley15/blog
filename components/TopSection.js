@@ -1,6 +1,5 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import Link from "next/link"
-
 import { makeStyles } from "@material-ui/core/styles"
 import {
   Typography,
@@ -10,6 +9,7 @@ import {
   Avatar,
   Fab,
   ButtonGroup,
+  Box,
 } from "@material-ui/core"
 import DownArrow from "@material-ui/icons/KeyboardArrowDown"
 import ButtonLink from "./common/ButtonLink"
@@ -28,20 +28,20 @@ const useStyles = makeStyles(theme => ({
     //https://digileaders.com/wp-content/uploads/2018/09/coding-on-laptop_4460x4460-e1537450504196.jpg
     //https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JrbItQz/white-polygonal-geometric-surface-seamless-loop-4k-uhd-3840x2160_nyllfzz7e__F0000.png
 
-    background:
+    /*background:
       "linear-gradient(rgba(120, 80, 228, 0.8), rgba(13, 186, 134, 0.8)), url('https://images.jrdn.tech/bg2.jpg') no-repeat center",
     backgroundSize: "cover",
     position: "relative",
     [theme.breakpoints.up("sm")]: {
       backgroundAttachment: "fixed",
-    },
+    },*/
   },
 
   svg: {
-    width: "100%",
     position: "absolute",
-    bottom: -1,
-    transform: "rotate(180deg)",
+    bottom: 0,
+    width: "100%",
+    //backgroundColor: theme.palette.background.default,
   },
 
   buttonGroup: {
@@ -67,8 +67,12 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
   },
 
+  arrowBox: {
+    zIndex: theme.zIndex.appBar - 1,
+    width: "100%",
+  },
   scrollArrow: {
-    bottom: "13vw",
+    bottom: "5vw",
     position: "absolute",
     animation: "bounce .3s infinite alternate",
     animationName: "$bounce",
@@ -101,8 +105,23 @@ const useStyles = makeStyles(theme => ({
 const TopSection = ({ scrollNext, children }) => {
   const classes = useStyles()
 
+  const vantaBackground = useRef(null)
+
+  useEffect(() => {
+    let effect = window.VANTA.WAVES({
+      el: "#my-element",
+      color: 0x606165,
+      shininess: 18.0,
+      waveHeight: 5.5,
+      zoom: 0.95,
+    })
+    return () => {
+      if (effect) effect.destroy()
+    }
+  }, [])
+
   return (
-    <Grid item className={classes.topSection}>
+    <Grid item className={classes.topSection} id="my-element">
       {children}
       <Grid
         container
@@ -166,6 +185,13 @@ const TopSection = ({ scrollNext, children }) => {
             </div>
           </Fade>
         </Grid>
+      </Grid>
+      <Box
+        display="flex"
+        justifyContent="center"
+        position="absolute"
+        className={classes.arrowBox}
+      >
         <Fab
           size="small"
           color="primary"
@@ -176,8 +202,20 @@ const TopSection = ({ scrollNext, children }) => {
         >
           <DownArrow fontSize="large" />
         </Fab>
-      </Grid>
-
+      </Box>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="80"
+        viewBox="0 0 100 100"
+        className={classes.svg}
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M 0 0 L 0 100 L 50 100 M 50 100 L 100 0 l 100 100"
+          fill="#2b313c"
+        />
+      </svg>
+      {/*
       <svg
         className={classes.svg}
         viewBox="0 0 1920 250"
@@ -273,7 +311,7 @@ const TopSection = ({ scrollNext, children }) => {
             />
           </path>
         </g>
-      </svg>
+</svg>*/}
     </Grid>
   )
 }

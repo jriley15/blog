@@ -25,6 +25,8 @@ class MyDocument extends Document {
             type="image/x-icon"
             href="/static/images/favicon.ico"
           />
+          <script src="https://cdn.jsdelivr.net/gh/tengbao/vanta/vendor/three.r92.min.js" />
+          <script src="https://cdn.jsdelivr.net/gh/tengbao/vanta/dist/vanta.waves.min.js" />
         </Head>
         <body>
           <Main />
