@@ -2,7 +2,7 @@ import { Box, Typography } from "@material-ui/core"
 import { urlFor } from "../../data/blog"
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter"
 import js from "../../node_modules/react-syntax-highlighter/dist/esm/languages/hljs/javascript"
-import docco from "../../node_modules/react-syntax-highlighter/dist/esm/styles/hljs/shades-of-purple"
+import docco from "../../node_modules/react-syntax-highlighter/dist/esm/styles/hljs/atom-one-dark"
 
 SyntaxHighlighter.registerLanguage("javascript", js)
 
@@ -18,15 +18,11 @@ export default {
   block: props => {
     const style = props.node.style || "normal"
 
-    if (props.node._type === "image") {
+    //console.log("block: ", props.node)
+    if (props.node._type === "Inline Image") {
       return (
         <Box display="flex" justifyContent="center">
-          <img
-            src={urlFor(props.node)
-              .width(400)
-              .url()}
-            style={{ maxWidth: "calc(100% - 16px)" }}
-          />
+          <img src={props.node.src} style={{ maxWidth: "calc(100% - 16px)" }} />
         </Box>
       )
     }

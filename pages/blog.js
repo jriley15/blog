@@ -202,6 +202,7 @@ const Blog = ({ posts }) => {
                                     variant="body2"
                                     gutterBottom
                                     className={classes.textSecondary}
+                                    color="textSecondary"
                                   >
                                     {new Date(post._createdAt).toDateString()}
                                   </Typography>

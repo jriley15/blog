@@ -100,7 +100,11 @@ const Post = ({ post }) => {
                   >
                     {post.title}
                   </Typography>
-                  <Typography variant="body1" className={classes.textSecondary}>
+                  <Typography
+                    variant="body1"
+                    className={classes.textSecondary}
+                    color="textSecondary"
+                  >
                     {new Date(post._createdAt).toDateString()}
                   </Typography>
                 </Grid>

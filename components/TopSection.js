@@ -106,7 +106,7 @@ const TopSection = ({ scrollNext, children }) => {
   const [reRender, setReRender] = useState(0)
 
   const checkScripts = () => {
-    if (window.VANTA) {
+    if (window.VANTA && window.VANTA.NET) {
       return window.VANTA.NET({
         el: vantaBackground.current,
         color: "rgb(120, 80, 228)",
