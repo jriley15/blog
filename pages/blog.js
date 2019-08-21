@@ -2,7 +2,13 @@ import React, { useRef, useEffect, useState } from "react"
 import Link from "next/link"
 import NavBar from "../components/Navbar"
 import { makeStyles, fade } from "@material-ui/core/styles"
-import { Typography, Grid, Paper, Link as MuiLink } from "@material-ui/core"
+import {
+  Typography,
+  Grid,
+  Paper,
+  Link as MuiLink,
+  Divider,
+} from "@material-ui/core"
 import { getPosts } from "../data/blog"
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import Fade from "react-reveal/Fade"
@@ -152,6 +158,7 @@ const Blog = ({ posts }) => {
             Various posts about tech and my life.
           </Typography>
         </div>
+
         <Grid
           container
           justify="center"
@@ -165,6 +172,7 @@ const Blog = ({ posts }) => {
             })
             .map((post, index) => (
               <Grid item className={classes.postGridItem} key={post._id}>
+                {index === 0 && <Divider variant="middle" />}
                 <Transition key={index} in={true} appear={true} timeout={0}>
                   {state => (
                     <div
