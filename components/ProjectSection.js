@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { makeStyles, fade } from "@material-ui/core/styles"
-import { Typography, Grid, Button } from "@material-ui/core"
+import { Typography, Grid, Button, ButtonBase } from "@material-ui/core"
 import Fade from "react-reveal/Fade"
 
 const useStyles = makeStyles(theme => ({
@@ -85,8 +85,8 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create("background-color"),
     backgroundColor: fade(theme.palette.common.white, 0.1),
     "&:hover": {
-      //backgroundColor: fade(theme.palette.background.default, 0.5),
-      transform: "scale(1.1)",
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+      //transform: "scale(1.1)",
     },
     boxShadow:
       "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);",
@@ -159,70 +159,76 @@ const ProjectSection = ({ children, projects }) => {
                     }}
                     as={`/project/${project.slug.current}`}
                   >
-                    <Grid
-                      container
-                      className={classes.projectDiv}
-                      justify="space-between"
-                      alignItems="center"
-                    >
-                      {index % 2 !== 0 && (
-                        <Grid item>
-                          <div className={classes.previewImageAvatar}>
-                            <img
-                              src={project.images[0]}
-                              style={{ height: "100%" }}
-                              alt="preview"
-                            />
-                          </div>
+                    <ButtonBase className={classes.projectButton}>
+                      <Grid
+                        container
+                        className={classes.projectDiv}
+                        justify="space-between"
+                        alignItems="center"
+                      >
+                        {index % 2 !== 0 && (
+                          <Grid item>
+                            <div className={classes.previewImageAvatar}>
+                              <img
+                                src={project.images[0]}
+                                style={{ height: "100%" }}
+                                alt="preview"
+                              />
+                            </div>
+                          </Grid>
+                        )}
+                        <Grid item xs>
+                          <Grid
+                            container
+                            direction="column"
+                            alignItems={
+                              index % 2 !== 0 ? "flex-end" : "flex-start"
+                            }
+                          >
+                            <Grid item>
+                              <Typography
+                                gutterBottom
+                                variant="h4"
+                                component="h2"
+                                className={classes.titleFont}
+                                align={index % 2 !== 0 ? "right" : "left"}
+                              >
+                                {project.title}
+                              </Typography>
+                            </Grid>
+                            <Grid item>
+                              <Typography
+                                variant="body1"
+                                component="p"
+                                color="textSecondary"
+                                align={index % 2 !== 0 ? "right" : "left"}
+                              >
+                                {project.description}
+                              </Typography>
+                            </Grid>
+                            <Grid item>
+                              <Button
+                                variant="outlined"
+                                style={{ marginTop: 8 }}
+                              >
+                                View More
+                              </Button>
+                            </Grid>
+                          </Grid>
                         </Grid>
-                      )}
-                      <Grid item xs>
-                        <Grid
-                          container
-                          direction="column"
-                          alignItems={
-                            index % 2 !== 0 ? "flex-end" : "flex-start"
-                          }
-                        >
+                        {index % 2 === 0 && (
                           <Grid item>
-                            <Typography
-                              gutterBottom
-                              variant="h4"
-                              component="h2"
-                              className={classes.titleFont}
-                            >
-                              {project.title}
-                            </Typography>
+                            <div className={classes.previewImageAvatar}>
+                              <img
+                                src={project.images[0]}
+                                style={{ height: "100%" }}
+                                alt="preview"
+                              />
+                            </div>
                           </Grid>
-                          <Grid item>
-                            <Typography
-                              variant="body1"
-                              component="p"
-                              color="textSecondary"
-                              align={index % 2 !== 0 ? "right" : "left"}
-                            >
-                              {project.description}
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            <Button variant="outlined" style={{ marginTop: 8 }}>
-                              View More
-                            </Button>
-                          </Grid>
-                        </Grid>
+                        )}
                       </Grid>
-                      {index % 2 === 0 && (
-                        <Grid item>
-                          <div className={classes.previewImageAvatar}>
-                            <img
-                              src={project.images[0]}
-                              style={{ height: "100%" }}
-                              alt="preview"
-                            />
-                          </div>
-                        </Grid>
-                      )}
-                    </Grid>
+                    </ButtonBase>
                   </Link>
                 </Fade>
               </Grid>

@@ -8,24 +8,6 @@ import ProjectSection from "../components/ProjectSection"
 import Head from "next/head"
 import { getProjects } from "../data/projects"
 
-/*
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-
-    <Button variant="outlined" component={Link} to="/page-2/">
-      Test button
-    </Button>
-  </Layout>
-)*/
-
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -56,8 +38,6 @@ const IndexPage = ({ query, projects }) => {
       }
     }, 0)
   }, [])
-
-  //https://www.jordanriley.me/static/media/me.c702f970.jpg
 
   const scrollNext = (index, b) => {
     switch (parseInt(index, 10)) {
@@ -111,34 +91,3 @@ IndexPage.getInitialProps = async ({ query }) => {
 }
 
 export default IndexPage
-
-/*
-class Index extends React.Component {
-  static getInitialProps({ reduxStore, req }) {
-    const isServer = !!req;
-    // DISPATCH ACTIONS HERE ONLY WITH `reduxStore.dispatch`
-    reduxStore.dispatch(serverRenderClock(isServer));
-
-    return {};
-  }
-
-  componentDidMount() {
-    // DISPATCH ACTIONS HERE FROM `mapDispatchToProps`
-    // TO TICK THE CLOCK
-    this.timer = setInterval(() => this.props.startClock(), 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
-  render() {
-    return <Examples />;
-  }
-}
-const mapDispatchToProps = { startClock };
-export default connect(
-  null,
-  mapDispatchToProps
-)(Index);
-*/

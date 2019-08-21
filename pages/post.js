@@ -11,10 +11,11 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     height: "100%",
-    padding: theme.spacing(1),
+
     marginTop: theme.spacing(5),
     [theme.breakpoints.up("sm")]: {
       marginTop: theme.spacing(8),
+      padding: theme.spacing(1),
     },
     //backgroundColor: theme.palette.common.white,
     //backgroundColor: theme.palette.grey[200], //"#fafafa",
@@ -34,13 +35,17 @@ const useStyles = makeStyles(theme => ({
   },
 
   postPaper: {
+    padding: theme.spacing(2),
+
     [theme.breakpoints.up("sm")]: {
       marginTop: theme.spacing(4),
+      padding: theme.spacing(3),
     },
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
     marginBottom: theme.spacing(4),
     borderLeft: "1px solid transparent",
-    padding: theme.spacing(3),
-    backgroundColor: "rgba(255, 255, 255, 0.1)", //"#fafafa",
+
+    //"#fafafa",
     //color: theme.palette.common.black,
   },
 

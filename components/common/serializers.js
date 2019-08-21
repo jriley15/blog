@@ -22,7 +22,14 @@ export default {
     if (props.node._type === "Inline Image") {
       return (
         <Box display="flex" justifyContent="center">
-          <img src={props.node.src} style={{ maxWidth: "calc(100% - 16px)" }} />
+          <img
+            src={props.node.src}
+            style={{
+              maxWidth: "calc(100% - 8px)",
+              paddingTop: 8,
+              paddingBottom: 8,
+            }}
+          />
         </Box>
       )
     }
@@ -76,7 +83,11 @@ export default {
         )
     }
 
-    return <Typography gutterBottom>{props.children}</Typography>
+    return (
+      <Typography gutterBottom style={{ paddingTop: 4, paddingBottom: 4 }}>
+        {props.children}
+      </Typography>
+    )
   },
   listItem: props => (
     <li>

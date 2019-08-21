@@ -14,6 +14,7 @@ import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import Fade from "react-reveal/Fade"
 import Head from "next/head"
 import Transition from "react-transition-group/Transition"
+import ButtonBase from "@material-ui/core/ButtonBase"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: "100%",
 
     "&:hover": {
-      transform: "scale(1.1)",
+      //transform: "scale(1.1)",
     },
 
     transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
@@ -64,7 +65,9 @@ const useStyles = makeStyles(theme => ({
     //color: "rgba(0, 0, 0, 0.54)",
   },
 
-  postPaper: {
+  postButton: {
+    color: "white",
+    width: "100%",
     [theme.breakpoints.up("sm")]: {
       marginTop: theme.spacing(4),
     },
@@ -189,54 +192,47 @@ const Blog = ({ posts }) => {
                         }}
                         as={`/post/${post.slug.current}`}
                       >
-                        <Paper elevation={4} className={classes.postPaper}>
-                          <Grid
-                            container
-                            justify="flex-start"
-                            direction="column"
-                            spacing={2}
-                          >
+                        <ButtonBase className={classes.postButton}>
+                          <Grid container alignItems="center">
+                            <Grid item xs>
+                              <Typography
+                                variant="h4"
+                                className={classes.titleFont}
+                                gutterBottom
+                                align="left"
+                              >
+                                {post.title}
+                              </Typography>
+                              <Typography
+                                variant="body2"
+                                gutterBottom
+                                className={classes.textSecondary}
+                                color="textSecondary"
+                                align="left"
+                              >
+                                {new Date(post._createdAt).toDateString()}
+                              </Typography>
+                              <Typography align="left">
+                                {post.description}
+                                <MuiLink className={classes.readMoreButton}>
+                                  {" "}
+                                  Read More
+                                </MuiLink>
+                              </Typography>
+                            </Grid>
                             <Grid item>
-                              <Grid container alignItems="center">
-                                <Grid item xs>
-                                  <Typography
-                                    variant="h4"
-                                    className={classes.titleFont}
-                                    gutterBottom
-                                  >
-                                    {post.title}
-                                  </Typography>
-                                  <Typography
-                                    variant="body2"
-                                    gutterBottom
-                                    className={classes.textSecondary}
-                                    color="textSecondary"
-                                  >
-                                    {new Date(post._createdAt).toDateString()}
-                                  </Typography>
-                                  <Typography>
-                                    {post.description}
-                                    <MuiLink className={classes.readMoreButton}>
-                                      {" "}
-                                      Read More
-                                    </MuiLink>
-                                  </Typography>
-                                </Grid>
-                                <Grid item>
-                                  {post.previewImage && (
-                                    <div className={classes.previewImageAvatar}>
-                                      <img
-                                        src={post.previewImage}
-                                        style={{ height: "100%" }}
-                                        alt="preview"
-                                      />
-                                    </div>
-                                  )}
-                                </Grid>
-                              </Grid>
+                              {post.previewImage && (
+                                <div className={classes.previewImageAvatar}>
+                                  <img
+                                    src={post.previewImage}
+                                    style={{ height: "100%" }}
+                                    alt="preview"
+                                  />
+                                </div>
+                              )}
                             </Grid>
                           </Grid>
-                        </Paper>
+                        </ButtonBase>
                       </Link>
                     </div>
                   )}
