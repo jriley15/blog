@@ -91,7 +91,7 @@ const Post = ({ post }) => {
             alignItems="center"
           >
             <Grid item className={classes.postGridItem}>
-              <Paper elevation={0} className={classes.postPaper}>
+              <Paper elevation={4} className={classes.postPaper}>
                 <Grid container justify="space-between">
                   <Typography
                     variant="h3"
@@ -108,7 +108,11 @@ const Post = ({ post }) => {
                     {new Date(post._createdAt).toDateString()}
                   </Typography>
                 </Grid>
-                <Typography className={classes.textSecondary}>
+                <Typography
+                  className={classes.textSecondary}
+                  variant="subtitle1"
+                  color="textSecondary"
+                >
                   {post.description}
                 </Typography>
                 <Divider className={classes.divider} />

@@ -189,7 +189,7 @@ const Blog = ({ posts }) => {
                         }}
                         as={`/post/${post.slug.current}`}
                       >
-                        <Paper elevation={6} className={classes.postPaper}>
+                        <Paper elevation={4} className={classes.postPaper}>
                           <Grid
                             container
                             justify="flex-start"
