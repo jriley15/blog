@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 import { makeStyles, fade } from "@material-ui/core/styles"
 import { Typography, Grid, Button, ButtonBase } from "@material-ui/core"
+import Slide from "react-reveal/Slide"
 import Fade from "react-reveal/Fade"
 
 const useStyles = makeStyles(theme => ({
@@ -113,6 +114,10 @@ const useStyles = makeStyles(theme => ({
   divider: {
     marginTop: theme.spacing(4),
   },
+
+  projectButton: {
+    width: "100%",
+  },
 }))
 
 const ProjectSection = ({ children, projects }) => {
@@ -151,7 +156,7 @@ const ProjectSection = ({ children, projects }) => {
             })
             .map((project, index) => (
               <Grid item key={project._id} className={classes.projectGridItem}>
-                <Fade>
+                <Slide left={index % 2 === 0} right={index % 2 !== 0}>
                   <Link
                     href={{
                       pathname: `/project`,
@@ -159,7 +164,10 @@ const ProjectSection = ({ children, projects }) => {
                     }}
                     as={`/project/${project.slug.current}`}
                   >
-                    <ButtonBase className={classes.projectButton}>
+                    <ButtonBase
+                      component={"div"}
+                      className={classes.projectButton}
+                    >
                       <Grid
                         container
                         className={classes.projectDiv}
@@ -230,7 +238,7 @@ const ProjectSection = ({ children, projects }) => {
                       </Grid>
                     </ButtonBase>
                   </Link>
-                </Fade>
+                </Slide>
               </Grid>
             ))}
         </Grid>
