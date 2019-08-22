@@ -13,11 +13,13 @@ import {
   Divider,
   Typography,
   Tooltip,
+  Box,
 } from "@material-ui/core"
 import EmailIcon from "@material-ui/icons/Email"
 import { makeStyles } from "@material-ui/core/styles"
 import { grey, green, indigo } from "@material-ui/core/colors"
 import { useTheme } from "@material-ui/styles"
+import DotIcon from "@material-ui/icons/FiberManualRecord"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
@@ -82,12 +84,20 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
   },
 
+  dot: {
+    margin: theme.spacing(0.5),
+    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
+    fontSize: 8,
+  },
+
   dialogPaper: {
     [theme.breakpoints.down("xs")]: {
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
       maxWidth: "100% !important",
     },
+    backgroundColor: theme.palette.background.default,
 
     overflow: "visible",
   },
@@ -213,24 +223,31 @@ export default function Contact({ open, handleClose }) {
                 </Fab>
               </Grid>
             </Grid>
-
-            <Divider className={classes.divider} variant="middle" />
-
-            <Typography align="center" color="textSecondary">
-              Or send me a message with the form below
-            </Typography>
+            <Box display="flex" flexDirection="column" alignItems="center">
+              <div>
+                <DotIcon className={classes.dot} />
+                <DotIcon className={classes.dot} />
+                <DotIcon className={classes.dot} />
+              </div>
+              <Typography align="center" color="textSecondary">
+                Or send me a message with the form below
+              </Typography>
+            </Box>
             <TextField
               margin="dense"
               label="Name"
               type="text"
               fullWidth
               name="name"
+              variant="outlined"
+              autoFocus
             />
             <TextField
               margin="dense"
               label="Email Address"
               type="email"
               name="email"
+              variant="outlined"
               fullWidth
             />
             <TextField
@@ -240,6 +257,7 @@ export default function Contact({ open, handleClose }) {
               type="text"
               label="Message"
               name="message"
+              variant="outlined"
               fullWidth
             />
           </DialogContent>

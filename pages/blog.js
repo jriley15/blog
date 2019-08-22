@@ -210,7 +210,7 @@ const Blog = ({ posts }) => {
                                 color="textSecondary"
                                 align="left"
                               >
-                                {new Date(post._createdAt).toDateString()}
+                                {new Date(post.publishedAt).toDateString()}
                               </Typography>
                               <Typography align="left">
                                 {post.description}
