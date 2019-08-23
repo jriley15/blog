@@ -195,12 +195,6 @@ const TopSection = ({ scrollNext, children }) => {
                   >
                     About Me
                   </ButtonLink>
-                  <Link
-                    href={"/project/enterprise-employee-status-web-app"}
-                    prefetch={false}
-                  >
-                    Test
-                  </Link>
                 </ButtonGroup>
               </Grid>
             </Grid>

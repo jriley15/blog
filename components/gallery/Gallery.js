@@ -1,176 +1,119 @@
-import React, { Component } from "react"
-import { withStyles } from "@material-ui/core/styles"
-import Grid from "@material-ui/core/Grid"
+import React, { useState, useEffect } from "react"
+import { makeStyles, useTheme } from "@material-ui/styles"
+import { Grid, Box, Fab } from "@material-ui/core"
 import LeftArrow from "@material-ui/icons/KeyboardArrowLeftOutlined"
 import RightArrow from "@material-ui/icons/KeyboardArrowRightOutlined"
-import Close from "@material-ui/icons/CloseOutlined"
+import Close from "@material-ui/icons/Close"
 import Modal from "@material-ui/core/Modal"
-import Fab from "@material-ui/core/Fab"
+import Backdrop from "@material-ui/core/Backdrop"
+import Fade from "@material-ui/core/Fade"
 
-const styles = theme => ({
-  grid: {
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(1),
+  },
+
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  container: {
     width: "100vw",
+    maxWidth: "100vw",
+    maxHeight: "100vh",
+    height: "100vh",
+  },
+  image: {
+    maxWidth: "inherit",
+  },
+
+  fab: {
     position: "absolute",
-
-    "&:focus": {
-      outline: "none",
-    },
   },
-  margin: {
-    margin: theme.spacing.unit,
-  },
+}))
 
-  leftArrow: {
-    position: "absolute",
-    left: theme.spacing.unit,
-    opacity: "0.5",
-  },
-  rightArrow: {
-    position: "absolute",
-    right: theme.spacing.unit,
-    opacity: "0.5",
-  },
+const Gallery = ({ open, images, index, close }) => {
+  const classes = useStyles()
 
-  close: {
-    position: "absolute",
-    right: theme.spacing.unit,
-    top: theme.spacing.unit,
-  },
-})
+  const [imageIndex, setImageIndex] = useState(index)
 
-function getModalStyle() {
-  const top = 50
-  const left = 50
+  useEffect(() => {
+    setImageIndex(index)
+  }, [index])
 
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  }
-}
-
-class Gallery extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      test: 1,
-      translateX: 0,
-      translateBy: 0,
-      images: props.images,
-      mobile: false,
-      index: 0,
+  const scrollRight = () => {
+    if (imageIndex < images.length - 1) {
+      setImageIndex(imageIndex + 1)
+    } else {
+      setImageIndex(0)
     }
   }
 
-  componentDidMount() {
-    document.addEventListener("keydown", this.handleKeyDown)
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKeyDown)
-  }
-
-  handleKeyDown = e => {
-    switch (e.keyCode) {
-      case 37:
-        this.prev()
-        break
-
-      case 39:
-        this.next()
-        break
-
-      case 27:
-        this.handleClose()
-        break
-      default:
-        break
+  const scrollLeft = () => {
+    if (imageIndex > 0) {
+      setImageIndex(imageIndex - 1)
+    } else {
+      setImageIndex(images.length - 1)
     }
   }
 
-  handleClose = () => {
-    this.setState({ index: 0 })
-    this.props.close()
-  }
-
-  next = () => {
-    if (this.props.selected + this.state.index + 1 < this.props.images.length) {
-      this.setState({ index: this.state.index + 1 })
-    }
-  }
-
-  prev = () => {
-    if (this.props.selected + this.state.index > 0) {
-      this.setState({ index: this.state.index - 1 })
-    }
-  }
-
-  render() {
-    const { classes, selected, open } = this.props
-    const { images, index } = this.state
-
-    return (
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={open}
-        onClose={this.handleClose}
-      >
-        <>
+  return (
+    <Modal
+      open={open}
+      onClose={close}
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+      className={classes.modal}
+    >
+      <Fade in={open}>
+        <Box
+          className={classes.container}
+          display="flex"
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
           <Fab
+            color="secondary"
+            aria-label="scroll"
+            className={classes.fab}
             size="small"
-            aria-label="Left"
-            className={classes.close}
-            onClick={this.handleClose}
+            color="default"
+            style={{ left: 8 }}
+            onClick={scrollLeft}
           >
-            <Close fontSize="large" />
+            <LeftArrow />
           </Fab>
-          <Grid
-            container
-            justify="center"
-            alignItems="center"
-            style={getModalStyle()}
-            className={classes.grid}
+          <img src={images[imageIndex]} className={classes.image} />
+          <Fab
+            color="secondary"
+            aria-label="scroll"
+            className={classes.fab}
+            size="small"
+            color="default"
+            style={{ right: 8 }}
+            onClick={scrollRight}
           >
-            <Fab
-              size="small"
-              aria-label="Left"
-              className={classes.leftArrow}
-              onClick={this.prev}
-            >
-              <LeftArrow fontSize="large" />
-            </Fab>
-
-            <img
-              src={images[selected + index]}
-              style={{ maxWidth: "100%" }}
-              onClick={this.handleClose}
-              alt="project image"
-            />
-
-            <Fab
-              size="small"
-              aria-label="Left"
-              className={classes.rightArrow}
-              onClick={this.next}
-            >
-              <RightArrow fontSize="large" />
-            </Fab>
-
-            <Fab
-              size="small"
-              aria-label="Left"
-              className={classes.rightArrow}
-              onClick={this.next}
-            >
-              <RightArrow fontSize="large" />
-            </Fab>
-          </Grid>
-        </>
-      </Modal>
-    )
-  }
+            <RightArrow />
+          </Fab>
+          <Fab
+            color="secondary"
+            aria-label="scroll"
+            className={classes.fab}
+            size="small"
+            color="default"
+            style={{ right: 16, top: 16 }}
+            onClick={close}
+          >
+            <Close />
+          </Fab>
+        </Box>
+      </Fade>
+    </Modal>
+  )
 }
 
-export default withStyles(styles)(Gallery)
+export default Gallery
