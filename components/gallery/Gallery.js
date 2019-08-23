@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
   image: {
     maxWidth: "inherit",
+    maxHeight: "inherit",
   },
 
   fab: {

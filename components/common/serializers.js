@@ -40,9 +40,8 @@ export default {
           <Typography
             variant="h4"
             style={{
-              marginBlockStart: "1em",
-              marginBlockEnd: "1em",
-              fontWeight: 400,
+              marginBlockStart: "0.5em",
+              marginBlockEnd: "0.5em",
             }}
           >
             {props.children}
@@ -53,9 +52,8 @@ export default {
           <Typography
             variant="h5"
             style={{
-              marginBlockStart: ".75em",
-              marginBlockEnd: ".75em",
-              fontWeight: 400,
+              marginBlockStart: "0.5em",
+              marginBlockEnd: "0.5em",
             }}
           >
             {props.children}
@@ -69,7 +67,6 @@ export default {
             style={{
               marginBlockStart: "0.5em",
               marginBlockEnd: "0.5em",
-              fontWeight: 400,
             }}
           >
             {props.children}
