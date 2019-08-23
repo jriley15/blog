@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 
   postGridItem: {
     [theme.breakpoints.up("sm")]: {
-      paddingTop: theme.spacing(2),
+      //paddingTop: theme.spacing(2),
     },
     paddingBottom: theme.spacing(2),
 

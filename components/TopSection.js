@@ -158,7 +158,7 @@ const TopSection = ({ scrollNext, children }) => {
               </Grid>
               <Grid>
                 <Typography variant="h2" align="center">
-                  Hello, I'm Jordan Riley
+                  Hello, I'm Jordan Riley.
                 </Typography>
               </Grid>
             </Grid>
@@ -194,6 +194,11 @@ const TopSection = ({ scrollNext, children }) => {
                     as={`/about`}
                   >
                     About Me
+                  </ButtonLink>
+                  <ButtonLink
+                    href={"/project/enterprise-employee-status-web-app"}
+                  >
+                    Test
                   </ButtonLink>
                 </ButtonGroup>
               </Grid>
