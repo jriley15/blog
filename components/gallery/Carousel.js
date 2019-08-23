@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { makeStyles, useTheme } from "@material-ui/styles"
 import { Grid, useMediaQuery, Box } from "@material-ui/core"
 import LeftArrow from "@material-ui/icons/KeyboardArrowLeftOutlined"
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   imageContainer: {
     //margin: 10,
-    width: 210,
+    width: 230,
     height: 150,
     //marginLeft: theme.spacing(2),
     display: "flex",
@@ -28,6 +28,10 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "3px",
     marginLeft: theme.spacing(0.5),
     marginRight: theme.spacing(0.5),
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
+    transition: "transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
   },
   image: {
     width: "100%",
@@ -37,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const JCarousel = ({ images }) => {
+const Carousel = ({ images }) => {
   const classes = useStyles()
 
   //images always 200 width, centered in div
@@ -65,6 +69,20 @@ const JCarousel = ({ images }) => {
       setViewIndex(totalViewPorts - 1)
     }
   })
+
+  const autoScrollerInverval = useRef(null)
+
+  useEffect(() => {
+    clearInterval(autoScrollerInverval.current)
+
+    autoScrollerInverval.current = setInterval(() => {
+      scrollRight()
+    }, 5000)
+
+    return () => {
+      clearInterval(autoScrollerInverval.current)
+    }
+  }, [viewIndex])
 
   const openImage = index => () => {
     setGalleryIndex(index)
@@ -132,6 +150,7 @@ const JCarousel = ({ images }) => {
               <div
                 className={classes.imageContainer}
                 onClick={openImage(index)}
+                key={index}
               >
                 <img src={img} className={classes.image} />
               </div>
@@ -163,4 +182,4 @@ const JCarousel = ({ images }) => {
   //
 }
 
-export default JCarousel
+export default Carousel

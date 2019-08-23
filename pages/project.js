@@ -2,7 +2,7 @@ import React from "react"
 import NavBar from "../components/Navbar"
 import { makeStyles } from "@material-ui/styles"
 import { Grid, Typography, Button, Box } from "@material-ui/core"
-import JCarousel from "../components/gallery/JCarousel"
+import Carousel from "../components/gallery/Carousel"
 import WebIcon from "@material-ui/icons/Web"
 import { getProject } from "../data/projects"
 import Head from "next/head"
@@ -96,7 +96,7 @@ const Page = ({ project }) => {
           </Grid>
 
           <Grid item>
-            <JCarousel images={project.images} />
+            <Carousel images={project.images} />
           </Grid>
           <Grid item>
             <Grid container justify="center" alignItems="center" spacing={2}>
