@@ -150,13 +150,17 @@ const ProjectSection = ({ children, projects }) => {
         </Grid>
 
         <Grid container direction="column" alignItems="center">
-          {projects
-            .sort((a, b) => {
-              return new Date(b.publishedAt) - new Date(a.publishedAt)
-            })
-            .map((project, index) => (
-              <Grid item key={project._id} className={classes.projectGridItem}>
-                <Slide left={index % 2 === 0} right={index % 2 !== 0}>
+          <Slide right>
+            {projects
+              .sort((a, b) => {
+                return new Date(b.publishedAt) - new Date(a.publishedAt)
+              })
+              .map((project, index) => (
+                <Grid
+                  item
+                  key={project._id}
+                  className={classes.projectGridItem}
+                >
                   <Link
                     href={{
                       pathname: `/project`,
@@ -238,9 +242,9 @@ const ProjectSection = ({ children, projects }) => {
                       </Grid>
                     </ButtonBase>
                   </Link>
-                </Slide>
-              </Grid>
-            ))}
+                </Grid>
+              ))}
+          </Slide>
         </Grid>
       </Grid>
     </Grid>

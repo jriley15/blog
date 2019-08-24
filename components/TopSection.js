@@ -96,44 +96,37 @@ const useStyles = makeStyles(theme => ({
   icon: {
     width: "24px",
   },
+
+  "@keyframes fadein": {
+    "0%": {
+      opacity: 0,
+    },
+    "100%": {
+      opacity: 1,
+    },
+  },
+  "@global": {
+    canvas: {
+      display: "block",
+      animation: "$fadein 1s",
+      userSelect: "none",
+    },
+  },
 }))
 
 const TopSection = ({ scrollNext, children }) => {
   const classes = useStyles()
-
   const vantaBackground = useRef(null)
 
-  const [reRender, setReRender] = useState(0)
-
-  const checkScripts = () => {
-    if (window.VANTA && window.VANTA.NET) {
-      return window.VANTA.NET({
-        el: vantaBackground.current,
-        color: "rgb(120, 80, 228)",
-        backgroundColor: "#2b313c",
-      })
-    }
-    return null
-  }
-
-  //hacky way to wait until 3jsscript  loads to start drawing the animated background
   useEffect(() => {
-    let effect = checkScripts()
-    let interval = null
-
-    if (!effect) {
-      interval = setInterval(() => {
-        effect = checkScripts()
-        if (effect) {
-          clearInterval(interval)
-        }
-        console.log("checking scripts")
-      }, 10)
-    }
+    let effect = window.VANTA.NET({
+      el: vantaBackground.current,
+      color: "rgb(120, 80, 228)",
+      backgroundColor: "#2b313c",
+    })
 
     return () => {
       if (effect) effect.destroy()
-      clearInterval(interval)
     }
   }, [])
 
@@ -174,13 +167,6 @@ const TopSection = ({ scrollNext, children }) => {
             >
               <Grid item>
                 <ButtonGroup size="large">
-                  {/*<Button
-                    variant="outlined"
-                    onClick={() => window.open("https://github.com/jriley15")}
-                  >
-                    Github
-                  </Button>*/}
-
                   <Button variant="outlined" onClick={() => scrollNext(2)}>
                     Projects
                   </Button>
