@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, useTheme } from "@material-ui/core/styles"
 import {
   Typography,
   Grid,
@@ -10,6 +10,7 @@ import {
   Fab,
   ButtonGroup,
   Box,
+  useMediaQuery,
 } from "@material-ui/core"
 import DownArrow from "@material-ui/icons/KeyboardArrowDown"
 import ButtonLink from "./common/ButtonLink"
@@ -35,6 +36,19 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("sm")]: {
       backgroundAttachment: "fixed",
     },*/
+
+    [theme.breakpoints.down("xs")]: {
+      backgroundImage: 'url("https://images.jrdn.tech/mobilebg1.JPG")',
+      backgroundSize: "cover",
+    },
+
+    [theme.breakpoints.up("sm")]: {
+      backgroundImage: 'url("https://images.jrdn.tech/defaultbg.JPG")',
+      backgroundSize: "cover",
+    },
+    [theme.breakpoints.up("xl")]: {
+      background: "none",
+    },
   },
 
   svg: {
@@ -118,17 +132,24 @@ const TopSection = ({ scrollNext, children }) => {
   const classes = useStyles()
   const vantaBackground = useRef(null)
 
+  const theme = useTheme()
+  const desktop = useMediaQuery(theme.breakpoints.up("sm"))
+
   useEffect(() => {
-    let effect = window.VANTA.NET({
-      el: vantaBackground.current,
-      color: "rgb(120, 80, 228)",
-      backgroundColor: "#2b313c",
-    })
+    let effect = null
+
+    if (desktop) {
+      effect = window.VANTA.NET({
+        el: vantaBackground.current,
+        color: "rgb(120, 80, 228)",
+        backgroundColor: "#2b313c",
+      })
+    }
 
     return () => {
       if (effect) effect.destroy()
     }
-  }, [])
+  }, [desktop])
 
   return (
     <Grid item className={classes.topSection} ref={vantaBackground}>

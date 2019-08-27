@@ -21,16 +21,14 @@ export default {
     //console.log("block: ", props.node)
     if (props.node._type === "Inline Image") {
       return (
-        <Box display="flex" justifyContent="center">
-          <img
-            src={props.node.src}
-            style={{
-              maxWidth: "calc(100% - 8px)",
-              paddingTop: 8,
-              paddingBottom: 8,
-            }}
-          />
-        </Box>
+        <img
+          src={props.node.src}
+          style={{
+            maxWidth: "calc(100% - 8px)",
+            paddingTop: 8,
+            paddingBottom: 8,
+          }}
+        />
       )
     }
     //console.log(props.node)

@@ -71,34 +71,11 @@ const useStyles = makeStyles(theme => ({
   projectGridItem: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-
     width: "700px",
-    maxWidth: "100%",
-
-    [theme.breakpoints.up("md")]: {
-      paddingLeft: theme.spacing(0),
-      paddingRight: theme.spacing(0),
-    },
+    maxWidth: "calc(100vw - 16px)",
   },
 
-  projectDiv: {
-    borderLeft: "1px solid transparent",
-    padding: theme.spacing(2),
-    transition: theme.transitions.create("background-color"),
-    backgroundColor: fade(theme.palette.common.white, 0.1),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-      //transform: "scale(1.1)",
-    },
-    boxShadow:
-      "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);",
-    transition:
-      "background-color 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
-    transform: "scale(1, 1)",
-
-    cursor: "pointer",
-    borderRadius: "4px",
-  },
+  projectDiv: {},
 
   previewImageAvatar: {
     //margin: 10,
@@ -118,6 +95,22 @@ const useStyles = makeStyles(theme => ({
 
   projectButton: {
     width: "100%",
+    borderLeft: "1px solid transparent",
+    padding: theme.spacing(2),
+    transition: theme.transitions.create("background-color"),
+    backgroundColor: fade(theme.palette.common.white, 0.1),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+      //transform: "scale(1.1)",
+    },
+    boxShadow:
+      "0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12);",
+    transition:
+      "background-color 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+    transform: "scale(1, 1)",
+
+    cursor: "pointer",
+    borderRadius: "4px",
   },
 }))
 
@@ -150,7 +143,7 @@ const ProjectSection = ({ children, projects }) => {
           </Fade>
         </Grid>
 
-        <Grid container direction="column" alignItems="center">
+        <Grid container direction="column" justify="center" alignItems="center">
           <Slide right>
             {projects
               .sort((a, b) => {
