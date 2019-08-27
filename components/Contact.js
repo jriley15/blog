@@ -98,6 +98,9 @@ const useStyles = makeStyles(theme => ({
       maxWidth: "100% !important",
     },
     backgroundColor: theme.palette.background.default,
+    borderColor: "rgb(120, 80, 228)",
+    borderWidth: "1px",
+    borderStyle: "solid",
 
     overflow: "visible",
   },

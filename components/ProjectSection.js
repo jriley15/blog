@@ -4,6 +4,7 @@ import { makeStyles, fade } from "@material-ui/core/styles"
 import { Typography, Grid, Button, ButtonBase } from "@material-ui/core"
 import Slide from "react-reveal/Slide"
 import Fade from "react-reveal/Fade"
+import ButtonBaseLink from "./common/ButtonBaseLink"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -161,87 +162,80 @@ const ProjectSection = ({ children, projects }) => {
                   key={project._id}
                   className={classes.projectGridItem}
                 >
-                  <Link
+                  <ButtonBaseLink
                     href={{
                       pathname: `/project`,
                       query: { id: project._id },
                     }}
                     as={`/project/${project.slug.current}`}
+                    className={classes.projectButton}
                   >
-                    <ButtonBase
-                      component={"div"}
-                      className={classes.projectButton}
+                    <Grid
+                      container
+                      className={classes.projectDiv}
+                      justify="space-between"
+                      alignItems="center"
                     >
-                      <Grid
-                        container
-                        className={classes.projectDiv}
-                        justify="space-between"
-                        alignItems="center"
-                      >
-                        {index % 2 !== 0 && (
+                      {index % 2 !== 0 && (
+                        <Grid item>
+                          <div className={classes.previewImageAvatar}>
+                            <img
+                              src={project.images[0]}
+                              style={{ height: "100%" }}
+                              alt="preview"
+                            />
+                          </div>
+                        </Grid>
+                      )}
+                      <Grid item xs>
+                        <Grid
+                          container
+                          direction="column"
+                          alignItems={
+                            index % 2 !== 0 ? "flex-end" : "flex-start"
+                          }
+                        >
                           <Grid item>
-                            <div className={classes.previewImageAvatar}>
-                              <img
-                                src={project.images[0]}
-                                style={{ height: "100%" }}
-                                alt="preview"
-                              />
-                            </div>
+                            <Typography
+                              gutterBottom
+                              variant="h4"
+                              component="h2"
+                              className={classes.titleFont}
+                              align={index % 2 !== 0 ? "right" : "left"}
+                            >
+                              {project.title}
+                            </Typography>
                           </Grid>
-                        )}
-                        <Grid item xs>
-                          <Grid
-                            container
-                            direction="column"
-                            alignItems={
-                              index % 2 !== 0 ? "flex-end" : "flex-start"
-                            }
-                          >
-                            <Grid item>
-                              <Typography
-                                gutterBottom
-                                variant="h4"
-                                component="h2"
-                                className={classes.titleFont}
-                                align={index % 2 !== 0 ? "right" : "left"}
-                              >
-                                {project.title}
-                              </Typography>
-                            </Grid>
-                            <Grid item>
-                              <Typography
-                                variant="body1"
-                                component="p"
-                                color="textSecondary"
-                                align={index % 2 !== 0 ? "right" : "left"}
-                              >
-                                {project.description}
-                              </Typography>
-                            </Grid>
-                            <Grid item>
-                              <Button
-                                variant="outlined"
-                                style={{ marginTop: 8 }}
-                              >
-                                View More
-                              </Button>
-                            </Grid>
+                          <Grid item>
+                            <Typography
+                              variant="body1"
+                              component="p"
+                              color="textSecondary"
+                              align={index % 2 !== 0 ? "right" : "left"}
+                            >
+                              {project.description}
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Button variant="outlined" style={{ marginTop: 8 }}>
+                              View More
+                            </Button>
                           </Grid>
                         </Grid>
-                        {index % 2 === 0 && (
-                          <Grid item>
-                            <div className={classes.previewImageAvatar}>
-                              <img
-                                src={project.images[0]}
-                                style={{ height: "100%" }}
-                                alt="preview"
-                              />
-                            </div>
-                          </Grid>
-                        )}
                       </Grid>
-                    </ButtonBase>
-                  </Link>
+                      {index % 2 === 0 && (
+                        <Grid item>
+                          <div className={classes.previewImageAvatar}>
+                            <img
+                              src={project.images[0]}
+                              style={{ height: "100%" }}
+                              alt="preview"
+                            />
+                          </div>
+                        </Grid>
+                      )}
+                    </Grid>
+                  </ButtonBaseLink>
                 </Grid>
               ))}
           </Slide>

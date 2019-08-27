@@ -10,11 +10,10 @@ import {
   Divider,
 } from "@material-ui/core"
 import { getPosts } from "../data/blog"
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import Fade from "react-reveal/Fade"
 import Head from "next/head"
 import Transition from "react-transition-group/Transition"
-import ButtonBase from "@material-ui/core/ButtonBase"
+import ButtonBaseLink from "../components/common/ButtonBaseLink"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -112,17 +111,6 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const options = {
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => {
-      return <Typography>{children}</Typography>
-    },
-    [BLOCKS.HEADING_1]: (node, children) => (
-      <Typography variant="h6">{children}</Typography>
-    ),
-  },
-}
-
 const Blog = ({ posts }) => {
   const classes = useStyles()
 
@@ -157,7 +145,7 @@ const Blog = ({ posts }) => {
           >
             Welcome to my Blog
           </Typography>
-          <Typography align="center" color="textSecondary">
+          <Typography align="center" color="textSecondary" gutterBottom>
             Various posts about tech and my life.
           </Typography>
         </div>
@@ -185,55 +173,54 @@ const Blog = ({ posts }) => {
                         transitionDelay: (index - 1) * 125 + "ms",
                       }}
                     >
-                      <Link
+                      <ButtonBaseLink
                         href={{
                           pathname: `/post`,
                           query: { id: post._id },
                         }}
                         as={`/post/${post.slug.current}`}
+                        className={classes.postButton}
                       >
-                        <ButtonBase className={classes.postButton}>
-                          <Grid container alignItems="center">
-                            <Grid item xs>
-                              <Typography
-                                variant="h4"
-                                className={classes.titleFont}
-                                gutterBottom
-                                align="left"
-                              >
-                                {post.title}
-                              </Typography>
-                              <Typography
-                                variant="body2"
-                                gutterBottom
-                                className={classes.textSecondary}
-                                color="textSecondary"
-                                align="left"
-                              >
-                                {new Date(post.publishedAt).toDateString()}
-                              </Typography>
-                              <Typography align="left">
-                                {post.description}
-                                <MuiLink className={classes.readMoreButton}>
-                                  {" "}
-                                  Read More
-                                </MuiLink>
-                              </Typography>
-                            </Grid>
-                            <Grid item>
-                              {post.previewImage && (
-                                <div className={classes.previewImageAvatar}>
-                                  <img
-                                    src={post.previewImage}
-                                    style={{ height: "100%" }}
-                                    alt="preview"
-                                  />
-                                </div>
-                              )}
-                            </Grid>
+                        <Grid container alignItems="center">
+                          <Grid item xs>
+                            <Typography
+                              variant="h4"
+                              className={classes.titleFont}
+                              gutterBottom
+                              align="left"
+                            >
+                              {post.title}
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              gutterBottom
+                              className={classes.textSecondary}
+                              color="textSecondary"
+                              align="left"
+                            >
+                              {new Date(post.publishedAt).toDateString()}
+                            </Typography>
+                            <Typography align="left">
+                              {post.description}
+                              <MuiLink className={classes.readMoreButton}>
+                                {" "}
+                                Read More
+                              </MuiLink>
+                            </Typography>
                           </Grid>
-                        </ButtonBase>
-                      </Link>
+                          <Grid item>
+                            {post.previewImage && (
+                              <div className={classes.previewImageAvatar}>
+                                <img
+                                  src={post.previewImage}
+                                  style={{ height: "100%" }}
+                                  alt="preview"
+                                />
+                              </div>
+                            )}
+                          </Grid>
+                        </Grid>
+                      </ButtonBaseLink>
                     </div>
                   )}
                 </Transition>
