@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     height: "100vh", //"55vh",
     overflowX: "hidden",
+    position: "relative",
     //backgroundColor: theme.palette.primary.main,
     //https://digileaders.com/wp-content/uploads/2018/09/coding-on-laptop_4460x4460-e1537450504196.jpg
     //https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/JrbItQz/white-polygonal-geometric-surface-seamless-loop-4k-uhd-3840x2160_nyllfzz7e__F0000.png
@@ -53,7 +54,7 @@ const useStyles = makeStyles(theme => ({
 
   svg: {
     position: "absolute",
-    bottom: 0,
+    bottom: "0",
     width: "100%",
     height: "7vh",
     //backgroundColor: theme.palette.background.default,
@@ -138,7 +139,7 @@ const TopSection = ({ scrollNext, children }) => {
   useEffect(() => {
     let effect = null
 
-    if (desktop) {
+    if (desktop & (effect === null)) {
       effect = window.VANTA.NET({
         el: vantaBackground.current,
         color: "rgb(120, 80, 228)",
