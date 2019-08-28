@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
       backgroundAttachment: "fixed",
     },*/
 
-    [theme.breakpoints.down("xs")]: {
+    /*[theme.breakpoints.down("xs")]: {
       backgroundImage: 'url("https://images.jrdn.tech/mobilebg1.JPG")',
       backgroundSize: "cover",
     },
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     },
     [theme.breakpoints.up("xl")]: {
       background: "none",
-    },
+    },*/
   },
 
   svg: {
