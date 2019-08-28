@@ -111,7 +111,7 @@ const Resume = () => {
           {/*<VerticalTabs />*/}
           <div className={classes.desktopResume}>
             <object
-              data="/static/documents/resume.pdf"
+              data="https://images.jrdn.tech/Jordan+Riley+Resume+2019.pdf"
               type="application/pdf"
               width="100%"
               height="100%"
@@ -129,7 +129,9 @@ const Resume = () => {
                 variant="contained"
                 style={{ marginTop: 16 }}
                 onClick={() => {
-                  window.open("/static/documents/resume.pdf")
+                  window.open(
+                    "https://images.jrdn.tech/Jordan+Riley+Resume+2019.pdf"
+                  )
                 }}
               >
                 View PDF on Mobile
