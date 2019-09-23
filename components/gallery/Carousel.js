@@ -103,6 +103,7 @@ const Carousel = ({ images }) => {
   for (let i = 0; i < totalViewPorts; i++) {
     Dots.push(
       <Dot
+        key={i}
         className={classes.dot}
         style={{
           color: i === viewIndex ? "white" : "grey",

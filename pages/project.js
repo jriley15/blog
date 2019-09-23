@@ -98,7 +98,7 @@ const Page = ({ project }) => {
           <Grid item>
             <Carousel images={project.images} />
           </Grid>
-          <Grid item>
+          <Grid item xs>
             <Grid container justify="center" alignItems="center" spacing={2}>
               <Grid item>
                 <Button
