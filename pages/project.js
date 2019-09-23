@@ -77,6 +77,7 @@ const Page = ({ project }) => {
           direction="column"
           className={classes.topSection}
           justify="center"
+          alignItems="center"
         >
           <Grid item xs={12}>
             <Typography
@@ -98,7 +99,7 @@ const Page = ({ project }) => {
           <Grid item>
             <Carousel images={project.images} />
           </Grid>
-          <Grid item xs>
+          <Grid item xs={12}>
             <Grid container justify="center" alignItems="center" spacing={2}>
               <Grid item>
                 <Button
