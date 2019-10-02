@@ -5,12 +5,27 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    "gatsby-plugin-top-layout",
+    {
+      resolve: "gatsby-plugin-material-ui",
+      // If you want to use styled components you should change the injection order.
+      options: {
+        // stylesProvider: {
+        //   injectFirst: true,
+        // },
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-sanity",
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        projectId: "3589as9m",
+        dataset: "portfolio",
+        // To enable preview of drafts, copy .env-example into .env,
+        // and add a token with read permissions
+        //token: '',
+        //watchMode: true,
+        //overlayDrafts: true
       },
     },
     `gatsby-transformer-sharp`,

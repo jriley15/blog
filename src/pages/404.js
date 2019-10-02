@@ -1,14 +1,60 @@
 import React from "react"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { Button, Typography, Grid } from "@material-ui/core"
+import { Link } from "gatsby"
+import { makeStyles } from "@material-ui/styles"
+import NavBar from "../components/Navbar"
 
-const NotFoundPage = () => (
-  <Layout>
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
-)
+const useStyles = makeStyles(theme => ({
+  root: {
+    height: "calc(100vh - 104px)",
+  },
+  container: {
+    height: "inherit",
+  },
+  paddingTop5: {
+    padding: theme.spacing(5),
+  },
+  image: {
+    width: "100%",
+    maxWidth: "700px",
+  },
+}))
+
+const NotFoundPage = () => {
+  const classes = useStyles()
+
+  return (
+    <Layout>
+      <SEO title="404: Not found" />
+      <div className={classes.root}>
+        <NavBar />
+        <Grid
+          container
+          justify="center"
+          className={classes.container}
+          alignItems="center"
+          alignContent="center"
+          direction="column"
+        >
+          <Grid item>
+            <img src="/static/images/notfound.svg" className={classes.image} />
+          </Grid>
+          <Grid item className={classes.paddingTop5}>
+            <Typography variant="h2" align="center" gutterBottom>
+              Page not found
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Link href="/">
+              <Button variant="outlined">Go To Home Page</Button>
+            </Link>
+          </Grid>
+        </Grid>
+      </div>
+    </Layout>
+  )
+}
 
 export default NotFoundPage
