@@ -188,7 +188,7 @@ export default function NavBar({ scrollNext, type }) {
       {/* Responsive mobile nav drawer */}
       <Drawer open={drawerOpen} onClose={handleDrawerClose}>
         <List className={classes.list}>
-          <Link to="/">
+          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <ListItem
               onClick={async () => {
                 await handleDrawerClose()
@@ -215,9 +215,8 @@ export default function NavBar({ scrollNext, type }) {
             </ListItem>
           ) : (
             <Link
-              prefetch
-              href={{ pathname: "/index", query: { section: 2 } }}
-              as="/projects"
+              to="/projects"
+              style={{ textDecoration: "none", color: "white" }}
             >
               <ListItem>
                 <ListItemIcon>
@@ -228,7 +227,7 @@ export default function NavBar({ scrollNext, type }) {
             </Link>
           )}
 
-          <Link href="/blog">
+          <Link to="/blog" style={{ textDecoration: "none", color: "white" }}>
             <ListItem>
               <ListItemIcon>
                 <FormatAlignCenter />
@@ -236,7 +235,7 @@ export default function NavBar({ scrollNext, type }) {
               <ListItemText primary={"Blog"} />
             </ListItem>
           </Link>
-          <Link href="/resume">
+          <Link to="/resume" style={{ textDecoration: "none", color: "white" }}>
             <ListItem>
               <ListItemIcon>
                 <ListIcon />

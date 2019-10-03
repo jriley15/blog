@@ -7,6 +7,7 @@ import WebIcon from "@material-ui/icons/Web"
 import SEO from "../components/seo"
 import serializers from "../components/common/serializers"
 import BlockContent from "@sanity/block-content-to-react"
+import { graphql } from "gatsby"
 
 const useStyles = makeStyles(theme => ({
   root: {
