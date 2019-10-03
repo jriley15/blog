@@ -83,6 +83,7 @@ export const query = graphql`
       description
       previewImage
       publishedAt
+      _createdAt
     }
   }
 `

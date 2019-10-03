@@ -113,13 +113,23 @@ export default function NavBar({ scrollNext, type }) {
       >
         {/* Desktop nav bar */}
         <Toolbar className={classes.desktopToolBar}>
-          <Link to="/" className={classes.link}>
+          {type === "index" ? (
             <img
               src="https://images.jrdn.tech/Jrdn.png"
               className={classes.logo}
               alt="logo"
+              onClick={() => scrollNext(0)}
             />
-          </Link>
+          ) : (
+            <Link to="/" className={classes.link}>
+              <img
+                src="https://images.jrdn.tech/Jrdn.png"
+                className={classes.logo}
+                alt="logo"
+              />
+            </Link>
+          )}
+
           <div className={classes.grow} />
 
           {type === "index" && (

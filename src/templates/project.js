@@ -84,8 +84,6 @@ const Page = props => {
   const { data, errors } = props
   const project = data && data.project
 
-  console.log(project)
-
   return (
     <>
       <SEO title={project.title} description={project.description} />
