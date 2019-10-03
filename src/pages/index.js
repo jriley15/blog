@@ -28,10 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 export const query = graphql`
   query ProjectsPageQuery {
-    projects: allSanityProject(
-      limit: 12
-      sort: { fields: [publishedAt], order: DESC }
-    ) {
+    projects: allSanityProject(sort: { fields: [publishedAt], order: DESC }) {
       edges {
         node {
           id
@@ -58,11 +55,11 @@ const IndexPage = props => {
 
   useEffect(() => {
     //only works with set timeout when coming from another page
-    // setTimeout(() => {
-    //   if (parseInt(query.section, 10) > 0) {
-    //     scrollNext(query.section, "auto")
-    //   }
-    // }, 0)
+    setTimeout(() => {
+      if (parseInt(props.pageContext.section, 10) > 0) {
+        scrollNext(props.pageContext.section, "auto")
+      }
+    }, 100)
   }, [])
 
   const { data, errors } = props
@@ -72,7 +69,6 @@ const IndexPage = props => {
     data.projects &&
     mapEdgesToNodes(data.projects).filter(filterOutDocsWithoutSlugs)
 
-  console.log(projects)
   const scrollNext = (index, b) => {
     switch (parseInt(index, 10)) {
       case 0:
@@ -91,7 +87,7 @@ const IndexPage = props => {
 
   return (
     <Layout>
-      <SEO title="Home | Jordan Portfolio" description="My Portfolio" />
+      <SEO title="Home" description="My Portfolio" />
       <NavBar scrollNext={scrollNext} type="index" />
       <div className={classes.root}>
         <Grid container justify="center" alignItems="center">

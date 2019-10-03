@@ -29,7 +29,6 @@ const NotFoundPage = () => {
     <Layout>
       <SEO title="404: Not found" />
       <div className={classes.root}>
-        <NavBar />
         <Grid
           container
           justify="center"
@@ -39,7 +38,10 @@ const NotFoundPage = () => {
           direction="column"
         >
           <Grid item>
-            <img src="/static/images/notfound.svg" className={classes.image} />
+            <img
+              src="https://images.jrdn.tech/notfound.svg"
+              className={classes.image}
+            />
           </Grid>
           <Grid item className={classes.paddingTop5}>
             <Typography variant="h2" align="center" gutterBottom>
@@ -47,7 +49,7 @@ const NotFoundPage = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link href="/">
+            <Link href="/" style={{ textDecoration: "none" }}>
               <Button variant="outlined">Go To Home Page</Button>
             </Link>
           </Grid>

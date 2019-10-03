@@ -74,8 +74,24 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Post = ({ post }) => {
+export const query = graphql`
+  query PostTemplateQuery($id: String!) {
+    post: sanityPost(id: { eq: $id }) {
+      id
+      _rawBody
+      title
+      description
+      previewImage
+      publishedAt
+    }
+  }
+`
+
+const Post = props => {
   const classes = useStyles()
+
+  const { data, errors } = props
+  const post = data && data.post
 
   //corrupt data fix
   if (post) {
@@ -119,7 +135,10 @@ const Post = ({ post }) => {
                 <Divider className={classes.divider} />
 
                 <div className={classes.body}>
-                  <BlockContent blocks={post.body} serializers={serializers} />
+                  <BlockContent
+                    blocks={post._rawBody}
+                    serializers={serializers}
+                  />
                 </div>
               </Paper>
             </Grid>

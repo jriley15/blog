@@ -169,11 +169,8 @@ const TopSection = ({ scrollNext, children }) => {
 
                   <Button
                     variant="outlined"
-                    href={{
-                      pathname: `/post`,
-                      query: { id: "600070f0-79bb-4c98-80f5-c982f46f36bc" },
-                    }}
-                    as={`/about`}
+                    component={Link}
+                    to="/post/about-me"
                   >
                     About Me
                   </Button>

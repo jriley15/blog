@@ -3,8 +3,8 @@ import { Link } from "gatsby"
 import { ButtonBase } from "@material-ui/core"
 
 const ButtonLink = React.forwardRef(
-  ({ className, href, as, children, prefetch, variant }, ref) => (
-    <Link href={href} as={as} prefetch ref={ref}>
+  ({ className, to, children, variant }, ref) => (
+    <Link to={to} style={{ textDecoration: "none", color: "white" }}>
       <ButtonBase
         className={className}
         variant={variant}

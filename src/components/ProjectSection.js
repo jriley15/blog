@@ -150,17 +150,9 @@ const ProjectSection = ({ children, projects }) => {
                 return new Date(b.publishedAt) - new Date(a.publishedAt)
               })
               .map((project, index) => (
-                <Grid
-                  item
-                  key={project._id}
-                  className={classes.projectGridItem}
-                >
+                <Grid item key={project.id} className={classes.projectGridItem}>
                   <ButtonBaseLink
-                    href={{
-                      pathname: `/project`,
-                      query: { id: project._id },
-                    }}
-                    as={`/project/${project.slug.current}`}
+                    to={`/project/${project.slug.current}`}
                     className={classes.projectButton}
                   >
                     <Grid

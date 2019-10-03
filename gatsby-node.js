@@ -34,7 +34,7 @@ async function createBlogPostPages(graphql, actions, reporter) {
 
     createPage({
       path,
-      component: require.resolve("./src/pages/post.js"),
+      component: require.resolve("./src/templates/post.js"),
       context: { id },
     })
   })
@@ -70,7 +70,7 @@ async function createProjectPages(graphql, actions, reporter) {
 
     createPage({
       path,
-      component: require.resolve("./src/pages/project.js"),
+      component: require.resolve("./src/templates/project.js"),
       context: { id },
     })
   })
@@ -79,4 +79,9 @@ async function createProjectPages(graphql, actions, reporter) {
 exports.createPages = async ({ graphql, actions, reporter }) => {
   await createBlogPostPages(graphql, actions, reporter)
   await createProjectPages(graphql, actions, reporter)
+  actions.createPage({
+    path: "/projects",
+    component: require.resolve("./src/pages/index.js"),
+    context: { section: 2 },
+  })
 }

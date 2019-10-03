@@ -13,6 +13,7 @@ import Fade from "react-reveal/Fade"
 import SEO from "../components/seo"
 import Transition from "react-transition-group/Transition"
 import ButtonBaseLink from "../components/common/ButtonBaseLink"
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -110,8 +111,33 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Blog = ({ posts }) => {
+export const query = graphql`
+  query BlogPageQuery {
+    posts: allSanityPost(sort: { fields: [publishedAt], order: DESC }) {
+      edges {
+        node {
+          _rawBody
+          id
+          title
+          description
+          previewImage
+          publishedAt
+          slug {
+            current
+          }
+        }
+      }
+    }
+  }
+`
+
+const Blog = props => {
   const classes = useStyles()
+  const { data, errors } = props
+  const posts =
+    data &&
+    data.posts &&
+    mapEdgesToNodes(data.posts).filter(filterOutDocsWithoutSlugs)
 
   const duration = 500
 
@@ -129,7 +155,7 @@ const Blog = ({ posts }) => {
 
   return (
     <>
-      <SEO title="Blog | Jordan Portfolio" description="My Personal Blog" />
+      <SEO title="Blog" description="My Personal Blog" />
 
       <NavBar />
       <div className={classes.root}>
@@ -154,75 +180,67 @@ const Blog = ({ posts }) => {
           direction="column"
           alignItems="center"
         >
-          {posts
-            .sort((a, b) => {
-              return new Date(b.publishedAt) - new Date(a.publishedAt)
-            })
-            .map((post, index) => (
-              <Grid item className={classes.postGridItem} key={post._id}>
-                {index === 0 && <Divider variant="middle" />}
-                <Transition key={index} in={true} appear={true} timeout={0}>
-                  {state => (
-                    <div
-                      style={{
-                        ...defaultStyle,
-                        ...transitionStyles[state],
-                        transitionDelay: (index - 1) * 125 + "ms",
-                      }}
+          {posts.map((post, index) => (
+            <Grid item className={classes.postGridItem} key={post.id}>
+              {index === 0 && <Divider variant="middle" />}
+              <Transition key={index} in={true} appear={true} timeout={0}>
+                {state => (
+                  <div
+                    style={{
+                      ...defaultStyle,
+                      ...transitionStyles[state],
+                      transitionDelay: (index - 1) * 125 + "ms",
+                    }}
+                  >
+                    <ButtonBaseLink
+                      to={`/post/${post.slug.current}`}
+                      className={classes.postButton}
                     >
-                      <ButtonBaseLink
-                        href={{
-                          pathname: `/post`,
-                          query: { id: post._id },
-                        }}
-                        as={`/post/${post.slug.current}`}
-                        className={classes.postButton}
-                      >
-                        <Grid container alignItems="center">
-                          <Grid item xs>
-                            <Typography
-                              variant="h4"
-                              className={classes.titleFont}
-                              gutterBottom
-                              align="left"
-                            >
-                              {post.title}
-                            </Typography>
-                            <Typography
-                              variant="body2"
-                              gutterBottom
-                              className={classes.textSecondary}
-                              color="textSecondary"
-                              align="left"
-                            >
-                              {new Date(post.publishedAt).toDateString()}
-                            </Typography>
-                            <Typography align="left">
-                              {post.description}
-                              <MuiLink className={classes.readMoreButton}>
-                                {" "}
-                                Read More
-                              </MuiLink>
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            {post.previewImage && (
-                              <div className={classes.previewImageAvatar}>
-                                <img
-                                  src={post.previewImage}
-                                  style={{ height: "100%" }}
-                                  alt="preview"
-                                />
-                              </div>
-                            )}
-                          </Grid>
+                      <Grid container alignItems="center">
+                        <Grid item xs>
+                          <Typography
+                            variant="h4"
+                            className={classes.titleFont}
+                            gutterBottom
+                            align="left"
+                          >
+                            {post.title}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            gutterBottom
+                            className={classes.textSecondary}
+                            color="textSecondary"
+                            align="left"
+                          >
+                            {new Date(post.publishedAt).toDateString()}
+                          </Typography>
+                          <Typography align="left">
+                            {post.description}
+                            <MuiLink className={classes.readMoreButton}>
+                              {" "}
+                              Read More
+                            </MuiLink>
+                          </Typography>
                         </Grid>
-                      </ButtonBaseLink>
-                    </div>
-                  )}
-                </Transition>
-              </Grid>
-            ))}
+                        <Grid item>
+                          {post.previewImage && (
+                            <div className={classes.previewImageAvatar}>
+                              <img
+                                src={post.previewImage}
+                                style={{ height: "100%" }}
+                                alt="preview"
+                              />
+                            </div>
+                          )}
+                        </Grid>
+                      </Grid>
+                    </ButtonBaseLink>
+                  </div>
+                )}
+              </Transition>
+            </Grid>
+          ))}
         </Grid>
       </div>
     </>

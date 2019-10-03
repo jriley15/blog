@@ -132,12 +132,7 @@ export default function NavBar({ scrollNext, type }) {
             </Button>
           )}
           {type !== "index" && (
-            <Link
-              prefetch
-              href={{ pathname: "/index", query: { section: 2 } }}
-              as="/projects"
-              className={classes.link}
-            >
+            <Link to="/projects" className={classes.link}>
               <Button size="large" className={classes.navButton}>
                 Projects
               </Button>

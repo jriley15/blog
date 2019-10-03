@@ -60,13 +60,34 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Page = ({ project }) => {
+export const query = graphql`
+  query ProjectTemplateQuery($id: String!) {
+    project: sanityProject(id: { eq: $id }) {
+      id
+      title
+      description
+      demo
+      images
+      repository
+      _rawBody
+      slug {
+        current
+      }
+    }
+  }
+`
+
+const Page = props => {
   const classes = useStyles()
+
+  const { data, errors } = props
+  const project = data && data.project
+
+  console.log(project)
 
   return (
     <>
       <SEO title={project.title} description={project.description} />
-
       <NavBar />
       <div className={classes.root}>
         <Grid
@@ -118,7 +139,7 @@ const Page = ({ project }) => {
                 >
                   Repository {!project.repository && "(private)"}
                   <img
-                    src="/static/images/github.svg"
+                    src="https://images.jrdn.tech/github.svg"
                     className={classes.icon}
                     alt="github"
                   />
@@ -129,7 +150,7 @@ const Page = ({ project }) => {
         </Grid>
         <Box display="flex" justifyContent="center" p={2}>
           <div style={{ maxWidth: 700 }}>
-            <BlockContent blocks={project.body} serializers={serializers} />
+            <BlockContent blocks={project._rawBody} serializers={serializers} />
           </div>
         </Box>
       </div>
