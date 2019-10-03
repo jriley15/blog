@@ -5,6 +5,7 @@ import { Typography, Grid, Paper, Divider } from "@material-ui/core"
 import BlockContent from "@sanity/block-content-to-react"
 import SEO from "../components/seo"
 import serializers from "../components/common/serializers"
+import Layout from "../components/layout"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -97,7 +98,7 @@ const Post = props => {
   //corrupt data fix
   if (post) {
     return (
-      <>
+      <Layout>
         <SEO title={post.title} description={post.description} />
         <NavBar />
         <div className={classes.root}>
@@ -145,7 +146,7 @@ const Post = props => {
             </Grid>
           </Grid>
         </div>
-      </>
+      </Layout>
     )
   }
   return null

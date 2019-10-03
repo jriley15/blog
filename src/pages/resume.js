@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar"
 import { makeStyles } from "@material-ui/styles"
 import { Grid, Typography, Tabs, Tab, Box, Button } from "@material-ui/core"
 import SEO from "../components/seo"
+import Layout from "../components/layout"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -67,7 +68,7 @@ const Resume = () => {
   const classes = useStyles()
 
   return (
-    <>
+    <Layout>
       <SEO title="Resume" description="My Resume" />
 
       <NavBar />
@@ -138,7 +139,7 @@ const Resume = () => {
           </div>
         </Box>
       </div>
-    </>
+    </Layout>
   )
 }
 

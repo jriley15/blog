@@ -86,7 +86,7 @@ const IndexPage = props => {
   }
 
   return (
-    <>
+    <Layout>
       <SEO title="Home" description="My Portfolio" />
       <NavBar scrollNext={scrollNext} type="index" />
       <div className={classes.root}>
@@ -101,14 +101,18 @@ const IndexPage = props => {
             </div>
           </SkillSection>
 
-          <ProjectSection scrollNext={scrollNext} projects={projects}>
+          <ProjectSection
+            scrollNext={scrollNext}
+            projects={projects}
+            section={props.pageContext.section}
+          >
             <div className={classes.scrollContainer}>
               <div ref={projectsRef} className={classes.scrollElement} />
             </div>
           </ProjectSection>
         </Grid>
       </div>
-    </>
+    </Layout>
   )
 }
 

@@ -114,110 +114,138 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ProjectSection = ({ children, projects }) => {
+const ProjectSection = ({ children, projects, section }) => {
   const classes = useStyles()
+
+  const projectTree = projects.map((project, index) => (
+    <Grid item key={project.id} className={classes.projectGridItem}>
+      <ButtonBaseLink
+        to={`/project/${project.slug.current}`}
+        className={classes.projectButton}
+      >
+        <Grid
+          container
+          className={classes.projectDiv}
+          justify="space-between"
+          alignItems="center"
+        >
+          {index % 2 !== 0 && (
+            <Grid item>
+              <div className={classes.previewImageAvatar}>
+                <img
+                  src={project.images[0]}
+                  style={{ height: "100%" }}
+                  alt="preview"
+                />
+              </div>
+            </Grid>
+          )}
+          <Grid item xs>
+            <Grid
+              container
+              direction="column"
+              alignItems={index % 2 !== 0 ? "flex-end" : "flex-start"}
+            >
+              <Grid item>
+                <Typography
+                  gutterBottom
+                  variant="h4"
+                  component="h2"
+                  className={classes.titleFont}
+                  align={index % 2 !== 0 ? "right" : "left"}
+                >
+                  {project.title}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography
+                  variant="body1"
+                  component="p"
+                  color="textSecondary"
+                  align={index % 2 !== 0 ? "right" : "left"}
+                >
+                  {project.description}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Button variant="outlined" style={{ marginTop: 8 }}>
+                  View More
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+          {index % 2 === 0 && (
+            <Grid item>
+              <div className={classes.previewImageAvatar}>
+                <img
+                  src={project.images[0]}
+                  style={{ height: "100%" }}
+                  alt="preview"
+                />
+              </div>
+            </Grid>
+          )}
+        </Grid>
+      </ButtonBaseLink>
+    </Grid>
+  ))
 
   return (
     <Grid item className={classes.root}>
       <Grid container justify="center" className={classes.projectContainer}>
         {children}
         <Grid item xs={12}>
-          <Fade up>
-            <Typography
-              variant="h3"
-              align="center"
-              className={classes.titleFont}
-              gutterBottom
-            >
-              Projects
-            </Typography>
-            <Typography
-              color="textSecondary"
-              variant="body1"
-              align="center"
-              gutterBottom
-            >
-              Documentation on some of the notable projects I've worked on over
-              the years.
-            </Typography>
-          </Fade>
+          {section !== 2 ? (
+            <Slide right>
+              <Fade up>
+                <Typography
+                  variant="h3"
+                  align="center"
+                  className={classes.titleFont}
+                  gutterBottom
+                >
+                  Projects
+                </Typography>
+                <Typography
+                  color="textSecondary"
+                  variant="body1"
+                  align="center"
+                  gutterBottom
+                >
+                  Documentation on some of the notable projects I've worked on
+                  over the years.
+                </Typography>
+              </Fade>
+            </Slide>
+          ) : (
+            <>
+              <Typography
+                variant="h3"
+                align="center"
+                className={classes.titleFont}
+                gutterBottom
+              >
+                Projects
+              </Typography>
+              <Typography
+                color="textSecondary"
+                variant="body1"
+                align="center"
+                gutterBottom
+              >
+                Documentation on some of the notable projects I've worked on
+                over the years.
+              </Typography>
+            </>
+          )}
         </Grid>
 
         <Grid container direction="column" justify="center" alignItems="center">
-          <Slide right>
-            {projects.map((project, index) => (
-              <Grid item key={project.id} className={classes.projectGridItem}>
-                <ButtonBaseLink
-                  to={`/project/${project.slug.current}`}
-                  className={classes.projectButton}
-                >
-                  <Grid
-                    container
-                    className={classes.projectDiv}
-                    justify="space-between"
-                    alignItems="center"
-                  >
-                    {index % 2 !== 0 && (
-                      <Grid item>
-                        <div className={classes.previewImageAvatar}>
-                          <img
-                            src={project.images[0]}
-                            style={{ height: "100%" }}
-                            alt="preview"
-                          />
-                        </div>
-                      </Grid>
-                    )}
-                    <Grid item xs>
-                      <Grid
-                        container
-                        direction="column"
-                        alignItems={index % 2 !== 0 ? "flex-end" : "flex-start"}
-                      >
-                        <Grid item>
-                          <Typography
-                            gutterBottom
-                            variant="h4"
-                            component="h2"
-                            className={classes.titleFont}
-                            align={index % 2 !== 0 ? "right" : "left"}
-                          >
-                            {project.title}
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Typography
-                            variant="body1"
-                            component="p"
-                            color="textSecondary"
-                            align={index % 2 !== 0 ? "right" : "left"}
-                          >
-                            {project.description}
-                          </Typography>
-                        </Grid>
-                        <Grid item>
-                          <Button variant="outlined" style={{ marginTop: 8 }}>
-                            View More
-                          </Button>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                    {index % 2 === 0 && (
-                      <Grid item>
-                        <div className={classes.previewImageAvatar}>
-                          <img
-                            src={project.images[0]}
-                            style={{ height: "100%" }}
-                            alt="preview"
-                          />
-                        </div>
-                      </Grid>
-                    )}
-                  </Grid>
-                </ButtonBaseLink>
-              </Grid>
-            ))}
-          </Slide>
+          {section !== 2 ? (
+            <Slide right>{projectTree}</Slide>
+          ) : (
+            <>{projectTree}</>
+          )}
         </Grid>
       </Grid>
     </Grid>

@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import NavBar from "./NavBar"
@@ -21,6 +21,11 @@ const Layout = ({ children }) => {
       }
     }
   `)
+
+  useEffect(() => {
+    console.log("mount")
+    return () => {}
+  }, [])
 
   return (
     <>

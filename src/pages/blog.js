@@ -14,6 +14,7 @@ import SEO from "../components/seo"
 import Transition from "react-transition-group/Transition"
 import ButtonBaseLink from "../components/common/ButtonBaseLink"
 import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from "../lib/helpers"
+import Layout from "../components/layout"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -154,7 +155,7 @@ const Blog = props => {
   }
 
   return (
-    <>
+    <Layout>
       <SEO title="Blog" description="My Personal Blog" />
 
       <NavBar />
@@ -243,7 +244,7 @@ const Blog = props => {
           ))}
         </Grid>
       </div>
-    </>
+    </Layout>
   )
 }
 

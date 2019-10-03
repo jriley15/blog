@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 import serializers from "../components/common/serializers"
 import BlockContent from "@sanity/block-content-to-react"
 import { graphql } from "gatsby"
+import Layout from "../components/layout"
 
 const useStyles = makeStyles(theme => ({
   root: {
