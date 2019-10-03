@@ -1,5 +1,5 @@
 import React from "react"
-import NavBar from "../components/NavBar"
+import NavBar from "../components/Navbar"
 import { makeStyles } from "@material-ui/styles"
 import { Grid, Typography, Tabs, Tab, Box, Button } from "@material-ui/core"
 import SEO from "../components/seo"

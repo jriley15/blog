@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react"
 import { Link } from "gatsby"
-import NavBar from "../components/NavBar"
+import NavBar from "../components/Navbar"
 import { makeStyles, fade } from "@material-ui/core/styles"
 import {
   Typography,

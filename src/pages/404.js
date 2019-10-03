@@ -4,7 +4,7 @@ import SEO from "../components/seo"
 import { Button, Typography, Grid } from "@material-ui/core"
 import { Link } from "gatsby"
 import { makeStyles } from "@material-ui/styles"
-import NavBar from "../components/NavBar"
+import NavBar from "../components/Navbar"
 
 const useStyles = makeStyles(theme => ({
   root: {
