@@ -175,7 +175,7 @@ export default function NavBar({ scrollNext, type }) {
 
           <Link to="/" className={classes.link}>
             <img
-              src="/static/images/Jrdn.png"
+              src="https://images.jrdn.tech/Jrdn.png"
               className={classes.logo}
               alt="logo"
             />
