@@ -196,27 +196,25 @@ const ProjectSection = ({ children, projects, section }) => {
         {children}
         <Grid item xs={12}>
           {section !== 2 ? (
-            <Slide right>
-              <Fade up>
-                <Typography
-                  variant="h3"
-                  align="center"
-                  className={classes.titleFont}
-                  gutterBottom
-                >
-                  Projects
-                </Typography>
-                <Typography
-                  color="textSecondary"
-                  variant="body1"
-                  align="center"
-                  gutterBottom
-                >
-                  Documentation on some of the notable projects I've worked on
-                  over the years.
-                </Typography>
-              </Fade>
-            </Slide>
+            <Fade up>
+              <Typography
+                variant="h3"
+                align="center"
+                className={classes.titleFont}
+                gutterBottom
+              >
+                Projects
+              </Typography>
+              <Typography
+                color="textSecondary"
+                variant="body1"
+                align="center"
+                gutterBottom
+              >
+                Documentation on some of the notable projects I've worked on
+                over the years.
+              </Typography>
+            </Fade>
           ) : (
             <>
               <Typography
