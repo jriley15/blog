@@ -86,7 +86,7 @@ const IndexPage = props => {
   }
 
   return (
-    <Layout>
+    <>
       <SEO title="Home" description="My Portfolio" />
       <NavBar scrollNext={scrollNext} type="index" />
       <div className={classes.root}>
@@ -108,7 +108,7 @@ const IndexPage = props => {
           </ProjectSection>
         </Grid>
       </div>
-    </Layout>
+    </>
   )
 }
 
