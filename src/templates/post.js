@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react"
-import NavBar from "../components/Navbar"
+import NavBar from "../components/NavBar"
 import { makeStyles } from "@material-ui/core/styles"
 import { Typography, Grid, Paper, Divider } from "@material-ui/core"
 import BlockContent from "@sanity/block-content-to-react"
