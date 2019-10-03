@@ -10,6 +10,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import NavBar from "./NavBar"
 import Footer from "./Footer"
+import ReactGA from "react-ga"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -23,7 +24,10 @@ const Layout = ({ children }) => {
   `)
 
   useEffect(() => {
-    console.log("mount")
+    //Google analytics scripts
+    ReactGA.initialize("UA-145349824-1")
+
+    ReactGA.pageview(window.location.pathname)
     return () => {}
   }, [])
 
