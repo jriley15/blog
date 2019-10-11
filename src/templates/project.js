@@ -86,7 +86,7 @@ const Page = props => {
   const project = data && data.project
 
   return (
-    <>
+    <Layout>
       <SEO title={project.title} description={project.description} />
       <NavBar />
       <div className={classes.root}>
@@ -154,7 +154,7 @@ const Page = props => {
           </div>
         </Box>
       </div>
-    </>
+    </Layout>
   )
 }
 
