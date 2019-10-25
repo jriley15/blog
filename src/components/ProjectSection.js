@@ -112,6 +112,58 @@ const useStyles = makeStyles(theme => ({
     cursor: "pointer",
     borderRadius: "4px",
   },
+
+  ribbon: {
+    width: 150,
+    height: 150,
+    overflow: "hidden",
+    position: "absolute",
+
+    top: -10,
+    right: -10,
+
+    "&:after": {
+      borderTopColor: "transparent",
+      borderRightColor: "transparent",
+      bottom: 0,
+      right: 0,
+
+      position: "absolute",
+      zIndex: -1,
+      content: '""',
+      display: "block",
+      border: "5px solid #b08f26",
+    },
+    "&:before": {
+      borderTopColor: "transparent",
+      borderRightColor: "transparent",
+      top: 0,
+      left: 0,
+
+      position: "absolute",
+      zIndex: -1,
+      content: '""',
+      display: "block",
+      border: "5px solid #b08f26",
+    },
+  },
+  ribbonSpan: {
+    left: -25,
+    top: 30,
+    transform: "rotate(45deg)",
+
+    position: "absolute",
+    display: "block",
+    width: 225,
+    padding: "15px 0",
+    backgroundColor: "#d4af37",
+    boxShadow: "0 5px 10px rgba(0,0,0,.1)",
+    color: "#fff",
+    font: `700 18px/1 'lato', sans-serif`,
+    textShadow: "0 1px 1px rgba(0,0,0,.2)",
+    textTransform: "uppercase",
+    textAlign: "center",
+  },
 }))
 
 const ProjectSection = ({ children, projects, section }) => {
@@ -123,6 +175,11 @@ const ProjectSection = ({ children, projects, section }) => {
         to={`/project/${project.slug.current}`}
         className={classes.projectButton}
       >
+        {project.id === "7730d8b1-3b4c-5111-bfaa-3377a7faed2e" && (
+          <div className={classes.ribbon}>
+            <span className={classes.ribbonSpan}>1st Place</span>
+          </div>
+        )}
         <Grid
           container
           className={classes.projectDiv}
