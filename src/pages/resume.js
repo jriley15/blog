@@ -79,34 +79,6 @@ const Resume = () => {
           flexDirection="column"
           alignItems="center"
         >
-          <div className={classes.topSection}>
-            <Typography
-              align="center"
-              variant="h3"
-              className={classes.titleFont}
-              gutterBottom
-            >
-              My Resume
-            </Typography>
-            <Box
-              display="flex"
-              justifyContent="center"
-              className={classes.downloadButtons}
-            >
-              <Button
-                variant="contained"
-                className={classes.button}
-                component="a"
-                href="https://files.jrdn.tech/resume.pdf"
-                download="Jordan Riley Resume 2019"
-              >
-                Download PDF
-              </Button>
-              <Button variant="contained" className={classes.button}>
-                Download Word Doc
-              </Button>
-            </Box>
-          </div>
           {/*<VerticalTabs />*/}
           <div className={classes.desktopResume}>
             <object
