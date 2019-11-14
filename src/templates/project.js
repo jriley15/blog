@@ -60,6 +60,9 @@ const useStyles = makeStyles(theme => ({
   paddingBottom: {
     paddingBottom: theme.spacing(2),
   },
+  title: {
+    maxWidth: 750,
+  },
 }))
 
 export const query = graphql`
@@ -97,7 +100,7 @@ const Page = props => {
           justify="center"
           alignItems="center"
         >
-          <Grid item xs={12}>
+          <Grid item xs={12} className={classes.title}>
             <Typography
               align="center"
               variant="h3"
@@ -106,10 +109,13 @@ const Page = props => {
             >
               {project.title}
             </Typography>
-          </Grid>
 
-          <Grid item xs={12} className={classes.paddingBottom}>
-            <Typography align="center" gutterBottom color="textSecondary">
+            <Typography
+              align="center"
+              gutterBottom
+              color="textSecondary"
+              className={classes.paddingBottom}
+            >
               {project.description}
             </Typography>
           </Grid>
