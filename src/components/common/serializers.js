@@ -19,7 +19,7 @@ export default {
     const style = props.node.style || "normal"
 
     //console.log("block: ", props.node)
-    if (props.node._type === "Inline Image") {
+    if (props.node._type === "inlineImage") {
       return (
         <img
           src={props.node.src}
