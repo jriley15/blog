@@ -24,7 +24,7 @@ export default {
         <img
           src={props.node.src}
           style={{
-            maxWidth: "calc(100% - 8px)",
+            maxWidth: "100%",
             paddingTop: 8,
             paddingBottom: 8,
           }}

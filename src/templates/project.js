@@ -40,10 +40,11 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.common.white,
   },
   markDown: {
-    marginLeft: theme.spacing.unit * 2,
-    marginRight: theme.spacing.unit * 2,
-    maxWidth: "700px",
-    textAlign: "left",
+    paddingLeft: theme.spacing.unit * 1,
+    paddingRight: theme.spacing.unit * 1,
+    width: "700px",
+    maxWidth: "100vw",
+    wordBreak: "break-word",
   },
   icon: {
     marginLeft: theme.spacing.unit,
@@ -154,8 +155,8 @@ const Page = props => {
             </Grid>
           </Grid>
         </Grid>
-        <Box display="flex" justifyContent="center" p={2}>
-          <div style={{ maxWidth: 700 }}>
+        <Box display="flex" justifyContent="center">
+          <div className={classes.markDown}>
             <BlockContent blocks={project._rawBody} serializers={serializers} />
           </div>
         </Box>
